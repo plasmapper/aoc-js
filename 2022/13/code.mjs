@@ -92,7 +92,7 @@ export default class {
             solConsoleLine.innerHTML = `Pair ${index} is not in the right order.`;
 
           if (visualization) {
-            visConsole.container.scrollTop = visConsole.lines[index].offsetTop - visConsole.container.offsetHeight / 2;
+            visConsole.container.scrollTop = visConsole.lines[(index - 1) * 4].offsetTop - visConsole.container.offsetHeight / 2;
             await delay(10);
           }
         }
