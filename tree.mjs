@@ -61,6 +61,10 @@ export const years = [
       {
         name: "Day 12: Hill Climbing Algorithm", path: "./2022/12", taskUrl: "https://adventofcode.com/2022/day/12",
         answers: {part1: {testInput: 31, puzzleInput: 383}, part2: {testInput: 29, puzzleInput: 377}}
+      },
+      {
+        name: "Day 13: Distress Signal", path: "./2022/13", taskUrl: "https://adventofcode.com/2022/day/13",
+        answers: {part1: {testInput: 13, puzzleInput: 6187}, part2: {testInput: 140, puzzleInput: 23520}}
       }
     ]
   }
