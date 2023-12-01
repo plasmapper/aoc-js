@@ -1,6 +1,9 @@
 body {
   background: #0f0f23;
-  color: #cccccc;
+}
+
+body, textarea, code {
+  color: #999999;
   font-family: "Source Code Pro", monospace;
   font-size: 14pt;
 }
@@ -9,15 +12,6 @@ a, .selector {
   text-decoration: none;
   color: #009900;
   cursor: pointer;
-}
-
-.selector {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 
 a:hover, a:focus, .selector:hover, .selector:focus, .selector.active {
@@ -37,22 +31,18 @@ a:hover, a:focus, .selector:hover, .selector:focus, .selector.active {
   text-decoration: underline;
 }
 
-textarea {
-  resize: none;
+textarea, code, canvas {
   background-color: #10101a;
   border: 1px solid #333340;
-  font-family: "Source Code Pro", monospace;
-  font-size: 14pt;
-  color: #999999;
+}
+
+textarea {
+  resize: none;
 }
 
 code {
   display: inline-block;
-  font-family: "Source Code Pro", monospace;
   white-space: pre-wrap;
-  color: #999999;
-  background: #10101a;
-  border: 1px solid #333340;
   overflow: auto;
 }
 
@@ -81,11 +71,6 @@ code p {
 
 header {
   margin-bottom: 1em;
-}
-
-nav em, #part-and-input-selector em {
-  font-style: normal;
-  color: #99ff99;
 }
 
 #days-container {
@@ -119,9 +104,4 @@ nav em, #part-and-input-selector em {
 
 #visualization-container code {
   height: 33em;
-}
-
-#visualization-container canvas {
-  background-color: #10101a;
-  border: 1px solid #333340;
 }
