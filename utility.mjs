@@ -218,6 +218,14 @@ export class Vector2D {
   dot(vector) {
     return new Vector2D(this.x * vector.x + this.y * vector.y);
   }
+
+  /**
+   * Calculates the Manhattan length of the vector (|x| + |y|).
+   * @returns {number} Manhattan length of the vector.
+   */
+  manhattanLength() {
+    return Math.abs(this.x) + Math.abs(this.y);
+  }
 }
 
 /**
