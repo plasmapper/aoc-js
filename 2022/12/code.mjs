@@ -46,8 +46,6 @@ export default class {
    */
   async solve(part, input, visualization) {
     const mapGreenColorStep = 9;
-    const startColorIndex = 0;
-    const startColor = "#000000";
     const endColorIndex = 27;
     const endColor = "#ffff66";
     const highlightColorIndex = 28;
@@ -78,9 +76,8 @@ export default class {
 
       if (visualization) {
         this.visContainer.append(pixelMap.container);
-        pixelMap.palette[startColorIndex] = startColor;
         for (let i = 1; i <= 26; i++)
-          pixelMap.palette[i] = `rgb(0, ${(i + 1) * mapGreenColorStep}, 0)`;
+          pixelMap.palette[i] = `rgb(0, ${i * mapGreenColorStep}, 0)`;
         pixelMap.palette[endColorIndex] = endColor;
         pixelMap.palette[highlightColorIndex] = highlightColor;
 

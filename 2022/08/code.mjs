@@ -46,7 +46,7 @@ export default class {
    */
   async solve(part, input, visualization) {
     const treeGreenColorStep = 25;
-    const highlightColorIndex = 10;
+    const highlightColorIndex = 11;
     const highlightColor = "#ffffff";
 
     try {
@@ -63,11 +63,11 @@ export default class {
 
       if (visualization) {
         this.visContainer.append(pixelMap.container);
-        for (let i = 0; i <= 9; i++)
-          pixelMap.palette[i] = `rgb(0, ${(i + 1) * treeGreenColorStep}, 0)`;
+        for (let i = 1; i <= 10; i++)
+          pixelMap.palette[i] = `rgb(0, ${i * treeGreenColorStep}, 0)`;
         pixelMap.palette[highlightColorIndex] = highlightColor;
 
-        pixelMap.draw(trees.map(line => line.map(e => e.height)));
+        pixelMap.draw(trees.map(line => line.map(e => e.height + 1)));
       }
 
       // Calculate view distances

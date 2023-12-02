@@ -46,9 +46,9 @@ export default class {
    * @returns {number} Number of positions the tail of the rope visits at least once.
    */
   async solve(part, input, visualization) {
-    const ropeHeadColorIndex = 0;
-    const ropeBodyColorIndex = 1;
-    const ropeTailColorIndex = 2;
+    const ropeHeadColorIndex = 1;
+    const ropeBodyColorIndex = 2;
+    const ropeTailColorIndex = 3;
     const ropeHeadColor = "#00aa00";
     const ropeBodyColor = "#008000";
     const ropeTailColor = "#ffffff";

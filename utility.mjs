@@ -141,6 +141,8 @@ export class PixelMap {
    * @param {number} y Y coordinate.
    */
   clearPixel(x, y) {
+    this.image[y][x] = 0;
+
     if (typeof this.context !== "undefined")
       this.context.clearRect(x * this.pixelSize, y * this.pixelSize, this.pixelSize, this.pixelSize);
   }
