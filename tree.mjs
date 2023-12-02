@@ -5,6 +5,10 @@ export const years = [
       {
         name: "Day 1: Trebuchet?!", path: "./2023/01", taskUrl: "https://adventofcode.com/2023/day/1",
         answers: {part1: {testInput: 220, puzzleInput: 54990}, part2: {testInput: 281, puzzleInput: 54473}}
+      },
+      {
+        name: "Day 2: Cube Conundrum", path: "./2023/02", taskUrl: "https://adventofcode.com/2023/day/2",
+        answers: {part1: {testInput: 8, puzzleInput: 2716}, part2: {testInput: 2286, puzzleInput: 72227}}
       }
     ]
   },
