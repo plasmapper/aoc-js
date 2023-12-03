@@ -154,7 +154,10 @@ async function toggleVisualization() {
   visualizationContainer.innerHTML = "";
 
   visualization = !visualization;
-  visualizationSwitch.innerHTML = visualization ? "[X] Visualization" : "[ ] Visualization";
+  if (visualization)
+    visualizationSwitch.classList.add("active");
+  else
+    visualizationSwitch.classList.remove("active");
 }
 
 /**

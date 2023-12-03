@@ -1,21 +1,25 @@
 body {
-  background: #0f0f23;
+  background: #030303;
 }
 
 body, textarea, code {
-  color: #999999;
+  color: #aaaaaa;
   font-family: "Source Code Pro", monospace;
   font-size: 14pt;
 }
 
 a, .selector {
   text-decoration: none;
-  color: #009900;
+  color: #00aa00;
   cursor: pointer;
 }
 
-a:hover, a:focus, .selector:hover, .selector:focus, .selector.active {
-  color: #99ff99;
+.selector.active {
+  color: #dddddd;
+}
+
+a:hover, a:focus, .selector:hover, .selector:focus {
+  color: #ffffff;
 }
 
 .error {
@@ -27,13 +31,22 @@ a:hover, a:focus, .selector:hover, .selector:focus, .selector.active {
   color: #ffffff;
 }
 
+#stop-button {
+  color: #990000;
+  display: none;
+}
+
+#stop-button:hover, #stop:focus {
+  color: #ff0000
+}
+
 .underlined {
   text-decoration: underline;
 }
 
 textarea, code, canvas {
-  background-color: #10101a;
-  border: 1px solid #333340;
+  background-color: #000000;
+  border: 1px solid #aaaaaa;
 }
 
 textarea {
@@ -83,15 +96,6 @@ header {
 
 #task-input {
   height: 16.5em;
-}
-
-#stop-button {
-  color: #990000;
-  display: none;
-}
-
-#stop-button:hover, #stop:focus {
-  color: #ff0000
 }
 
 #task-input {
