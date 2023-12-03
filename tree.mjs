@@ -73,6 +73,10 @@ export const years = [
       {
         name: "Day 14: Regolith Reservoir", path: "./2022/14", taskUrl: "https://adventofcode.com/2022/day/14",
         answers: {part1: {testInput: 24, puzzleInput: 795}, part2: {testInput: 93, puzzleInput: 30214}}
+      },
+      {
+        name: "Day 15: Beacon Exclusion Zone", path: "./2022/15", taskUrl: "https://adventofcode.com/2022/day/15",
+        answers: {part1: {testInput: 26, puzzleInput: 4502208}, part2: {testInput: 56000011, puzzleInput: 13784551204480}}
       }
     ]
   }
