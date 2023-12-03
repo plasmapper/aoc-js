@@ -18,7 +18,7 @@ a, .selector {
   color: #dddddd;
 }
 
-a:hover, a:focus, .selector:hover, .selector:focus {
+a:hover, .selector:hover {
   color: #ffffff;
 }
 
