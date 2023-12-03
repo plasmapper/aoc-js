@@ -45,6 +45,8 @@ async function initialize() {
   await setYearIndex(years.findIndex(e => e.name == year));
   await setDayIndex(day - 1);
   await setPart(part);
+  visualization = false;
+  await toggleVisualization();
 }
 
 /**
