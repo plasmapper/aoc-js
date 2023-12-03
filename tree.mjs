@@ -9,6 +9,10 @@ export const years = [
       {
         name: "Day 2: Cube Conundrum", path: "./2023/02", taskUrl: "https://adventofcode.com/2023/day/2",
         answers: {part1: {testInput: 8, puzzleInput: 2716}, part2: {testInput: 2286, puzzleInput: 72227}}
+      },
+      {
+        name: "Day 3: Gear Ratios", path: "./2023/03", taskUrl: "https://adventofcode.com/2023/day/3",
+        answers: {part1: {testInput: 4361, puzzleInput: 556057}, part2: {testInput: 467835, puzzleInput: 82824352}}
       }
     ]
   },
