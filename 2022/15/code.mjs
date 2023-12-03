@@ -1,4 +1,4 @@
-import { delay, Console, Vector2D, LineSegment2D } from "../../utility.mjs";
+import { delay, Console, Range, Vector2D, LineSegment2D } from "../../utility.mjs";
 
 export default class {
   /**
@@ -169,27 +169,5 @@ class Sensor {
      * @type {number}
      */
     this.range = closestBeaconPosition.clone().subtract(position).manhattanLength();
-  }
-}
-
-/**
- * Puzzle range.
- */
-class Range {
-  /**
-   * @param {number} from Range start.
-   * @param {number} to Range end.
-   */
-  constructor (from, to) {
-    /**
-     * Range start.
-     * @type {number}
-     */
-    this.from = from;
-    /**
-     * Range end.
-     * @type {number}
-     */
-    this.to = to;
   }
 }

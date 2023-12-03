@@ -149,6 +149,28 @@ export class PixelMap {
 }
 
 /**
+ * Range class.
+ */
+export class Range {
+  /**
+   * @param {number} from Range start.
+   * @param {number} to Range end.
+   */
+  constructor (from, to) {
+    /**
+     * Range start.
+     * @type {number}
+     */
+    this.from = from;
+    /**
+     * Range end.
+     * @type {number}
+     */
+    this.to = to;
+  }
+}
+
+/**
  * 2D vector class.
  */
 export class Vector2D {

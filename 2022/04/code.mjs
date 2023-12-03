@@ -1,4 +1,4 @@
-import { delay, Console } from "../../utility.mjs";
+import { delay, Console, Range } from "../../utility.mjs";
 
 export default class {
   /**
@@ -100,27 +100,5 @@ export default class {
     while (this.isSolving)
       await(delay(10));
     this.isStopping = false;
-  }
-}
-
-/**
- * Puzzle range.
- */
-class Range {
-  /**
-   * @param {number} from Range start.
-   * @param {number} to Range end.
-   */
-  constructor (from, to) {
-    /**
-     * Range start.
-     * @type {number}
-     */
-    this.from = from;
-    /**
-     * Range end.
-     * @type {number}
-     */
-    this.to = to;
   }
 }
