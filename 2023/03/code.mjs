@@ -127,7 +127,8 @@ export default class  {
         if (visualization) {
           let visConsoleLine = visConsole.addLine();
           let highlightedRanges = numberStrings[lineIndex].filter(e => part == 1 || e.isPartOfGearRatio).map(e => new Range(e.startIndex, e.endIndex));;
-          highlightedRanges = highlightedRanges.concat(gears[lineIndex].map(e => new Range(e.symbolIndex, e.symbolIndex + 1)));
+          if (part == 2)
+            highlightedRanges = highlightedRanges.concat(gears[lineIndex].map(e => new Range(e.symbolIndex, e.symbolIndex + 1)));
           highlightedRanges.sort((r1, r2) => r1.from - r2.from);
 
           if (highlightedRanges.length == 0)
