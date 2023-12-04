@@ -32,11 +32,11 @@ export default class  {
   }
 
   /**
-   * Calculates the sum of part numbers in the engine schematic.
+   * Calculates the sum of part numbers in the engine schematic (part 1) or the sum of gear ratios (part 2).
    * @param {number} part Puzzle part.
    * @param {string} input Puzzle input.
    * @param {boolean} visualization Enable visualization.
-   * @returns {number} Sum of part numbers in the engine schematic.
+   * @returns {number} The sum of part numbers in the engine schematic (part 1) or the sum of gear ratios (part 2).
    */
   async solve(part, input, visualization) {
     try {
