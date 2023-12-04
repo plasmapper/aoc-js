@@ -18,13 +18,10 @@ a, .selector {
   color: #dddddd;
 }
 
-a:hover, .selector:hover {
-  color: #ffffff;
-}
-
-@media (hover: none) {
-  a:hover { color: inherit; }
-  .selector:hover { color: inherit; }
+@media(hover: hover) and (pointer: fine) {
+  a:hover, .selector:hover {
+    color: #ffffff;
+  }
 }
 
 .error {
@@ -74,12 +71,14 @@ code p {
   display: flex;
   flex-direction: column;
   row-gap: 0.6em;
+  align-items: flex-start;
 }
 
 .horizontal-container, .horizontal-wrap-container {
   display: flex;
   flex-direction: row;
   column-gap: 2em;
+  align-items: flex-start;
 }
 
 .horizontal-wrap-container {
