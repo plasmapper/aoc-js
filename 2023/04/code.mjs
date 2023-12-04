@@ -77,7 +77,7 @@ export default class  {
           return;
 
         if (visualization && part == 1)
-          visConsole.addLine(`Card ${cardIndex + 1}:\n  ${card.winningNumbers.join(" ")}\n  --------------------------------\n `);
+          visConsole.addLine(`Card ${cardIndex + 1}:\n${card.winningNumbers.join(" ")}\n--------------------------------\n`);
 
         // Calculate winning numbers and points won with the card
         let numberOfWinningNumbers = 0;
@@ -87,11 +87,11 @@ export default class  {
             numberOfWinningNumbers++;
             pointsWon = pointsWon == 0 ? 1 : pointsWon * 2;
             if (visualization && part == 1)
-              visConsole.lines[visConsole.lines.length - 1].innerHTML += ` <span class="highlighted">${pickedNumber}</span>`;
+              visConsole.lines[visConsole.lines.length - 1].innerHTML += `<span class="highlighted">${pickedNumber}</span> `;
           }
           else {
             if (visualization && part == 1)
-              visConsole.lines[visConsole.lines.length - 1].innerHTML += ` ${pickedNumber}`;
+              visConsole.lines[visConsole.lines.length - 1].innerHTML += `${pickedNumber} `;
           }
         }
         totalPointsWon += pointsWon;
