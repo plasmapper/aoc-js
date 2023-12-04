@@ -22,6 +22,11 @@ a:hover, .selector:hover {
   color: #ffffff;
 }
 
+@media (hover: none) {
+  a:hover { color: inherit; }
+  .selector:hover { color: inherit; }
+}
+
 .error {
   color: #ff0000;
 }
