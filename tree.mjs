@@ -13,6 +13,10 @@ export const years = [
       {
         name: "Day 3: Gear Ratios", path: "./2023/03", taskUrl: "https://adventofcode.com/2023/day/3",
         answers: {part1: {testInput: 4361, puzzleInput: 556057}, part2: {testInput: 467835, puzzleInput: 82824352}}
+      },
+      {
+        name: "Day 4: Scratchcards", path: "./2023/04", taskUrl: "https://adventofcode.com/2023/day/4",
+        answers: {part1: {testInput: 13, puzzleInput: 26443}, part2: {testInput: 30, puzzleInput: 6284877}}
       }
     ]
   },
