@@ -151,7 +151,7 @@ export default class {
 class Sensor {
   /**
    * @param {Vector2D} position Sensor position.
-   * @param {Vector2D} Closest beacon position.
+   * @param {Vector2D} closestBeaconPosition Closest beacon position.
    */
   constructor(position, closestBeaconPosition) {
     /**
