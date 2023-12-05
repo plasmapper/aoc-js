@@ -92,6 +92,7 @@ header {
 
 #days-container {
   flex-shrink: 0;
+  width: 19em;
 }
 
 #task-input, #solution-console, #visualization-container code {
