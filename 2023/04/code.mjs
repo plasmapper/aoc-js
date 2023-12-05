@@ -15,7 +15,7 @@ export default class  {
   /**
    * Parses the puzzle input.
    * @param {string} input Puzzle input.
-   * @returns {string[]} 4Schematic lines.
+   * @returns {Card[]} Cards.
    */
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
