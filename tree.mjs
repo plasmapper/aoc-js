@@ -17,6 +17,10 @@ export const years = [
       {
         name: "Day 4: Scratchcards", path: "./2023/04", taskUrl: "https://adventofcode.com/2023/day/4",
         answers: {part1: {testInput: 13, puzzleInput: 26443}, part2: {testInput: 30, puzzleInput: 6284877}}
+      },
+      {
+        name: "Day 5: If You Give A Seed A Fertilizer", path: "./2023/05", taskUrl: "https://adventofcode.com/2023/day/5",
+        answers: {part1: {testInput: 35, puzzleInput: 910845529}, part2: {testInput: 46, puzzleInput: 77435348}}
       }
     ]
   },

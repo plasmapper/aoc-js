@@ -168,6 +168,39 @@ export class Range {
      */
     this.to = to;
   }
+
+  /**
+   * Finds parts of the range that overlap and do not overlap with the target range.
+   * @param {Range} targetRange Target range.
+   * @returns {Range} Array of 3 partial ranges: left, inside and right of the target range (null if partial range does not exist).
+   */  
+  overlap(targetRange) {
+    let parts = [new Range(this.from, this.to), null, null];
+
+    if (targetRange.from <= this.to) {
+      if (targetRange.from <= this.from) {
+        parts[1] = parts[0];
+        parts[0] = null;
+      }
+      else {
+        parts[0] = new Range(this.from, targetRange.from - 1);
+        parts[1] = new Range(targetRange.from, this.to);
+      }
+    }
+
+    if (parts[1] != null && targetRange.to < this.to) {
+      if (targetRange.to >= this.from) {
+        parts[1] = new Range(parts[1].from, targetRange.to);
+        parts[2] = new Range(targetRange.to + 1, this.to);
+      }
+      else {
+        parts[2] = parts[1];
+        parts[1] = null;
+      }
+    }
+
+    return parts;
+  }
 }
 
 /**
