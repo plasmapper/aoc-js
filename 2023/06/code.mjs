@@ -93,7 +93,7 @@ export default class  {
         
         let T = race.time, S = race.recordDistance, D = T * T - 4 * S;
         if (D < 0)
-          throw new Error(`Race ${raceIndex} record can not be broken`);
+          throw new Error(`Race ${raceIndex + 1} record can not be broken`);
 
         let t1 = (T - Math.sqrt(D)) / 2, t2 = (T + Math.sqrt(D)) / 2;
         t1 = Number.isInteger(t1) ? t1 + 1 : Math.ceil(t1);
