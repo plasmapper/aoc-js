@@ -21,6 +21,10 @@ export const years = [
       {
         name: "Day 5: If You Give A Seed A Fertilizer", path: "./2023/05", taskUrl: "https://adventofcode.com/2023/day/5",
         answers: {part1: {testInput: 35, puzzleInput: 910845529}, part2: {testInput: 46, puzzleInput: 77435348}}
+      },
+      {
+        name: "Day 6: Wait For It", path: "./2023/06", taskUrl: "https://adventofcode.com/2023/day/6",
+        answers: {part1: {testInput: 288, puzzleInput: 281600}, part2: {testInput: 71503, puzzleInput: 33875953}}
       }
     ]
   },
