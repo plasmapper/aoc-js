@@ -25,6 +25,10 @@ export const years = [
       {
         name: "Day 6: Wait For It", path: "./2023/06", taskUrl: "https://adventofcode.com/2023/day/6",
         answers: {part1: {testInput: 288, puzzleInput: 281600}, part2: {testInput: 71503, puzzleInput: 33875953}}
+      },
+      {
+        name: "Day 7: Camel Cards", path: "./2023/07", taskUrl: "https://adventofcode.com/2023/day/7",
+        answers: {part1: {testInput: 6440, puzzleInput: 247815719}, part2: {testInput: 5905, puzzleInput: 248747492}}
       }
     ]
   },

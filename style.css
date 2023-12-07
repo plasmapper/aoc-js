@@ -29,8 +29,11 @@ a, .selector {
 }
 
 .highlighted {
-  font-style: normal;
   color: #ffffff;
+}
+
+.strongly-highlighted {
+  color: #ffff00;
 }
 
 #stop-button {
