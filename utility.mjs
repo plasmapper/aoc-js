@@ -503,3 +503,23 @@ export function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   return Promise.resolve();
 }
+
+/**
+ * Calculates the least common multiple of two numbers.
+ * @param {number} a Number 1.
+ * @param {number} b Number 2.
+ * @returns {number} Least common multiple.
+ */
+export function leastCommonMultiple(a, b) {
+  return a * b / greatestCommonDivisor(a, b);
+}
+
+/**
+ * Calculates the greatest common divisor of two numbers.
+ * @param {number} a Number 1.
+ * @param {number} b Number 2.
+ * @returns {number} Greatest common divisor.
+ */
+export function greatestCommonDivisor(a, b) {
+  return b == 0 ? a : greatestCommonDivisor (b, a % b);
+}

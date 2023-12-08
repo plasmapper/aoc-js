@@ -29,6 +29,10 @@ export const years = [
       {
         name: "Day 7: Camel Cards", path: "./2023/07", taskUrl: "https://adventofcode.com/2023/day/7",
         answers: {part1: {testInput: 6440, puzzleInput: 247815719}, part2: {testInput: 5905, puzzleInput: 248747492}}
+      },
+      {
+        name: "Day 8: Haunted Wasteland", path: "./2023/08", taskUrl: "https://adventofcode.com/2023/day/8",
+        answers: {part1: {testInput: 2, puzzleInput: 19637}, part2: {testInput: 6, puzzleInput: 8811050362409}}
       }
     ]
   },
