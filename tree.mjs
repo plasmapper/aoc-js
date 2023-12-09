@@ -33,6 +33,10 @@ export const years = [
       {
         name: "Day 8: Haunted Wasteland", path: "./2023/08", taskUrl: "https://adventofcode.com/2023/day/8",
         answers: {part1: {testInput: 2, puzzleInput: 19637}, part2: {testInput: 6, puzzleInput: 8811050362409}}
+      },
+      {
+        name: "Day 9: Mirage Maintenance", path: "./2023/09", taskUrl: "https://adventofcode.com/2023/day/9",
+        answers: {part1: {testInput: 114, puzzleInput: 1757008019}, part2: {testInput: 2, puzzleInput: 995}}
       }
     ]
   },
