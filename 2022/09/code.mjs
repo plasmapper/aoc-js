@@ -99,7 +99,7 @@ export default class {
           for (let i = 0; i < rope.size - 1; i++) {
             let knot = rope.knots[i];
             if (pixelMap.image[knot.y][knot.x] != ropeTailColorIndex)
-              pixelMap.clearPixel(knot.x, knot.y);
+              pixelMap.drawPixel(knot.x, knot.y, 0);
           }
         }
 

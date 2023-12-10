@@ -104,7 +104,7 @@ export default class {
             }
             else {
               if (visualization)
-                pixelMap.clearPixel(x, y);
+                pixelMap.drawPixel(x, y, 0);
             }
           }
 

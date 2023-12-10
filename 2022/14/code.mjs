@@ -123,7 +123,7 @@ export default class {
         let newUnitsOfSand = [];
         // Move sand units
         for (let unit of unitsOfSand) {
-          pixelMap.clearPixel(unit.x, unit.y);
+          pixelMap.drawPixel(unit.x, unit.y, 0);
           if (pixelMap.image[unit.y + 1][unit.x] == 0) {
             unit.y++;
             newUnitsOfSand.push(unit);

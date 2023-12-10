@@ -129,21 +129,13 @@ export class PixelMap {
     this.image[y][x] = colorIndex;
 
     if (typeof this.context !== "undefined") {
-      this.context.fillStyle = this.palette[colorIndex];
-      this.context.fillRect(x * this.pixelSize, y * this.pixelSize, this.pixelSize, this.pixelSize);
+      if (colorIndex != 0) {
+        this.context.fillStyle = this.palette[colorIndex];
+        this.context.fillRect(x * this.pixelSize, y * this.pixelSize, this.pixelSize, this.pixelSize);
+      }
+      else
+        this.context.clearRect(x * this.pixelSize, y * this.pixelSize, this.pixelSize, this.pixelSize);
     }
-  }
-
-  /**
-   * Clears a single pixel.
-   * @param {number} x X coordinate.
-   * @param {number} y Y coordinate.
-   */
-  clearPixel(x, y) {
-    this.image[y][x] = 0;
-
-    if (typeof this.context !== "undefined")
-      this.context.clearRect(x * this.pixelSize, y * this.pixelSize, this.pixelSize, this.pixelSize);
   }
 }
 
