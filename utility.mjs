@@ -140,14 +140,14 @@ export class PixelMap {
 
   /**
    * Fills the pixel map with the specified colorIndex starting at the specified pixel.
-   * @param {number} x0 Fill start X coordinate.
-   * @param {number} y0 Fill start Y coordinate.
+   * @param {number} x Fill start X coordinate.
+   * @param {number} y Fill start Y coordinate.
    * @param {number} colorIndex Color index.
    */
-  fill(x0, y0, colorIndex) {
-    let oldColorIndex = this.image[y0][x0];
+  fill(x, y, colorIndex) {
+    let oldColorIndex = this.image[y][x];
 
-    let stack = [{x1: x0, x2: x0, y: y0, dy: 1}, {x1: x0, x2: x0, y: y0 - 1, dy: -1}];
+    let stack = [{x1: x, x2: x, y: y, dy: 1}, {x1: x, x2: x, y: y - 1, dy: -1}];
     while (stack.length) {
       let {x1, x2, y, dy} = stack.pop();
       let x = x1;
