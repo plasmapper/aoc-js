@@ -37,6 +37,10 @@ export const years = [
       {
         name: "Day 9: Mirage Maintenance", path: "./2023/09", taskUrl: "https://adventofcode.com/2023/day/9",
         answers: {part1: {testInput: 114, puzzleInput: 1757008019}, part2: {testInput: 2, puzzleInput: 995}}
+      },
+      {
+        name: "Day 10: Pipe Maze", path: "./2023/10", taskUrl: "https://adventofcode.com/2023/day/10",
+        answers: {part1: {testInput: 80, puzzleInput: 7086}, part2: {testInput: 10, puzzleInput: 317}}
       }
     ]
   },

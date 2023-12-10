@@ -123,7 +123,7 @@ export class PixelMap {
    * Draws a single pixel.
    * @param {number} x X coordinate.
    * @param {number} y Y coordinate.
-   * @param {number} colorIndex color.
+   * @param {number} colorIndex Color index.
    */
   drawPixel(x, y, colorIndex) {
     this.image[y][x] = colorIndex;
@@ -135,6 +135,40 @@ export class PixelMap {
       }
       else
         this.context.clearRect(x * this.pixelSize, y * this.pixelSize, this.pixelSize, this.pixelSize);
+    }
+  }
+
+  /**
+   * Fills the pixel map with the specified colorIndex starting at the specified pixel.
+   * @param {number} x0 Fill start X coordinate.
+   * @param {number} y0 Fill start Y coordinate.
+   * @param {number} colorIndex Color index.
+   */
+  fill(x0, y0, colorIndex) {
+    let oldColorIndex = this.image[y0][x0];
+
+    let stack = [{x1: x0, x2: x0, y: y0, dy: 1}, {x1: x0, x2: x0, y: y0 - 1, dy: -1}];
+    while (stack.length) {
+      let {x1, x2, y, dy} = stack.pop();
+      let x = x1;
+      if (this.image[y] != undefined && this.image[y][x] == oldColorIndex) {
+        for (; this.image[y][x - 1] == oldColorIndex; x--)
+          this.drawPixel(x - 1, y, colorIndex);
+        
+        if (x < x1)
+          stack.push({x1: x, x2: x1 - 1, y: y - dy, dy: -dy});
+      }
+      while (x1 <= x2) {
+        for (; this.image[y] != undefined && this.image[y][x1] == oldColorIndex; x1++)
+          this.drawPixel(x1, y, colorIndex);
+        if (x1 > x)
+          stack.push({x1: x, x2: x1 - 1, y: y + dy, dy: dy});
+        if (x1 - 1 > x2)
+          stack.push({x1: x2 + 1, x2: x1 - 1, y: y - dy, dy: -dy});
+        x1 = x1 + 1;
+        for (; x1 < x2 && this.image[y] != undefined && this.image[y][x1] != oldColorIndex; x1++);
+        x = x1;
+      }
     }
   }
 }
@@ -389,6 +423,15 @@ export class Vector2D {
      * @type {number}
      */
     this.y = y;
+  }
+
+  /**
+   * Checks if vector is equal to another vector.
+   * @param {Vector2D} vector Vector to compare to.
+   * @returns True if two vectors are equal.
+   */
+  equals(vector) {
+    return this.x == vector.x && this.y == vector.y;
   }
 
   /**
