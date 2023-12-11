@@ -76,7 +76,7 @@ export default class {
         let visConsole = new Console();
         this.visContainer.append(visConsole.container);
         for (let [starIndex, star] of stars.entries())
-          visConsole.addLine(`Star ${starIndex + 1}: X = ${star.x}, Y = ${star.y}`);
+          visConsole.addLine(`Star ${starIndex + 1}: X = ${star.x}, Y = ${star.y}.`);
       }
 
       // Calculate distances
