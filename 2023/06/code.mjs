@@ -26,12 +26,12 @@ export default class  {
     if (lines.length != 2)
       throw new Error(`Invalid number of data lines`);
     
-    let match = lines[0].replace(/\s+/g, " ").match(/^Time: ([ \d]+)$/);
+    let match = lines[0].replaceAll(/\s+/g, " ").match(/^Time: ([ \d]+)$/);
     if (match == null)
       throw new Error(`Invalid data in line 1`);
     let times = match[1].split(" ").map(e => parseInt(e));
       
-    match = lines[1].replace(/\s+/g, " ").match(/^Distance: ([ \d]+)$/);
+    match = lines[1].replaceAll(/\s+/g, " ").match(/^Distance: ([ \d]+)$/);
     if (match == null)
       throw new Error(`Invalid data in line 2`);
 

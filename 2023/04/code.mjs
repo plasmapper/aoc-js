@@ -22,7 +22,7 @@ export default class  {
     
     let cards = [];
     input.trim().split(/\r?\n/).forEach((line, index) => {
-      let match = line.replace(/\s+/g, " ").match(/^Card (\d+):(.+)\|(.+)$/);
+      let match = line.replaceAll(/\s+/g, " ").match(/^Card (\d+):(.+)\|(.+)$/);
       if (match == null || parseInt(match[1]) != index + 1)
         throw new Error(`Invalid data in line ${index + 1}`);
 
