@@ -49,6 +49,10 @@ export const years = [
       {
         name: "Day 12: Hot Springs", path: "./2023/12", taskUrl: "https://adventofcode.com/2023/day/12",
         answers: {part1: {testInput: 21, puzzleInput: 7716}, part2: {testInput: 525152, puzzleInput: 18716325559999}}
+      },
+      {
+        name: "Day 13: Point of Incidence", path: "./2023/13", taskUrl: "https://adventofcode.com/2023/day/13",
+        answers: {part1: {testInput: 405, puzzleInput: 41859}, part2: {testInput: 400, puzzleInput: 30842}}
       }
     ]
   },
