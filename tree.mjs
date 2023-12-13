@@ -45,6 +45,10 @@ export const years = [
       {
         name: "Day 11: Cosmic Expansion", path: "./2023/11", taskUrl: "https://adventofcode.com/2023/day/11",
         answers: {part1: {testInput: 374, puzzleInput: 10154062}, part2: {testInput: 8410, puzzleInput: 553083047914}}
+      },
+      {
+        name: "Day 12: Hot Springs", path: "./2023/12", taskUrl: "https://adventofcode.com/2023/day/12",
+        answers: {part1: {testInput: 21, puzzleInput: 7716}, part2: {testInput: 525152, puzzleInput: 18716325559999}}
       }
     ]
   },
