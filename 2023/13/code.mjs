@@ -96,17 +96,26 @@ export default class {
           if (reflectionType == "horizontal") {
             for (let i = 0; i < pattern.length; i++)
               pattern[i] = pattern[i].replace("A", `<span class="strongly-highlighted">#</span>`).replace("B", `<span class="strongly-highlighted">.</span>`);
-            for (let i = 0; i <= reflectionRowOrColumn; i++)
+            for (let i = 0; i < pattern.length; i++) {
               visConsole.addLine(pattern[i]);
-            for (let i = reflectionRowOrColumn + 1; i < pattern.length; i++) {
-              visConsole.addLine(pattern[i]);
-              visConsole.lines[visConsole.lines.length - 1].classList.add("highlighted");
+              if (i <= reflectionRowOrColumn && reflectionRowOrColumn + (reflectionRowOrColumn - i) + 1 < pattern.length)
+                visConsole.lines[visConsole.lines.length - 1].classList.add("weakly-highlighted");
+              else if (i > reflectionRowOrColumn && reflectionRowOrColumn - (i - reflectionRowOrColumn) + 1 >= 0)
+                visConsole.lines[visConsole.lines.length - 1].classList.add("highlighted");
             }
           }
           else {
             for (let i = 0; i < pattern.length; i++) {
-              let line = `${pattern[i].substring(0, reflectionRowOrColumn + 1)}<span class="highlighted">${pattern[i].substring(reflectionRowOrColumn + 1)}</span>`;
-              line = line.replace("A", `<span class="strongly-highlighted">#</span>`).replace("B", `<span class="strongly-highlighted">.</span>`);
+              let line = "";
+              for (let j = 0; j < pattern[i].length; j++) {
+                if (j <= reflectionRowOrColumn && reflectionRowOrColumn + (reflectionRowOrColumn - j) + 1 < pattern[0].length)
+                  line += `<span class="weakly-highlighted">${pattern[i].substring(j, j + 1)}</span>`;
+                else if (j > reflectionRowOrColumn && reflectionRowOrColumn - (j - reflectionRowOrColumn) + 1 >= 0)
+                  line += `<span class="highlighted">${pattern[i].substring(j, j + 1)}</span>`;
+                else
+                  line += pattern[i].substring(j, j + 1);
+              }
+              line = line.replace("A", `<span class="strongly-highlighted">#</span>`);
               visConsole.addLine(line);
             }
           }
@@ -135,7 +144,7 @@ export default class {
   }
 
   /**
-   * Finds reflection in the pattern and in case of smudges places A where # should be or B where . should be.
+   * Finds reflection in the pattern and in case of smudges places A where # should be to make the reflection valid.
    * @param {string[]} pattern Pattern.
    * @param {number} numberSmudges Required number of smudges in the pattern.
    * @returns {number} Index of the last pattern line before the reflection (-1 if the reflection is not found).
@@ -151,7 +160,10 @@ export default class {
           for (let k = 0; k < pattern[0].length && currentNumberOfSmudges <= numberSmudges; k++) {
             if (pattern[i - j].substring(k, k + 1) != pattern[i + j + 1].substring(k, k + 1)) {
               currentNumberOfSmudges++;
-              pattern[i - j] = pattern[i - j].substring(0, k) + (pattern[i - j].substring(k, k + 1) == "." ? "A" : "B") + pattern[i - j].substring(k + 1)
+              if (pattern[i - j].substring(k, k + 1) == ".")
+                pattern[i - j] = pattern[i - j].substring(0, k) + "A" + pattern[i - j].substring(k + 1);
+              else
+                pattern[i + j + 1] = pattern[i + j + 1].substring(0, k) + "A" + pattern[i + j + 1].substring(k + 1);
             }
           }
         }

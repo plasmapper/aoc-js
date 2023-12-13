@@ -28,6 +28,10 @@ a, .selector {
   color: #ff0000;
 }
 
+.weakly-highlighted {
+  color: #00aa00;
+}
+
 .highlighted {
   color: #ffffff;
 }
