@@ -53,6 +53,10 @@ export const years = [
       {
         name: "Day 13: Point of Incidence", path: "./2023/13", taskUrl: "https://adventofcode.com/2023/day/13",
         answers: {part1: {testInput: 405, puzzleInput: 41859}, part2: {testInput: 400, puzzleInput: 30842}}
+      },
+      {
+        name: "Day 14: Parabolic Reflector Dish", path: "./2023/14", taskUrl: "https://adventofcode.com/2023/day/14",
+        answers: {part1: {testInput: 136, puzzleInput: 109939}, part2: {testInput: 64, puzzleInput: 101010}}
       }
     ]
   },
