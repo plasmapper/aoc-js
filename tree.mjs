@@ -57,6 +57,10 @@ export const years = [
       {
         name: "Day 14: Parabolic Reflector Dish", path: "./2023/14", taskUrl: "https://adventofcode.com/2023/day/14",
         answers: {part1: {testInput: 136, puzzleInput: 109939}, part2: {testInput: 64, puzzleInput: 101010}}
+      },
+      {
+        name: "Day 15: Lens Library", path: "./2023/15", taskUrl: "https://adventofcode.com/2023/day/15",
+        answers: {part1: {testInput: 1320, puzzleInput: 519041}, part2: {testInput: 145, puzzleInput: 260530}}
       }
     ]
   },
