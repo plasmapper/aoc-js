@@ -61,6 +61,10 @@ export const years = [
       {
         name: "Day 15: Lens Library", path: "./2023/15", taskUrl: "https://adventofcode.com/2023/day/15",
         answers: {part1: {testInput: 1320, puzzleInput: 519041}, part2: {testInput: 145, puzzleInput: 260530}}
+      },
+      {
+        name: "Day 16: The Floor Will Be Lava", path: "./2023/16", taskUrl: "https://adventofcode.com/2023/day/16",
+        answers: {part1: {testInput: 46, puzzleInput: 7951}, part2: {testInput: 51, puzzleInput: 8148}}
       }
     ]
   },

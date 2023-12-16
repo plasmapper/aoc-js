@@ -84,7 +84,7 @@ export class PixelMap {
      * Pixel size in screen pixels.
      * @type {number}
      */
-    this.pixelSize = Math.min(Math.floor(maxMapScreenWidth / this.width), Math.floor(maxMapScreenHeight / this.height));
+    this.pixelSize = Math.max(1, Math.min(Math.floor(maxMapScreenWidth / this.width), Math.floor(maxMapScreenHeight / this.height)));
     /**
      * Color palette.
      * @type {string[]}
