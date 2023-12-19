@@ -69,6 +69,10 @@ export const years = [
       {
         name: "Day 18: Lavaduct Lagoon", path: "./2023/18", taskUrl: "https://adventofcode.com/2023/day/18",
         answers: {part1: {testInput: 62, puzzleInput: 52035}, part2: {testInput: 952408144115, puzzleInput: 60612092439765}}
+      },
+      {
+        name: "Day 19: Aplenty", path: "./2023/19", taskUrl: "https://adventofcode.com/2023/day/19",
+        answers: {part1: {testInput: 19114, puzzleInput: 389114}, part2: {testInput: 167409079868000, puzzleInput: 125051049836302}}
       }
     ]
   },

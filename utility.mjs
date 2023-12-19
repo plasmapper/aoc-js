@@ -371,12 +371,34 @@ export class Range {
   }
 
   /**
+   * Clones the range.
+   * @returns {Range} Copy of the range.
+   */
+  clone() {
+    return new Range(this.from, this.to);
+  }
+
+  /**
    * Returns true if the value is inside the range.
    * @param {number} value Value.
    * @returns {boolean} True if the value is inside the range.
    */
   contains(value) {
     return value >= this.from && value <= this.to;
+  }
+
+  /**
+   * Finds parts of the range that are to the left and to the right of the value (right range includes the value).
+   * @param {number} value Value.
+   * @returns {Range} Array of 2 partial ranges: left and right of the value (right range includes the value, null if partial range does not exist).
+   */  
+  split(value) {
+    if (value <= this.from)
+      return [null, this.clone()];
+    else if (value > this.to)
+      return [this.clone(), null];
+    else
+      return [new Range(this.from, value - 1), new Range(value, this.to)];
   }
 
   /**
