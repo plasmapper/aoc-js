@@ -371,6 +371,15 @@ export class Range {
   }
 
   /**
+   * Returns true if the value is inside the range.
+   * @param {number} value Value.
+   * @returns {boolean} True if the value is inside the range.
+   */
+  contains(value) {
+    return value >= this.from && value <= this.to;
+  }
+
+  /**
    * Finds parts of the range that overlap and do not overlap with the target range.
    * @param {Range} targetRange Target range.
    * @returns {Range} Array of 3 partial ranges: left, inside and right of the target range (null if partial range does not exist).
@@ -401,6 +410,23 @@ export class Range {
     }
 
     return parts;
+  }
+
+  /**
+   * Combines ranges so that they are sorted by "from" and do not have overlaps.
+   * @param {Range[]} ranges Input ranges.
+   * @returns {Range[]} Output ranges.
+   */
+  static combine(ranges) {
+    ranges = ranges.sort((r1, r2) => r1.from - r2.from)
+    let newRanges = [ranges[0]];
+    for (let i = 1; i < ranges.length; i++) {
+      if (ranges[i].from <= newRanges[newRanges.length - 1].to)
+        newRanges[newRanges.length - 1].to = ranges[i].to;
+      else
+        newRanges.push(ranges[i]);
+    }
+    return newRanges;
   }
 }
 

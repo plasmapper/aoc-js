@@ -121,14 +121,7 @@ export default class  {
         destRanges.sort((r1, r2) => r1.from - r2.from);
         
         // Combine ranges
-        let newDestRanges = [destRanges[0]];
-        for (let i = 1; i < destRanges.length; i++) {
-          if (destRanges[i].from <= newDestRanges[newDestRanges.length - 1].to)
-            newDestRanges[newDestRanges.length - 1].to = destRanges[i].to;
-          else
-            newDestRanges.push(destRanges[i]);
-        }
-        destRanges = newDestRanges;
+        destRanges = Range.combine(destRanges);
 
         srcRanges = destRanges;
 
