@@ -117,7 +117,7 @@ export default class {
       // Calculate the periods of high pulses for main conjunction inputs
       else {
         if (visualization) {
-          visConsole.addLine("Solution is strongly based on the assumption that \"rx\" module is triggered by a conjunction with periodic inputs.")
+          visConsole.addLine("Solution is based on the assumption that \"rx\" module is triggered by a conjunction with periodic inputs.")
           visConsole.addLine("It is also assumed that these inputs are in high state synchronously and their period is equal to the number of the first button press that generates high level.")
         }
 

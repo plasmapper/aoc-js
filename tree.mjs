@@ -77,6 +77,10 @@ export const years = [
       {
         name: "Day 20: Pulse Propagation", path: "./2023/20", taskUrl: "https://adventofcode.com/2023/day/20",
         answers: {part1: {testInput: 32000000, puzzleInput: 836127690}, part2: {testInput: undefined, puzzleInput: 240914003753369}}
+      },
+      {
+        name: "Day 21: Step Counter", path: "./2023/21", taskUrl: "https://adventofcode.com/2023/day/21",
+        answers: {part1: {testInput: 16, puzzleInput: 3847}, part2: {testInput: 16329468, puzzleInput: 637537341306357}}
       }
     ]
   },
