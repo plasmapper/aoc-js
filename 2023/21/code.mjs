@@ -188,7 +188,7 @@ export default class {
         numberOfPlots += this.findNumberOfPlots(new Vector2D(mapWidth - 1, mapHeight - 1), map, numberOfSideSteps2) * numberOfFullMapsToOneSide;
 
         if (visualization)
-          this.solConsole.addLine("Solution is based on the assumption that starting from any corner of the map the opposite corner is reached after 2 * (map size - 1) steps. It does not work for test input.")
+          this.solConsole.addLine("Solution is based on the assumption that, starting from the center, corners are reached after (map size - 1) steps. This does not work for test input.")
 
         return numberOfPlots;
       }
