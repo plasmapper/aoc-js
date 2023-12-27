@@ -102,7 +102,7 @@ header {
   width: 19em;
 }
 
-#task-input, #solution-console, #visualization-container code {
+#task-input, #solution-console, #visualization-container code, canvas {
   width: 25em;
 }
 
@@ -118,11 +118,6 @@ header {
   height: 16.5em;
 }
 
-#visualization-container code {
+#visualization-container code, canvas {
   height: 32em;
-}
-
-canvas {
-  width: 25em;
-  height: 25em;
 }
