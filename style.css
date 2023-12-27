@@ -119,5 +119,10 @@ header {
 }
 
 #visualization-container code {
-  height: 33em;
+  height: 32em;
+}
+
+canvas {
+  width: 25em;
+  height: 25em;
 }

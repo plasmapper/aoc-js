@@ -81,6 +81,10 @@ export const years = [
       {
         name: "Day 21: Step Counter", path: "./2023/21", taskUrl: "https://adventofcode.com/2023/day/21",
         answers: {part1: {testInput: 16, puzzleInput: 3847}, part2: {testInput: 16329468, puzzleInput: 637537341306357}}
+      },
+      {
+        name: "Day 23: A Long Walk", path: "./2023/23", taskUrl: "https://adventofcode.com/2023/day/23",
+        answers: {part1: {testInput: 94, puzzleInput: 2414}, part2: {testInput: 154, puzzleInput: 6598}}
       }
     ]
   },
