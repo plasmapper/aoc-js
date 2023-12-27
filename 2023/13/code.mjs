@@ -88,7 +88,7 @@ export default class {
             throw new Error(`No reflection found for pattern ${patternIndex + 1}`);
         }
 
-        solConsoleLine.innerHTML = `Pattern ${patternIndex + 1} has reflection across a ${reflectionType} line between ${reflectionType == "vertical" ? "columns" : "rows"} ${reflectionRowOrColumn} and ${reflectionRowOrColumn + 1}.`;
+        solConsoleLine.innerHTML = `Pattern ${patternIndex + 1} has reflection across a ${reflectionType} line between ${reflectionType == "vertical" ? "columns" : "rows"} ${reflectionRowOrColumn + 1} and ${reflectionRowOrColumn + 2}.`;
 
         if (visualization) {
           visConsole.addLine(`Pattern ${patternIndex + 1}:`);
