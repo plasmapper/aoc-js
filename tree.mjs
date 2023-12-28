@@ -157,6 +157,10 @@ export const years = [
       {
         name: "Day 15: Beacon Exclusion Zone", path: "./2022/15", taskUrl: "https://adventofcode.com/2022/day/15",
         answers: {part1: {testInput: 26, puzzleInput: 4502208}, part2: {testInput: 56000011, puzzleInput: 13784551204480}}
+      },
+      {
+        name: "Day 18: Boiling Boulders", path: "./2022/18", taskUrl: "https://adventofcode.com/2022/day/18",
+        answers: {part1: {testInput: 64, puzzleInput: 4456}, part2: {testInput: 58, puzzleInput: 2510}}
       }
     ]
   }
