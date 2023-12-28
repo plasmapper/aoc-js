@@ -97,8 +97,10 @@ export class PixelMap {
 
     if (typeof document !== "undefined") {
       this.container = document.createElement("canvas");
-      this.container.width = this.container.style.width = this.width * this.pixelSize;
-      this.container.height = this.container.style.height = this.height * this.pixelSize;
+      this.container.width = this.width * this.pixelSize;
+      this.container.height = this.height * this.pixelSize;
+      this.container.style.width = this.container.width + "px";
+      this.container.style.height = this.container.height + "px";
       this.context = this.container.getContext("2d");
     }
   }
