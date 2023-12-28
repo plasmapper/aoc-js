@@ -223,6 +223,6 @@ export class Vector3D {
    * @returns {Vector3D} Cross product.
    */
   cross(vector) {
-    return new Vector3D(this.y * vector.z - this.z * vector.y, this.z * vector.x - this.x * vector.z, this.z * vector.y - this.y * vector.x);
+    return new Vector3D(this.y * vector.z - this.z * vector.y, this.z * vector.x - this.x * vector.z, this.x * vector.y - this.y * vector.x);
   }
 }
