@@ -8,7 +8,7 @@ export class PixelMap {
    */
   constructor (width, height) {
     const maxMapScreenWidth = 460;
-    const maxMapScreenHeight = 800;
+    const maxMapScreenHeight = 600;
 
     /**
      * HTML canvas.
