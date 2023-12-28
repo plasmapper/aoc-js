@@ -42,9 +42,11 @@ export class Matrix {
     if (this.numberOfRows == 1)
       return this.data[0][0];
 
-    let determinant = 0;
+    let determinant = typeof(this.data[0][0]) == "bigint" ? 0n : 0;
+    let one = typeof(this.data[0][0]) == "bigint" ? 1n : 1;
+
     for (let c = 0; c < this.numberOfColumns; c++)
-      determinant += ((c % 2 == 0) ? 1 : -1) * this.data[0][c] * this.clone().removeRow(0).removeColumn(c).determinant();
+      determinant += ((c % 2 == 0) ? one : -one) * this.data[0][c] * this.clone().removeRow(0).removeColumn(c).determinant();
     return determinant;
   }
 
