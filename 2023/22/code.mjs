@@ -1,4 +1,4 @@
-import { delay, Console, Range, Renderer, RendererColor, RendererCuboid, Vector2D, Vector3D } from "../../utility.mjs";
+import { delay, Console, Range, Renderer, RendererColor, RendererCuboid, Vector3D } from "../../utility.mjs";
 
 export default class {
   /**
