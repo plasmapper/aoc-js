@@ -88,6 +88,17 @@ export class Vector2D {
     this.y *= scalar;
     return this;
   }
+
+  /**
+   * Modifies the vector by dividing it by a scalar.
+   * @param {number} scalar Scalar to divide the vector by.
+   * @returns {Vector2D} Modified vector.
+   */
+  divide(scalar) {
+    this.x /= scalar;
+    this.y /= scalar;
+    return this;
+  }
   
   /**
    * Calculates the dot product of the vector with another vector.
@@ -205,6 +216,18 @@ export class Vector3D {
     this.x *= scalar;
     this.y *= scalar;
     this.z *= scalar;
+    return this;
+  }
+
+  /**
+   * Modifies the vector by dividing it by a scalar.
+   * @param {number} scalar Scalar to divide the vector by.
+   * @returns {Vector3D} Modified vector.
+   */
+  divide(scalar) {
+    this.x /= scalar;
+    this.y /= scalar;
+    this.z /= scalar;
     return this;
   }
   
