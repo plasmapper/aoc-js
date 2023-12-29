@@ -179,7 +179,7 @@ export default class {
               mapCycleFound = true;
               solConsole.addLine(`Map after cycle ${i} is the same as after cycle ${previousCycleWithSameMap}.`);
               i = previousCycleWithSameMap + Math.floor((numberOfCycles - previousCycleWithSameMap) / (i - previousCycleWithSameMap)) * (i - previousCycleWithSameMap);
-              solConsole.addLine(`It will be also the same after cycle ${i}.`);
+              solConsole.addLine(`It will also be the same after cycle ${i}.`);
               solConsoleLine = solConsole.addLine();
             }
 

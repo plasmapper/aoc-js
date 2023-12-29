@@ -56,6 +56,19 @@ export class PixelMap {
   }
 
   /**
+   * Clears the pixel map.
+   */
+  clear() {
+    if (typeof this.context !== "undefined")
+      this.context.clearRect(0, 0, this.width * this.pixelSize, this.height * this.pixelSize);
+
+    for (let x = 0; x < this.width; x++) {
+      for (let y = 0; y < this.height; y++)
+        this.image[y][x] = 0;
+    }
+  }
+
+  /**
    * Draws an image.
    * @param {number[][]} image Image as an array of horizontal lines that are arrays of color indexes for each pixel.
    */
