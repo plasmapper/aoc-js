@@ -93,6 +93,10 @@ export const years = [
       {
         name: "Day 23: A Long Walk", path: "./2023/23", taskUrl: "https://adventofcode.com/2023/day/23",
         answers: {part1: {testInput: 94, puzzleInput: 2414}, part2: {testInput: 154, puzzleInput: 6598}}
+      },
+      {
+        name: "Day 24: Never Tell Me The Odds", path: "./2023/24", taskUrl: "https://adventofcode.com/2023/day/24",
+        answers: {part1: {testInput: 2, puzzleInput: 15593}, part2: {testInput: 47, puzzleInput: 757031940316991}}
       }
     ]
   },
