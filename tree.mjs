@@ -67,6 +67,10 @@ export const years = [
         answers: {part1: {testInput: 46, puzzleInput: 7951}, part2: {testInput: 51, puzzleInput: 8148}}
       },
       {
+        name: "Day 17: Clumsy Crucible", path: "./2023/17", taskUrl: "https://adventofcode.com/2023/day/17",
+        answers: {part1: {testInput: 102, puzzleInput: 1065}, part2: {testInput: 94, puzzleInput: 1249}}
+      },
+      {
         name: "Day 18: Lavaduct Lagoon", path: "./2023/18", taskUrl: "https://adventofcode.com/2023/day/18",
         answers: {part1: {testInput: 62, puzzleInput: 52035}, part2: {testInput: 952408144115, puzzleInput: 60612092439765}}
       },

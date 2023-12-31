@@ -3,6 +3,7 @@ export * from "./utility/graph.mjs";
 export * from "./utility/line-segment.mjs";
 export * from "./utility/matrix.mjs";
 export * from "./utility/pixel-map.mjs";
+export * from "./utility/priority-queue.mjs";
 export * from "./utility/range.mjs";
 export * from "./utility/renderer.mjs";
 export * from "./utility/vector.mjs";
