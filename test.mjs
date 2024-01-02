@@ -27,25 +27,27 @@ describe("AoC solutions", () =>
             )
           );
 
-          it("Part 2 (test input)", () =>
-            import(day.path + "/code.mjs").then(dayCode =>
-              fs.promises.readFile(day.path + "/testInput.txt").then(input =>
-                (new dayCode.default()).solve(2, input.toString(), false).then(answer => {
-                  assert.equal(answer, day.answers.part2.testInput);
-                })
+          if (day.answers.part2 != undefined) {
+            it("Part 2 (test input)", () =>
+              import(day.path + "/code.mjs").then(dayCode =>
+                fs.promises.readFile(day.path + "/testInput.txt").then(input =>
+                  (new dayCode.default()).solve(2, input.toString(), false).then(answer => {
+                    assert.equal(answer, day.answers.part2.testInput);
+                  })
+                )
               )
-            )
-          );
+            );
 
-          it("Part 2 (puzzle input)", () =>
-            import(day.path + "/code.mjs").then(dayCode =>
-              fs.promises.readFile(day.path + "/puzzleInput.txt").then(input =>
-                (new dayCode.default()).solve(2, input.toString(), false).then(answer => {
-                  assert.equal(answer, day.answers.part2.puzzleInput);
-                })
+            it("Part 2 (puzzle input)", () =>
+              import(day.path + "/code.mjs").then(dayCode =>
+                fs.promises.readFile(day.path + "/puzzleInput.txt").then(input =>
+                  (new dayCode.default()).solve(2, input.toString(), false).then(answer => {
+                    assert.equal(answer, day.answers.part2.puzzleInput);
+                  })
+                )
               )
-            )
-          );
+            );
+          }
         })
       )
     )

@@ -133,7 +133,9 @@ async function loadPuzzleInput() {
 async function setPart(part) {
   await stopSolvingPuzzle();
 
-  if (part != 1 && part != 2)
+  part2Selector.style.visibility = currentPuzzle.noPart2 ? "hidden" : "visible";
+
+  if ((part != 1 && part != 2) || currentPuzzle.noPart2)
     part = 1;
 
   currentPart = part;
