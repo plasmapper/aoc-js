@@ -126,8 +126,8 @@ export default class {
         if (visualization) {
           let visConsole = new Console();
           this.visContainer.append(visConsole.container);
-          visConsole.addLine(`Rock initial position:\n  X=${r.x}\n  Y=${r.y}\n  Z=${r.z}`);
-          visConsole.addLine(`Rock velocity:\n  Vx=${v.x}\n  Vy=${v.y}\n  Vz=${v.z}`);
+          visConsole.addLine(`Rock initial position:\n  X = ${r.x}\n  Y = ${r.y}\n  Z = ${r.z}`);
+          visConsole.addLine(`Rock velocity:\n  Vx = ${v.x}\n  Vy = ${v.y}\n  Vz = ${v.z}`);
         }
 
         return r.x + r.y + r.z;
