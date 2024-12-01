@@ -1,0 +1,127 @@
+body {
+  background: #030303;
+}
+
+body, input, textarea, code {
+  color: #aaaaaa;
+  font-family: monospace;
+  font-size: 14pt;
+}
+
+a, .selector {
+  text-decoration: none;
+  color: #00aa00;
+  cursor: pointer;
+}
+
+.selector.active {
+  color: #dddddd;
+}
+
+@media(hover: hover) and (pointer: fine) {
+  a:hover, .selector:hover {
+    color: #ffffff;
+  }
+}
+
+.error {
+  color: #ff0000;
+}
+
+.weakly-highlighted {
+  color: #00aa00;
+}
+
+.highlighted {
+  color: #ffffff;
+}
+
+.strongly-highlighted {
+  color: #ffff00;
+}
+
+#stop-button {
+  color: #990000;
+  display: none;
+}
+
+#stop-button:hover, #stop:focus {
+  color: #ff0000
+}
+
+.underlined {
+  text-decoration: underline;
+}
+
+input, textarea, code, canvas {
+  background-color: #000000;
+  border: 1px solid #aaaaaa;
+}
+
+textarea {
+  resize: none;
+}
+
+code {
+  display: inline-block;
+  white-space: pre-wrap;
+  overflow: auto;
+}
+
+code p {
+  margin-top: 0;
+  margin-bottom: 0;
+  min-height: 1.25em;
+}
+
+.vertical-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5em;
+  align-items: flex-start;
+}
+
+.horizontal-container, .horizontal-wrap-container {
+  display: flex;
+  flex-direction: row;
+  column-gap: 2em;
+  align-items: flex-start;
+}
+
+.horizontal-wrap-container {
+  flex-wrap: wrap;
+  row-gap: 0.6em;
+}
+
+header {
+  margin-bottom: 1em;
+}
+
+#days-container {
+  flex-shrink: 0;
+  width: 19em;
+}
+
+#task-input, #solution-console, #visualization-container code, canvas {
+  width: 25em;
+}
+
+#task-input {
+  height: 16.5em;
+}
+
+#task-input {
+  height: 10em;
+}
+
+#solution-console {
+  height: 16.5em;
+}
+
+#visualization-container code, canvas {
+  height: 32em;
+}
+
+#aoc-website-session-id {
+  width: 13.7em;
+}

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Advent of Code JavaScript Solutions</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gl-matrix/gl-matrix-min.min.js"></script>
+  <script src="main.js" defer></script>
+</head>
+
+<body>
+  <header class="vertical-container">
+    <div><a href="https://adventofcode.com" target="_blank">Advent of Code</a> JavaScript Solutions</div>
+    <nav id="years-container" class="horizontal-container"></nav>
+  </header>
+
+  <main class="horizontal-container">
+    <nav id="days-container" class="vertical-container"></nav>
+
+    <div class="vertical-container">
+      <a id="task-text-link" target="_blank">Task text</a>
+
+      <span>Task input</span>
+
+      <div class="horizontal-wrap-container">
+        <div class="vertical-container">
+          <textarea id="task-input"></textarea>
+
+          <div class="horizontal-container">
+            <span id="part1-selector" class="selector" onclick="setPart(1)">Part 1</span>
+            <span id="part2-selector" class="selector" onclick="setPart(2)">Part 2</span>
+          </div>
+
+          <span id="visualization-switch" class="selector" onclick="toggleVisualization()">Visualization</span>
+
+          <div class="horizontal-container">
+            <span id="solve-button" class="selector" onclick="solvePuzzle()">Solve</span>
+            <span id="stop-button" class="selector" onclick="stopSolvingPuzzle()">Stop</span>
+          </div>
+
+          <code id="solution-console"></code>
+        </div>
+        <div id="visualization-container" class="vertical-container"></div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,102 @@
+/**
+ * Range class.
+ */
+export class Range {
+  /**
+   * @param {number} from Range start.
+   * @param {number} to Range end.
+   */
+  constructor (from, to) {
+    /**
+     * Range start.
+     * @type {number}
+     */
+    this.from = from;
+    /**
+     * Range end.
+     * @type {number}
+     */
+    this.to = to;
+  }
+
+  /**
+   * Clones the range.
+   * @returns {Range} Copy of the range.
+   */
+  clone() {
+    return new Range(this.from, this.to);
+  }
+
+  /**
+   * Returns true if the value is inside the range.
+   * @param {number} value Value.
+   * @returns {boolean} True if the value is inside the range.
+   */
+  contains(value) {
+    return value >= this.from && value <= this.to;
+  }
+
+  /**
+   * Finds parts of the range that are to the left and to the right of the value (right range includes the value).
+   * @param {number} value Value.
+   * @returns {Range} Array of 2 partial ranges: left and right of the value (right range includes the value, null if partial range does not exist).
+   */  
+  split(value) {
+    if (value <= this.from)
+      return [null, this.clone()];
+    else if (value > this.to)
+      return [this.clone(), null];
+    else
+      return [new Range(this.from, value - 1), new Range(value, this.to)];
+  }
+
+  /**
+   * Finds parts of the range that overlap and do not overlap with the target range.
+   * @param {Range} targetRange Target range.
+   * @returns {Range} Array of 3 partial ranges: left, inside and right of the target range (null if partial range does not exist).
+   */  
+  overlap(targetRange) {
+    let parts = [new Range(this.from, this.to), null, null];
+
+    if (targetRange.from <= this.to) {
+      if (targetRange.from <= this.from) {
+        parts[1] = parts[0];
+        parts[0] = null;
+      }
+      else {
+        parts[0] = new Range(this.from, targetRange.from - 1);
+        parts[1] = new Range(targetRange.from, this.to);
+      }
+    }
+
+    if (parts[1] != null && targetRange.to < this.to) {
+      if (targetRange.to >= this.from) {
+        parts[1] = new Range(parts[1].from, targetRange.to);
+        parts[2] = new Range(targetRange.to + 1, this.to);
+      }
+      else {
+        parts[2] = parts[1];
+        parts[1] = null;
+      }
+    }
+
+    return parts;
+  }
+
+  /**
+   * Combines ranges so that they are sorted by "from" and do not have overlaps.
+   * @param {Range[]} ranges Input ranges.
+   * @returns {Range[]} Output ranges.
+   */
+  static combine(ranges) {
+    ranges = ranges.sort((r1, r2) => r1.from - r2.from)
+    let newRanges = [ranges[0]];
+    for (let i = 1; i < ranges.length; i++) {
+      if (ranges[i].from <= newRanges[newRanges.length - 1].to)
+        newRanges[newRanges.length - 1].to = ranges[i].to;
+      else
+        newRanges.push(ranges[i]);
+    }
+    return newRanges;
+  }
+}
