@@ -5,6 +5,10 @@ export const years = [
       {
         name: "Day 1: Historian Hysteria", path: "./2024/01", taskUrl: "https://adventofcode.com/2024/day/1",
         answers: {part1: 11, part2: 31}
+      },
+      {
+        name: "Day 2: Red-Nosed Reports", path: "./2024/02", taskUrl: "https://adventofcode.com/2024/day/2",
+        answers: {part1: 2, part2: 4}
       }
     ]
   },
