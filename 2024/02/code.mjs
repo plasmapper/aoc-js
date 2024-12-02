@@ -63,17 +63,25 @@ export default class  {
         let reportIsSafe = this.checkReportSafety(report);
 
         // Check report safety with removing levels (part 2)
+        let removedLevelIndex = -1;
         if (!reportIsSafe && part == 2) {
-          for (let removedLevelIndex = 0; removedLevelIndex < report.length && !reportIsSafe; removedLevelIndex++) {
+          for (removedLevelIndex = 0; removedLevelIndex < report.length && !reportIsSafe; removedLevelIndex++)
             reportIsSafe = this.checkReportSafety(report.slice(0, removedLevelIndex).concat(report.slice(removedLevelIndex + 1)));
-          }
+          removedLevelIndex--;
         }
 
         if (visualization) {
           let visConsoleLine = visConsole.addLine();
-          visConsoleLine.innerHTML = `${report.join(" ")}`;
+
+          let reportString;
+          if (reportIsSafe && removedLevelIndex >= 0)
+            reportString = report.map((e, index) => index == removedLevelIndex ? `<span class="strongly-highlighted">${e}</span>` : e).join(" ");
+          else
+            reportString = report.join(" ");
+          visConsoleLine.innerHTML = reportString;
           if (reportIsSafe)
-            visConsole.lines[visConsole.lines.length - 1].classList.add("highlighted");
+            visConsoleLine.classList.add("highlighted");
+          
           visConsole.container.scrollTop = visConsole.lines[reportIndex].offsetTop - visConsole.container.offsetHeight / 2;
           await delay(1);
         }
