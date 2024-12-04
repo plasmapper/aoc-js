@@ -13,6 +13,10 @@ export const years = [
       {
         name: "Day 3: Mull It Over", path: "./2024/03", taskUrl: "https://adventofcode.com/2024/day/3",
         answers: {part1: 161, part2: 48}
+      },
+      {
+        name: "Day 4: Ceres Search", path: "./2024/04", taskUrl: "https://adventofcode.com/2024/day/4",
+        answers: {part1: 18, part2: 9}
       }
     ]
   },
