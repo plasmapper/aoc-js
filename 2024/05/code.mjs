@@ -15,7 +15,7 @@ export default class  {
  /**
    * Parses the puzzle input.
    * @param {string} input Puzzle input.
-   * @returns {RulesAnddUpdates} Rules and updates.
+   * @returns {object} Rules and updates.
    */
  parse(input) {
   let consoleLine = this.solConsole.addLine("Parsing...");
@@ -98,17 +98,25 @@ export default class  {
 
         // Correct the update (part 2)
         if (!updateIsCorrect && part == 2) {
-          let correctedUpdate = new Array(update.length).fill(null);
-          // Place the page in the corrected update according to the number of times it is the first page in the applied rules
-          for (let pageIndex = 0; pageIndex < update.length; pageIndex++) {
-            let newPageIndex = update.length - appliedRules.reduce((acc, rule) => rule[0] == update[pageIndex] ? acc + 1 : acc, 0) - 1;
-            if (newPageIndex < 0 || newPageIndex >= update.length)
+          let correctedUpdate = [];
+
+          while (update.length) {
+            // Find the page that is not the first page in any applied rule
+            let pageIndex = update.findIndex(page => appliedRules.reduce((acc, rule) => acc && rule[0] != page, true));
+            
+            if (pageIndex < 0)
               throw new Error(`Update ${updateIndex + 1} can not be corrected`);
-            correctedUpdate[newPageIndex] = update[pageIndex];
+
+            let page = update[pageIndex];
+
+            // Place the page at the beginning of the corrected update
+            correctedUpdate.unshift(page);
+            // Remove the page from the original update
+            update.splice(pageIndex, 1);
+            // Remove the rules that contain this page
+            appliedRules = appliedRules.filter(rule => rule[1] != page);
           }
-          // Check the corrected update
-          if (correctedUpdate.reduce((acc, page) => acc || page == null, false))
-            throw new Error(`Update ${updateIndex + 1} can not be corrected`);
+
           updateHasBeenCorrected = true;
           update = correctedUpdate;
         }
