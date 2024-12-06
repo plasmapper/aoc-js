@@ -31,6 +31,10 @@ export default class {
     let map = [];
     input.trim().split(/\r?\n/).forEach((line, lineIndex) => {
       let mapRow = [];
+
+      if (lineIndex != 0 && line.length != map[0].length)
+        throw new Error(`Invalid length of line ${index + 1}`);
+
       line.split("").forEach((letter, letterIndex) => {
         if (letter in letterSymbols)
           mapRow.push(new Letter(letter, new Vector2D(letterIndex, lineIndex)));
