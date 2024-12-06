@@ -70,7 +70,7 @@ export default class {
       let mapHeight = map.length;
 
       let solConsole = this.solConsole;
-      solConsole.addLine(`Map width: ${mapWidth}. Map map height: ${mapHeight}.`);    
+      solConsole.addLine(`Map width: ${mapWidth}. Map height: ${mapHeight}.`);    
 
       let pixelMap = new PixelMap(mapWidth * (letterSize + 1) - 1, mapHeight * (letterSize + 1) - 1);
 

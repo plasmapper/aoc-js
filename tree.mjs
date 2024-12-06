@@ -21,6 +21,10 @@ export const years = [
       {
         name: "Day 5: Print Queue", path: "./2024/05", taskUrl: "https://adventofcode.com/2024/day/5",
         answers: {part1: 143, part2: 123}
+      },
+      {
+        name: "Day 6: Guard Gallivant", path: "./2024/06", taskUrl: "https://adventofcode.com/2024/day/6",
+        answers: {part1: 41, part2: 6}
       }
     ]
   },

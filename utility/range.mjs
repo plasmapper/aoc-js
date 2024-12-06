@@ -1,3 +1,5 @@
+import { Vector2D } from "./vector.mjs"
+
 /**
  * Range class.
  */
@@ -98,5 +100,46 @@ export class Range {
         newRanges.push(ranges[i]);
     }
     return newRanges;
+  }
+}
+
+/**
+ * 2D range class.
+ */
+export class Range2D {
+  /**
+   * @param {number} xFrom X range start.
+   * @param {number} xTo X range end.
+   * @param {number} yFrom Y range start.
+   * @param {number} yTo Y range end.
+   */
+  constructor (xFrom, xTo, yFrom, yTo) {
+    /**
+     * X range.
+     * @type {Range}
+     */
+    this.xRange = new Range(xFrom, xTo);
+    /**
+     * Y range.
+     * @type {Range}
+     */
+    this.yRange = new Range(yFrom, yTo);
+  }
+
+  /**
+   * Clones the range.
+   * @returns {Range2D} Copy of the range.
+   */
+  clone() {
+    return new Range2D(this.xRange, this.yRange);
+  }
+
+  /**
+   * Returns true if the 2D vector is inside the range.
+   * @param {Vector2D} vector Vector.
+   * @returns {boolean} True if the vector is inside the range.
+   */
+  contains(vector) {
+    return this.xRange.contains(vector.x) && this.yRange.contains(vector.y);
   }
 }
