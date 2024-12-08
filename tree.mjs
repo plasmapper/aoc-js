@@ -29,6 +29,10 @@ export const years = [
       {
         name: "Day 7: Bridge Repair", path: "./2024/07", taskUrl: "https://adventofcode.com/2024/day/7",
         answers: {part1: 3749, part2: 11387}
+      },
+      {
+        name: "Day 8: Resonant Collinearity", path: "./2024/08", taskUrl: "https://adventofcode.com/2024/day/8",
+        answers: {part1: 14, part2: 34}
       }
     ]
   },
