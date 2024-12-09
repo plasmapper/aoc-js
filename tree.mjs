@@ -33,6 +33,10 @@ export const years = [
       {
         name: "Day 8: Resonant Collinearity", path: "./2024/08", taskUrl: "https://adventofcode.com/2024/day/8",
         answers: {part1: 14, part2: 34}
+      },
+      {
+        name: "Day 9: Disk Fragmenter", path: "./2024/09", taskUrl: "https://adventofcode.com/2024/day/9",
+        answers: {part1: 1928, part2: 2858}
       }
     ]
   },
