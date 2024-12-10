@@ -37,6 +37,10 @@ export const years = [
       {
         name: "Day 9: Disk Fragmenter", path: "./2024/09", taskUrl: "https://adventofcode.com/2024/day/9",
         answers: {part1: 1928, part2: 2858}
+      },
+      {
+        name: "Day 10: Hoof It", path: "./2024/10", taskUrl: "https://adventofcode.com/2024/day/10",
+        answers: {part1: 36, part2: 81}
       }
     ]
   },
