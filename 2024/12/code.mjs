@@ -205,7 +205,7 @@ export default class {
             }
   
             price += (part == 1 ? area * fence.end.clone().subtract(fence.start).abs() : area);
-            solConsoleLine.innerHTML = `Price: ${price}`;
+            solConsoleLine.innerHTML = `Price: ${price}.`;
           }
         }
       }
