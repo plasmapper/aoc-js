@@ -111,20 +111,20 @@ export default class {
         }
 
         // Merge fences (for part 2)
-        let mergingPoints = [];
-        for (let fence of fences) {
-          for (let point of [fence.start, fence.end]) {
-            if (mergingPoints.findIndex(p => p.equals(point)) < 0)
-              mergingPoints.push(point);
+        let baseFence;
+        let mergedFences = [baseFence = fences.shift()];
+        while (fences.length) {
+          let fenceIndex;
+          if ((fenceIndex = fences.findIndex(fence => (baseFence.start.equals(fence.start) || baseFence.start.equals(fence.end)
+            || baseFence.end.equals(fence.start) || baseFence.end.equals(fence.end)) && baseFence.inDirection.equals(fence.inDirection))) >= 0) {
+
+            baseFence.mergeWith(fences[fenceIndex]);
+            fences.splice(fenceIndex, 1);
           }
+          else
+            mergedFences.push(baseFence = fences.shift());
         }
-        for (let mergingPoint of mergingPoints) {
-          let fencesToMerge = fences.filter(f => f.start.equals(mergingPoint) || f.end.equals(mergingPoint));
-          if (fencesToMerge.length == 2 && fencesToMerge[0].isHorizontal == fencesToMerge[1].isHorizontal) {
-            fencesToMerge[0].mergeWith(fencesToMerge[1]);
-            fences.splice(fences.indexOf(fencesToMerge[1]), 1);
-          }
-        }
+        fences = mergedFences;
 
         // Order fences (for visualization)
         let orderedFences = [[]];
