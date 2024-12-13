@@ -122,7 +122,7 @@ export default class  {
           }
         }
           
-        let prizeCanBeReached = n1 >= 0 && n2 >= 0 && Number.isInteger(n1) && Number.isInteger(n2);
+        let prizeCanBeReached = (n1 >= 0 && n2 >= 0 && Number.isInteger(n1) && Number.isInteger(n2)) && (part == 2 || (n1 <= 100 && n2 <= 100));
         let numberOfTokens;
         if (prizeCanBeReached) {
           numberOfTokens = n1 * p1 + n2 * p2;
