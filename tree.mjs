@@ -49,6 +49,10 @@ export const years = [
       {
         name: "Day 12: Garden Groups", path: "./2024/12", taskUrl: "https://adventofcode.com/2024/day/12",
         answers: {part1: 1930, part2: 1206}
+      },
+      {
+        name: "Day 13: Claw Contraption", path: "./2024/13", taskUrl: "https://adventofcode.com/2024/day/13",
+        answers: {part1: 480, part2: 875318608908}
       }
     ]
   },
