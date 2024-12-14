@@ -1,4 +1,4 @@
-import { delay, Console, Vector2D, leastCommonMultiple } from "../../utility.mjs";
+import { delay, Console, Vector2D } from "../../utility.mjs";
 
 export default class  {
   /**
