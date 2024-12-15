@@ -194,7 +194,7 @@ export default class  {
  */
 class Robot {
   /**
-   * @param {Vector2D} startPosition Position.
+   * @param {Vector2D} startPosition Start position.
    * @param {Vector2D} velocity Velocity.
    */
   constructor(startPosition, velocity) {
