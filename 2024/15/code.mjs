@@ -54,7 +54,7 @@ export default class  {
         if (/^#+$/.test(line))
           parsingMovements = true;
         else {
-          if (!/^#[\#.O@]+#$/.test(line))
+          if (!/^#[#\.O@]+#$/.test(line))
             throw new Error(`Invalid data in line ${lineIndex + 1}`);
         }
         map.push(line.split("").map(e => e == "#" ? obstacleColorIndex : (e == "." ? 0 : (e == "O" ? boxColorIndex : robotColorIndex))));
