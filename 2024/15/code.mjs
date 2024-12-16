@@ -1,4 +1,4 @@
-import { delay, Console, PixelMap, Vector2D, leastCommonMultiple } from "../../utility.mjs";
+import { delay, Console, PixelMap, Vector2D } from "../../utility.mjs";
 
 const obstacleColorIndex = 1;
 const obstacleColor = "#999999";
