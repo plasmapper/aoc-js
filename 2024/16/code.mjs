@@ -195,6 +195,9 @@ export default class  {
       let bestPathPositions = new Set();
       bestPaths.reverse();
       for (let nodes of bestPaths) {
+        if (this.isStopping)
+          return;
+
         for (let node of nodes) {
           bestPathPositions.add(node.position.y * mapWidth + node.position.x);
           if (visualization) {
