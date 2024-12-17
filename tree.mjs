@@ -68,7 +68,7 @@ export const years = [
       },
       {
         name: "Day 17: Chronospatial Computer", path: "./2024/17", taskUrl: "https://adventofcode.com/2024/day/17",
-        answers: {part1: "4,6,3,5,6,3,5,2,1,0", part2: ""}
+        answers: {part1: "5,7,3,0", part2: 117440}
       }
     ]
   },
