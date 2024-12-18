@@ -71,8 +71,10 @@ async function setYearIndex(index) {
 
   for (let i = 0; i < years[currentYearIndex].days.length; i++) {
     let daySelector = document.createElement("span");
-    daySelector.classList.add("selector");
-    daySelector.onclick = () => setDayIndex(i);
+    if (years[currentYearIndex].days[i].disabled != true) {
+      daySelector.classList.add("selector");
+      daySelector.onclick = () => setDayIndex(i);
+    }
     daySelector.innerHTML = years[currentYearIndex].days[i].name;
     daysContainer.append(daySelector);
   }

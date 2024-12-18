@@ -69,6 +69,10 @@ export const years = [
       {
         name: "Day 17: Chronospatial Computer", path: "./2024/17", taskUrl: "https://adventofcode.com/2024/day/17",
         answers: {part1: "5,7,3,0", part2: 117440}
+      },
+      {
+        name: "Day 18: RAM Run", path: "./2024/18", taskUrl: "https://adventofcode.com/2024/day/18",
+        answers: {part1: 22, part2: "6,1"}
       }
     ]
   },
@@ -244,12 +248,52 @@ export const years = [
         answers: {part1: 26, part2: 56000011}
       },
       {
+        name: "Day 16: Proboscidea Volcanium", path: "./2022/16", taskUrl: "https://adventofcode.com/2022/day/16",
+        answers: {part1: 1651, part2: 1707},
+        disabled: true
+      },
+      {
         name: "Day 17: Pyroclastic Flow", path: "./2022/17", taskUrl: "https://adventofcode.com/2022/day/17",
         answers: {part1: 3068, part2: 1514285714288}
       },
       {
         name: "Day 18: Boiling Boulders", path: "./2022/18", taskUrl: "https://adventofcode.com/2022/day/18",
         answers: {part1: 64, part2: 58}
+      },
+      {
+        name: "Day 19: Not Enough Minerals", path: "./2022/19", taskUrl: "https://adventofcode.com/2022/day/19",
+        answers: {part1: 33, part2: 62},
+        disabled: true
+      },
+      {
+        name: "Day 20: Grove Positioning System", path: "./2022/20", taskUrl: "https://adventofcode.com/2022/day/20",
+        answers: {part1: 3, part2: 1623178306},
+        disabled: true
+      },
+      {
+        name: "Day 21: Monkey Math", path: "./2022/21", taskUrl: "https://adventofcode.com/2022/day/21",
+        answers: {part1: 152, part2: 301},
+        disabled: true
+      },
+      {
+        name: "Day 22: Monkey Map", path: "./2022/22", taskUrl: "https://adventofcode.com/2022/day/22",
+        answers: {part1: 6032, part2: 5031},
+        disabled: true
+      },
+      {
+        name: "Day 23: Unstable Diffusion", path: "./2022/23", taskUrl: "https://adventofcode.com/2022/day/23",
+        answers: {part1: 110, part2: 20},
+        disabled: true
+      },
+      {
+        name: "Day 24: Blizzard Basin", path: "./2022/24", taskUrl: "https://adventofcode.com/2022/day/24",
+        answers: {part1: 18, part2: 54},
+        disabled: true
+      },
+      {
+        name: "Day 25: Full of Hot Air", path: "./2022/25", taskUrl: "https://adventofcode.com/2022/day/25",
+        answers: {part1: "2=-1=0"},
+        disabled: true
       }
     ]
   }
