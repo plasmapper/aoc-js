@@ -49,7 +49,7 @@ export default class  {
    * @param {number} part Puzzle part.
    * @param {string} input Puzzle input.
    * @param {boolean} visualization Enable visualization.
-   * @returns {number} Minimum number of steps to reach the exit (part 1) or the coordinates of the first byte that will prevent the exit from being reachable (part 2).
+   * @returns {number|string} Minimum number of steps to reach the exit (part 1) or the coordinates of the first byte that will prevent the exit from being reachable (part 2).
    */
   async solve(part, input, visualization) {
     try {

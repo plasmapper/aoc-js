@@ -57,7 +57,7 @@ export default class  {
    * @param {number} part Puzzle part.
    * @param {string} input Puzzle input.
    * @param {boolean} visualization Enable visualization.
-   * @returns {number} Program output (part 1) or the required value of register A so that the program outputs itself (part 2).
+   * @returns {string|number} Program output (part 1) or the required value of register A so that the program outputs itself (part 2).
    */
   async solve(part, input, visualization) {
     try {

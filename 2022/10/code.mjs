@@ -41,7 +41,7 @@ export default class {
    * @param {number} part Puzzle part.
    * @param {string} input Puzzle input.
    * @param {boolean} visualization Enable visualization.
-   * @returns {number} The sum of signal strengths or the string "see image".
+   * @returns {number|string} The sum of signal strengths or the string "see image".
    */
   async solve(part, input, visualization) {
     const crtWidth = 40;
