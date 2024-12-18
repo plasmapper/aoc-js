@@ -249,8 +249,7 @@ export const years = [
       },
       {
         name: "Day 16: Proboscidea Volcanium", path: "./2022/16", taskUrl: "https://adventofcode.com/2022/day/16",
-        answers: {part1: 1651, part2: 1707},
-        disabled: true
+        answers: {part1: 1651, part2: 1707}
       },
       {
         name: "Day 17: Pyroclastic Flow", path: "./2022/17", taskUrl: "https://adventofcode.com/2022/day/17",
