@@ -73,6 +73,10 @@ export const years = [
       {
         name: "Day 18: RAM Run", path: "./2024/18", taskUrl: "https://adventofcode.com/2024/day/18",
         answers: {part1: 22, part2: "6,1"}
+      },
+      {
+        name: "Day 19: Linen Layout", path: "./2024/19", taskUrl: "https://adventofcode.com/2024/day/19",
+        answers: {part1: 6, part2: 16}
       }
     ]
   },
