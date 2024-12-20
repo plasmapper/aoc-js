@@ -77,6 +77,10 @@ export const years = [
       {
         name: "Day 19: Linen Layout", path: "./2024/19", taskUrl: "https://adventofcode.com/2024/day/19",
         answers: {part1: 6, part2: 16}
+      },
+      {
+        name: "Day 20: Race Condition", path: "./2024/20", taskUrl: "https://adventofcode.com/2024/day/20",
+        answers: {part1: 1, part2: 285}
       }
     ]
   },
