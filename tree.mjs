@@ -81,6 +81,10 @@ export const years = [
       {
         name: "Day 20: Race Condition", path: "./2024/20", taskUrl: "https://adventofcode.com/2024/day/20",
         answers: {part1: 1, part2: 285}
+      },
+      {
+        name: "Day 21: Keypad Conundrum", path: "./2024/21", taskUrl: "https://adventofcode.com/2024/day/21",
+        answers: {part1: 126384, part2: 154115708116294}
       }
     ]
   },
