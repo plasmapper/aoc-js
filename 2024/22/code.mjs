@@ -86,9 +86,9 @@ export default class  {
           }
 
           // Calculate next secret number
-          number = (number ^ (number << 6)) & 16777215;
-          number = (number ^ (number >> 5)) & 16777215;
-          number = (number ^ (number * 2048)) & 16777215;
+          number = (number ^ (number << 6)) & 0xFFFFFF;
+          number = (number ^ (number >> 5)) & 0xFFFFFF;
+          number = (number ^ (number << 11)) & 0xFFFFFF;
         }
 
         priceMaps.push(priceMap);
