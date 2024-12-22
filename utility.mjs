@@ -1,5 +1,5 @@
-export * from "./utility/console.mjs";
 export * from "./utility/chart.mjs";
+export * from "./utility/console.mjs";
 export * from "./utility/line-segment.mjs";
 export * from "./utility/matrix.mjs";
 export * from "./utility/pixel-map.mjs";
