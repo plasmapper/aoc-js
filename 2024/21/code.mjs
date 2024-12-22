@@ -46,6 +46,10 @@ export default class  {
 
       let codes = this.parse(input);
       let numberOfRobots = part == 1 ? 2 : 25;
+      
+      let visConsole = new Console();
+      if (visualization)
+        this.visContainer.append(visConsole.container);
 
       // Create keypads
       let numericKeypad = {
@@ -118,6 +122,9 @@ export default class  {
           totalSize += Math.min(...sizes);
           numberKey = nextNumberKey;
         }
+
+        if (visualization)
+          visConsole.addLine(`${code}: ${totalSize} button presses.`);
 
         totalComplexity += totalSize * parseInt(code.substring(0, code.length - 1));
       }

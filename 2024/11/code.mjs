@@ -45,6 +45,10 @@ export default class  {
 
       let initialStones = this.parse(input);
       let numberOfBlinks = part == 1 ? 25 : 75;
+      
+      let visConsole = new Console();
+      if (visualization)
+        this.visContainer.append(visConsole.container);
 
       let knownStones = new Map();
       for (let stone of initialStones)
@@ -87,9 +91,15 @@ export default class  {
         stones = newStones;
       }
 
+      if (visualization)
+        visConsole.addLine(`After 1 blink: ${initialStones.reduce((acc, stone) => acc + stone.blinkResults[1], 0)} stones.`);
+
       // Calculate blink N result from blink N-1 results
-      for (let blink = 2; blink <= numberOfBlinks; blink++)
+      for (let blink = 2; blink <= numberOfBlinks; blink++) {
         knownStones.forEach(stone => stone.blinkResults.push(stone.children.reduce((acc, child) => acc + child.blinkResults[blink - 1], 0)));
+        if (visualization)
+          visConsole.addLine(`After ${blink} blinks: ${initialStones.reduce((acc, stone) => acc + stone.blinkResults[blink], 0)} stones.`);
+      }
 
       return initialStones.reduce((acc, stone) => acc + stone.blinkResults[numberOfBlinks], 0);
     }
