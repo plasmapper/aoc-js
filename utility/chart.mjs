@@ -1,9 +1,9 @@
 import { Range } from "./range.mjs"
 
 /**
- * Graph visualization class.
+ * Chart visualization class.
  */
-export class Graph {
+export class Chart {
   constructor() {
     const screenWidth = 467;
     const screenHeight = 300;
@@ -19,7 +19,7 @@ export class Graph {
      */
     this.chartJS;
     /**
-     * Graph type.
+     * Chart type.
      * @type {string}
      */
     this.type = "scatter";
@@ -29,13 +29,13 @@ export class Graph {
      */
     this.pointRadius = 2;
     /**
-     * Graph axes.
+     * Chart axes.
      * @type {Object}
      */
-    this.axes = {x: new GraphAxis(), y: new GraphAxis()};
+    this.axes = {x: new ChartAxis(), y: new ChartAxis()};
     /**
-     * Graph datasets.
-     * @type {GraphDataSet[]}
+     * Chart datasets.
+     * @type {ChartDataSet[]}
      */
     this.datasets = [];
 
@@ -67,7 +67,7 @@ export class Graph {
       }
     });
 
-    this.chartJS = new Chart(this.container, {
+    this.chartJS = new ChartJs(this.container, {
       type: this.type,
       options: {
         responsive: false,
@@ -100,7 +100,7 @@ export class Graph {
   }
 
   /**
-   * Updates the graph.
+   * Updates the chart.
    */
   update() {
     Object.keys(this.axes).forEach(key => {
@@ -113,9 +113,9 @@ export class Graph {
 }
 
 /**
- * Graph dataset class
+ * Chart dataset class
  */
-export class GraphDataSet {
+export class ChartDataSet {
   /**
    * @param {string} color Dataset color.
    */
@@ -149,9 +149,9 @@ export class GraphDataSet {
 }
 
 /**
- * Graph axis class.
+ * Chart axis class.
  */
-export class GraphAxis {
+export class ChartAxis {
   constructor() {
     /**
      * Axis label.

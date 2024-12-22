@@ -1,4 +1,4 @@
-import { delay, Console, Graph, GraphDataSet, Vector2D } from "../../utility.mjs";
+import { delay, Console, Chart, ChartDataSet, Vector2D } from "../../utility.mjs";
 
 export default class  {
   /**
@@ -69,15 +69,15 @@ export default class  {
       solConsole.addLine(`Number of races: ${races.length}.`);
       let solConsoleLine = solConsole.addLine();
 
-      let graph = new Graph("line", []);
+      let chart = new Chart("line", []);
       if (visualization) {
-        this.visContainer.append(graph.container);
-        graph.axes.x.label = "start time, ms";
-        graph.axes.x.autoscale = false;
-        graph.axes.y.label = "distance, mm";
-        graph.datasets.push(new GraphDataSet(), new GraphDataSet());
-        graph.datasets[1].pointStrokeColor = graph.datasets[1].pointFillColor = "#ffff00";
-        graph.initialize();
+        this.visContainer.append(chart.container);
+        chart.axes.x.label = "start time, ms";
+        chart.axes.x.autoscale = false;
+        chart.axes.y.label = "distance, mm";
+        chart.datasets.push(new ChartDataSet(), new ChartDataSet());
+        chart.datasets[1].pointStrokeColor = chart.datasets[1].pointFillColor = "#ffff00";
+        chart.initialize();
       }
 
       let numbersOfWaysToBeatTheRecord = [];
@@ -104,15 +104,15 @@ export default class  {
         solConsoleLine.innerHTML = `Race ${raceIndex + 1}: ${numbersOfWaysToBeatTheRecord[numbersOfWaysToBeatTheRecord.length - 1]} ways to beat the record.`;
 
         if (visualization) {
-          graph.datasets[0].points.length = 0;
-          graph.datasets[1].points.length = 0;
+          chart.datasets[0].points.length = 0;
+          chart.datasets[1].points.length = 0;
           let xStep = Math.max(1, Math.floor(race.time / 1000));
           for (let x = 0; x <= race.time; x += xStep) {
-            graph.datasets[x >= t1 && x <= t2 ? 1 : 0].points.push(new Vector2D(x, x * (race.time - x)));
+            chart.datasets[x >= t1 && x <= t2 ? 1 : 0].points.push(new Vector2D(x, x * (race.time - x)));
           }
-          graph.axes.x.range.from = 0;
-          graph.axes.x.range.to = race.time;
-          graph.update();
+          chart.axes.x.range.from = 0;
+          chart.axes.x.range.to = race.time;
+          chart.update();
           await delay(500);
         }
       }
