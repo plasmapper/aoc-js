@@ -85,6 +85,10 @@ export const years = [
       {
         name: "Day 21: Keypad Conundrum", path: "./2024/21", taskUrl: "https://adventofcode.com/2024/day/21",
         answers: {part1: 126384, part2: 154115708116294}
+      },
+      {
+        name: "Day 22: Monkey Market", path: "./2024/22", taskUrl: "https://adventofcode.com/2024/day/22",
+        answers: {part1: 37990510, part2: 23}
       }
     ]
   },
