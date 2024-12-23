@@ -74,7 +74,7 @@ code p {
   min-height: 1.25em;
 }
 
-.vertical-container {
+.vertical-container, header {
   display: flex;
   flex-direction: column;
   row-gap: 0.5em;
@@ -94,6 +94,8 @@ code p {
 }
 
 header {
+  white-space: nowrap;
+  row-gap: 0.75em;
   margin-bottom: 1em;
 }
 
