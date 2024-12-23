@@ -43,11 +43,8 @@ export default class  {
 
       let reports = this.parse(input);
 
-      let solConsole = this.solConsole;
       let visConsole = new Console();
 
-      solConsole.addLine(`Number of reports: ${reports.length}.`);
-      let solConsoleLine = solConsole.addLine();
       let numberOfSafeReports = 0;
 
       if (visualization)
@@ -81,15 +78,10 @@ export default class  {
           visConsoleLine.innerHTML = reportString;
           if (reportIsSafe)
             visConsoleLine.classList.add("highlighted");
-          
-          visConsole.container.scrollTop = visConsole.lines[reportIndex].offsetTop - visConsole.container.offsetHeight / 2;
-          await delay(1);
         }
 
         if (reportIsSafe)
           numberOfSafeReports++;
-
-        solConsoleLine.innerHTML = `Report ${reportIndex + 1} is ${reportIsSafe ? "safe" : "not safe"}.\nNumber of safe reports: ${numberOfSafeReports}.`;
       }
         
       return numberOfSafeReports;

@@ -66,15 +66,11 @@ export default class  {
 
       let {rules, updates} = this.parse(input);
 
-      let solConsole = this.solConsole;
       let visConsole = new Console();
 
       if (visualization)
         this.visContainer.append(visConsole.container);
 
-      solConsole.addLine(`Number of updates: ${updates.length}.`);
-      
-      let solConsoleLine = solConsole.addLine();
       let sum = 0;
 
       if (visualization)
@@ -104,9 +100,6 @@ export default class  {
             // Find the page that is not the first page in any applied rule
             let pageIndex = update.findIndex(page => appliedRules.reduce((acc, rule) => acc && rule[0] != page, true));
             
-            if (pageIndex < 0)
-              throw new Error(`Update ${updateIndex + 1} can not be corrected`);
-
             let page = update[pageIndex];
 
             // Place the page at the beginning of the corrected update
@@ -124,8 +117,6 @@ export default class  {
         if ((part == 1 && updateIsCorrect) || (part == 2 && updateHasBeenCorrected))
           sum += update[Math.floor(update.length / 2)];
 
-        solConsoleLine.innerHTML = `Update ${updateIndex + 1} ${updateIsCorrect ? "is correct" : (updateHasBeenCorrected ? "has been corrected" : "is not correct")}.\nSum of middle page numbers: ${sum}.`;
-
         if (visualization) {
           visConsole.addLine().innerHTML = `Update ${updateIndex + 1}:`;
           if ((part == 1 && updateIsCorrect) || (part == 2 && updateHasBeenCorrected)) {
@@ -136,9 +127,6 @@ export default class  {
           else
             visConsole.addLine().innerHTML = update.join(",");
           visConsole.addLine();
-
-          visConsole.container.scrollTop = visConsole.lines[visConsole.lines.length - 1].offsetTop - visConsole.container.offsetHeight / 2;
-          await delay(1);
         }
       }
 

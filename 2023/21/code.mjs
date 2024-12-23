@@ -80,7 +80,6 @@ export default class {
         }        
 
         let solConsole = this.solConsole;
-        solConsole.addLine(`Map width: ${mapWidth}. Map height: ${mapHeight}.`);
         solConsole.addLine(`Number of steps: ${numberOfSteps}.`);
         let solConsoleLine = solConsole.addLine();
   

@@ -68,10 +68,6 @@ export default class {
         star.y += dY;
       }
 
-      let solConsole = this.solConsole;
-      solConsole.addLine(`Number of stars: ${stars.length}.`)
-      solConsole.addLine(`Expansion coefficient: ${expansionCoefficient}.`)
-
       if (visualization) {
         let visConsole = new Console();
         this.visContainer.append(visConsole.container);

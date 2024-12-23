@@ -62,8 +62,6 @@ export default class {
         });
       }
 
-      let solConsole = this.solConsole;
-      solConsole.addLine(`Number of records: ${records.length}.`)
       let visConsole = new Console();
 
       if (visualization)

@@ -68,7 +68,6 @@ export default class  {
 
       let {seedRanges, maps} = this.parse(input);
 
-      let solConsole = this.solConsole;
       let visConsole = new Console();
 
       // Conver seed numbers to seed ranges numbers (part 2)
@@ -81,13 +80,13 @@ export default class  {
 
       seedRanges.sort((r1, r2) => r1.from - r2.from);
 
-      solConsole.addLine(`Number of maps: ${maps.length}.`);
-      let solConsoleLine = solConsole.addLine();
       if (visualization)
         this.visContainer.append(visConsole.container);
 
       if (visualization) {
-        visConsole.addLine(`Seed ranges:\n  ${seedRanges.map(e => `${e.from}..${e.to}`).join("\n  ")}`);
+        visConsole.addLine(`Seed ranges:`);
+        visConsole.lines[visConsole.lines.length - 1].classList.add("highlighted");
+        visConsole.addLine(`${seedRanges.map(e => `${e.from}..${e.to}`).join("\n")}`);
         visConsole.addLine();
       }
 
@@ -125,13 +124,11 @@ export default class  {
 
         srcRanges = destRanges;
 
-        solConsoleLine.innerHTML = `Map: ${map.destName}.`;
-
         if (visualization) {
-          visConsole.addLine(`${map.destName.charAt(0).toUpperCase() + map.destName.slice(1)} ranges:\n  ${destRanges.map(e => `${e.from}..${e.to}`).join("\n  ")}`);
+          visConsole.addLine(`${map.destName.charAt(0).toUpperCase() + map.destName.slice(1)} ranges:`);
+          visConsole.lines[visConsole.lines.length - 1].classList.add("highlighted");
+          visConsole.addLine(`${destRanges.map(e => `${e.from}..${e.to}`).join("\n")}`);
           visConsole.addLine();
-          visConsole.container.scrollTop = visConsole.container.scrollHeight;
-          await delay(100);
         }
       }
 

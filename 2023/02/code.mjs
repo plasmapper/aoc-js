@@ -62,11 +62,7 @@ export default class  {
 
       let games = this.parse(input);
 
-      let solConsole = this.solConsole;
       let visConsole = new Console();
-
-      solConsole.addLine(`Number of games: ${games.length}.`);
-      let solConsoleLine = solConsole.addLine();
 
       let idSum = 0;
       let powerSum = 0;
@@ -95,19 +91,13 @@ export default class  {
         let minCubeSetPower = minCubeSet.power();
         powerSum += minCubeSetPower;
 
-        if (part == 1)
-          solConsoleLine.innerHTML = `Game ${gameIndex + 1} is ${gameIsPossible ? "" : "not "}possible.\nSum of the IDs: ${idSum}.`
-        else
-          solConsoleLine.innerHTML = `Game ${gameIndex + 1} minimum set power: ${minCubeSetPower}.\nSum of the powers: ${powerSum}.`
-
         if (visualization) {
-          visConsole.addLine(`Game ${gameIndex + 1}:\n  red >= ${minCubeSet.red}\n  blue >= ${minCubeSet.green}\n  green >= ${minCubeSet.blue}`);
+          visConsole.addLine(`Game ${gameIndex + 1}:\nred >= ${minCubeSet.red}, blue >= ${minCubeSet.green}, green >= ${minCubeSet.blue}.`);
           if (part == 1 && gameIsPossible)
             visConsole.lines[visConsole.lines.length - 1].classList.add("highlighted");
           if (part == 2)
-            visConsole.lines[visConsole.lines.length - 1].innerHTML += `\n  minimum set power: ${minCubeSetPower}`;
-          visConsole.container.scrollTop = visConsole.lines[gameIndex].offsetTop - visConsole.container.offsetHeight / 2;
-          await delay(10);
+            visConsole.lines[visConsole.lines.length - 1].innerHTML += `\nMinimum set power: ${minCubeSetPower}.`;
+          visConsole.addLine();
         }
       }
 

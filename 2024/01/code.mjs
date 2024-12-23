@@ -47,11 +47,8 @@ export default class  {
 
       let locationIds = this.parse(input);
 
-      let solConsole = this.solConsole;
       let visConsole = new Console();
 
-      solConsole.addLine(`Number of location ID pairs: ${locationIds[0].length}.`);
-      let solConsoleLine = solConsole.addLine();
       let total = 0;
 
       if (visualization)
@@ -75,13 +72,9 @@ export default class  {
           if (visualization) {
             let visConsoleLine = visConsole.addLine();
             visConsoleLine.innerHTML = `${Math.max(id1, id2)} - ${Math.min(id1, id2)} = ${distance}`;
-            visConsole.container.scrollTop = visConsole.lines[pairIndex].offsetTop - visConsole.container.offsetHeight / 2;
-            await delay(1);
           }
    
           total += distance;
-  
-          solConsoleLine.innerHTML = `Pair ${pairIndex + 1} distance is ${distance}.\nTotal distance: ${total}.`;
         }
       }
 
@@ -98,13 +91,9 @@ export default class  {
           if (visualization) {
             let visConsoleLine = visConsole.addLine();
             visConsoleLine.innerHTML = `Location ${locationIds[0][locationIdIndex]} similarity score is ${similarityScore}.`;
-            visConsole.container.scrollTop = visConsole.lines[locationIdIndex].offsetTop - visConsole.container.offsetHeight / 2;
-            await delay(1);
           }
    
           total += similarityScore;
-  
-          solConsoleLine.innerHTML = `Location ID ${locationIdIndex + 1} similarity score is ${similarityScore}.\nTotal similarity score: ${total}.`;
         }
       }      
         

@@ -53,9 +53,11 @@ export default class {
       let instructions = this.parse(input);
 
       let solConsole = this.solConsole;
-
-      solConsole.addLine(`Number of cycles: ${instructions.reduce((acc, e) => acc + (e ? 2 : 1), 0)}.`);
-      let solConsoleLine = solConsole.addLine();
+      let solConsoleLine;
+      if (part == 2) {
+        solConsole.addLine(`Number of cycles: ${instructions.reduce((acc, e) => acc + (e ? 2 : 1), 0)}.`);
+        solConsoleLine = solConsole.addLine();
+      }
       let visConsole = new Console();
 
       let registerValue = 1;
@@ -86,14 +88,10 @@ export default class {
           if ((cycle + 20) % 40 == 0)
           signalStrengthSum += cycle * registerValue;
 
-          solConsoleLine.innerHTML = `Cycle ${cycle}: X = ${registerValue}.\nSignal strength sum: ${signalStrengthSum}.`;
-
           if (visualization) {
             visConsole.addLine(`Cycle ${cycle}: X = ${registerValue}.`);
-            visConsole.container.scrollTop = visConsole.lines[visConsole.lines.length - 1].offsetTop - visConsole.container.offsetHeight / 2;
             if ((cycle + 20) % 40 == 0)
               visConsole.lines[visConsole.lines.length - 1].classList.add("highlighted");
-            await delay(10);
           }
         }
         // Draw CRT image

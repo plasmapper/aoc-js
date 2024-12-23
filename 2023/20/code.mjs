@@ -90,8 +90,10 @@ export default class {
         for (let i = 0; i < 1000; i++) {
           let pulses = [new Pulse(button, broadcaster, 0)];
     
-          if (visualization)
+          if (visualization) {
             visConsole.addLine(`Button press ${i + 1}:`);
+            visConsole.lines[visConsole.lines.length - 1].classList.add("highlighted");
+          }
 
           while (pulses.length) {
             let newPulses = [];

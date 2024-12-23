@@ -68,15 +68,11 @@ export default class  {
       if (part == 2)
         clawMachines.forEach(clawMachine => { clawMachine.prize.x += 10000000000000; clawMachine.prize.y += 10000000000000; });
 
-      let solConsole = this.solConsole;
       let visConsole = new Console();
-
-      solConsole.addLine(`Number of claw machines: ${clawMachines.length}.`);    
 
       if (visualization)
         this.visContainer.append(visConsole.container);
 
-      let solConsoleLine = solConsole.addLine();
       let totalNumberOfTokens = 0;
 
       for (let clawMachineIndex = 0; clawMachineIndex < clawMachines.length; clawMachineIndex++) {
@@ -127,10 +123,7 @@ export default class  {
         if (prizeCanBeReached) {
           numberOfTokens = n1 * p1 + n2 * p2;
           totalNumberOfTokens += numberOfTokens;
-          solConsoleLine.innerHTML = `Claw machine ${clawMachineIndex + 1}: ${numberOfTokens} tokens.\nTotal number of tokens: ${totalNumberOfTokens}.`;
         }
-        else
-          solConsoleLine.innerHTML = `Claw machine ${clawMachineIndex + 1}: prize can not be reached.\nTotal number of tokens: ${totalNumberOfTokens}.`;
 
         if (visualization) {
           let visConsoleLine;
@@ -149,8 +142,6 @@ export default class  {
 
 
           visConsole.addLine();
-          visConsole.container.scrollTop = visConsole.lines[visConsole.lines.length - 1].offsetTop - visConsole.container.offsetHeight / 2;
-          await delay(1);
         }
       }
 

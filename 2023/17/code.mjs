@@ -54,9 +54,6 @@ export default class {
       let mapWidth = map[0].length;
       let mapHeight = map.length;
 
-      let solConsole = this.solConsole;
-      solConsole.addLine(`Map width: ${mapWidth}. Map height: ${mapHeight}.`);
-
       let pixelMap = new PixelMap(mapWidth, mapHeight);
       
       if (visualization) {
@@ -114,9 +111,16 @@ export default class {
 
         if (endNodes.has(node)) {
           if (visualization) {
-            pixelMap.drawPixel(node.position.x, node.position.y, highlightColorIndex);
+            let nodes = [node];
             for (let previousNode = node.previousNode; previousNode != undefined; previousNode = previousNode.previousNode)
-              pixelMap.drawPixel(previousNode.position.x, previousNode.position.y, highlightColorIndex);
+              nodes.push(previousNode);
+            nodes.reverse();
+            for (let n of nodes) {
+              if (this.isStopping)
+                return 0;
+              pixelMap.drawPixel(n.position.x, n.position.y, highlightColorIndex);
+              await delay(1);
+            }
           }
           return node.heatLoss;
         }

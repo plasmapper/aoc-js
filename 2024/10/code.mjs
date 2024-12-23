@@ -64,7 +64,6 @@ export default class {
       }
 
       let solConsole = this.solConsole;
-      solConsole.addLine(`Map width: ${mapWidth}. Map map height: ${mapHeight}.`);    
 
       let pixelMap = new PixelMap(mapWidth, mapHeight);
 
@@ -96,13 +95,13 @@ export default class {
         if (part == 1) {
           let trailheadScore = new Set(trails.map(trail => trail[trail.length - 1].y * mapWidth + trail[trail.length - 1].x)).size;
           sum += trailheadScore;
-          solConsoleLine.innerHTML = `Trail head ${trailheadIndex + 1} score: ${trailheadScore}.\nSum of trailhead scores: ${sum}.`;
+          solConsoleLine.innerHTML = `Sum of trailhead scores: ${sum}.`;
         }
         // Calculate trailhead rating (part 2)
         else {
           let trailheadRating = trails.length;
           sum += trailheadRating;
-          solConsoleLine.innerHTML = `Trail head ${trailheadIndex + 1} rating: ${trailheadRating}.\nSum of trailhead ratings: ${sum}.`;
+          solConsoleLine.innerHTML = `Sum of trailhead ratings: ${sum}.`;
         }
 
         if (visualization) {

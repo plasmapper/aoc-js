@@ -54,7 +54,6 @@ export default class {
       
       let packets = this.parse(input);
 
-      let solConsole = this.solConsole;
       let visConsole = new Console();
 
       if (visualization)
@@ -62,9 +61,6 @@ export default class {
 
       // Compare packet pairs 
       if (part == 1) {
-        solConsole.addLine(`Number of pairs: ${packets.length / 2}.`);
-        let solConsoleLine = solConsole.addLine();
-
         let indexSum = 0;
 
         if (visualization) {
@@ -72,7 +68,9 @@ export default class {
             visConsole.addLine(JSON.stringify(packets[i]));
             visConsole.addLine();
             visConsole.addLine(JSON.stringify(packets[i + 1]));
+            visConsole.addLine();
             visConsole.addLine("--------------------------------");
+            visConsole.addLine();
           }
         }
 
@@ -81,19 +79,11 @@ export default class {
             return;
 
           if (this.compareValues(packets[(index - 1) * 2], packets[(index - 1) * 2 + 1]) < 0) {
-            solConsoleLine.innerHTML = `Pair ${index} is in the right order.`;
             if (visualization) {
-              visConsole.lines[(index - 1) * 4].classList.add("highlighted");
-              visConsole.lines[(index - 1) * 4 + 2].classList.add("highlighted");
+              visConsole.lines[(index - 1) * 6].classList.add("highlighted");
+              visConsole.lines[(index - 1) * 6 + 2].classList.add("highlighted");
             }
             indexSum += index;
-          }
-          else
-            solConsoleLine.innerHTML = `Pair ${index} is not in the right order.`;
-
-          if (visualization) {
-            visConsole.container.scrollTop = visConsole.lines[(index - 1) * 4].offsetTop - visConsole.container.offsetHeight / 2;
-            await delay(10);
           }
         }
 
@@ -109,13 +99,10 @@ export default class {
         let dividerPacket1Index = packets.indexOf(dividerPacket1) + 1;
         let dividerPacket2Index = packets.indexOf(dividerPacket2) + 1;
 
-        solConsole.addLine().innerHTML = `Divider packet 1 index: ${dividerPacket1Index}.\nDivider packet 2 index: ${dividerPacket2Index}.`;
-        
         if (visualization) {
           packets.forEach(e => {visConsole.addLine(JSON.stringify(e)); visConsole.addLine();});
           visConsole.lines[(dividerPacket1Index - 1) * 2].classList.add("highlighted");
           visConsole.lines[(dividerPacket2Index - 1) * 2].classList.add("highlighted");
-          visConsole.container.scrollTop = visConsole.lines[(dividerPacket1Index - 1) * 2].offsetTop - visConsole.container.offsetHeight / 2;
         }
 
         return dividerPacket1Index * dividerPacket2Index;

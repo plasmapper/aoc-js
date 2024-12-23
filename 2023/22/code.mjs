@@ -73,10 +73,6 @@ export default class {
         this.setCameraPosition(renderer, bricks);
       }
       
-      let solConsole = this.solConsole;
-      solConsole.addLine(`Number of bricks: ${bricks.length}.`);
-      let solConsoleLine = solConsole.addLine();
-
       // Let all bricks fall
       let allBricksHaveFallen = false;
       while (!allBricksHaveFallen) {
@@ -132,7 +128,7 @@ export default class {
       if (part == 1) {
         let numberOfBricksThatCanBeRemoved = 0;
 
-        for (let [brickIndex, brick] of bricks.entries()) {
+        for (let brick of bricks) {
           if (this.isStopping)
             return;
 
@@ -151,8 +147,6 @@ export default class {
               await delay(10);
             }
           }
-
-          solConsoleLine.innerHTML = `Brick ${brickIndex + 1} can${canBeRemoved ? "" : " not"} be removed.\nIn total ${numberOfBricksThatCanBeRemoved} brick${numberOfBricksThatCanBeRemoved == 1 ? "" : "s"} can be removed.`;
         }
   
         return numberOfBricksThatCanBeRemoved;
@@ -178,8 +172,6 @@ export default class {
           }
 
           totalNumberOfFallingBricks += fallingBricks.size - 1;
-
-          solConsoleLine.innerHTML = `Removing brick ${brickIndex + 1}: ${fallingBricks.size} brick${fallingBricks.size == 1 ? "" : "s"} will fall.\nTotal number of falling bricks: ${totalNumberOfFallingBricks}.`;
 
           if (visualization) {
             for (let brick of bricks)

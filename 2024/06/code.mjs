@@ -91,7 +91,6 @@ export default class {
       let mapHeight = initialMap.defaultObstacles.length;
 
       let solConsole = this.solConsole;
-      solConsole.addLine(`Map width: ${mapWidth}. Map map height: ${mapHeight}.`);    
 
       let pixelMap = new PixelMap(mapWidth, mapHeight);
 
@@ -122,7 +121,7 @@ export default class {
           if (!initialMap.guardIsOutside && initialMap.guardDirections[initialMap.guardPosition.y][initialMap.guardPosition.x].length == 0)
             numberOfGuardPositions++;
   
-          solConsoleLine.innerHTML = `Step ${step}: number of guard positions is ${numberOfGuardPositions}.`;
+          solConsoleLine.innerHTML = `Number of guard positions: ${numberOfGuardPositions}.`;
         }
   
         return numberOfGuardPositions;

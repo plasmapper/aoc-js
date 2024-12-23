@@ -67,9 +67,6 @@ export default class {
       let mapWidth = Math.ceil(Math.sqrt(numberOfBlocks));
       let mapHeight = mapWidth;
 
-      let solConsole = this.solConsole;
-      solConsole.addLine(`Number of files files: ${files.length}.`);    
-
       let pixelMap = new PixelMap(mapWidth, mapHeight);
 
       if (visualization) {
@@ -85,13 +82,9 @@ export default class {
         }
       }
 
-      let solConsoleLine = solConsole.addLine();
-
       for (let fileIndex = files.length - 1; fileIndex >= 0 && freeSpaces.length > 0 && freeSpaces[0].position < files[fileIndex].memorySegments[0].position; fileIndex--) {
         if (this.isStopping)
           return;
-
-        solConsoleLine.innerHTML = `Moving file ${fileIndex}.`;
 
         let file = files[fileIndex];
         let oldMemorySegments = file.memorySegments.map(memorySegment => new MemorySegment(memorySegment.position, memorySegment.size));

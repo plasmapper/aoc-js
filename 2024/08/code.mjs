@@ -71,9 +71,6 @@ export default class {
       let {mapWidth, mapHeight, antennas} = this.parse(input);
       let mapCoordinateRange = new Range2D(0, mapWidth - 1, 0, mapHeight - 1);
 
-      let solConsole = this.solConsole;
-      solConsole.addLine(`Map width: ${mapWidth}. Map map height: ${mapHeight}.`);    
-
       let pixelMap = new PixelMap(mapWidth, mapHeight);
 
       if (visualization) {

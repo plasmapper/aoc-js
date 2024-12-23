@@ -149,8 +149,12 @@ export default class {
 
         pixelMap.drawPixel(start.x, start.y, highlightColorIndex);
         for (let i = 1; i < endIntersection.longestRoute.length; i++) {
-          for (let point of endIntersection.longestRoute[i - 1].destinationMap.get(endIntersection.longestRoute[i]))
+          for (let point of endIntersection.longestRoute[i - 1].destinationMap.get(endIntersection.longestRoute[i])) {
+            if (this.isStopping)
+              return 0;
             pixelMap.drawPixel(point.x, point.y, highlightColorIndex);
+            await delay (1);
+          }
         }
       }
       return endIntersection.longestRouteDistance;

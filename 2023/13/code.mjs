@@ -54,9 +54,6 @@ export default class {
 
       let patterns = this.parse(input);
       
-      let solConsole = this.solConsole;
-      solConsole.addLine(`Number of patterns: ${patterns.length}.`)
-      let solConsoleLine = solConsole.addLine();
       let visConsole = new Console();
 
       if (visualization)
@@ -88,8 +85,6 @@ export default class {
             throw new Error(`No reflection found for pattern ${patternIndex + 1}`);
         }
 
-        solConsoleLine.innerHTML = `Pattern ${patternIndex + 1} has reflection across a ${reflectionType} line between ${reflectionType == "vertical" ? "columns" : "rows"} ${reflectionRowOrColumn + 1} and ${reflectionRowOrColumn + 2}.`;
-
         if (visualization) {
           visConsole.addLine(`Pattern ${patternIndex + 1}:`);
 
@@ -119,10 +114,8 @@ export default class {
               visConsole.addLine(line);
             }
           }
+          visConsole.addLine(`Reflection across a ${reflectionType} line between ${reflectionType == "vertical" ? "columns" : "rows"} ${reflectionRowOrColumn + 1} and ${reflectionRowOrColumn + 2}.`);
           visConsole.addLine();
-          visConsole.container.scrollTop = visConsole.container.scrollHeight;
-
-          await delay(10);
         }
       }
 

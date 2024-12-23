@@ -44,9 +44,6 @@ export default class {
       let visConsole = new Console();
       let visConsoleLineSpans = [];
       
-      solConsole.addLine(`Number of characters: ${input.length}.`);
-      let solConsoleLine = solConsole.addLine();
-  
       if (visualization) {
         this.visContainer.append(visConsole.container);
         let visConsoleLine = visConsole.addLine();
@@ -68,18 +65,18 @@ export default class {
         for (let j = i; j < input.length && sequence.length < requiredSequenceSize && !sequence.includes(input.charAt(j)); j++)
           sequence.push(input.charAt(j));
         
-        solConsoleLine.innerHTML = `Start character: ${i + 1}.\nDistinct consecutive characters: ${sequence.length}.`;
-  
         if (visualization) {
-          visConsole.container.scrollTop = visConsoleLineSpans[1].offsetTop - visConsole.container.offsetHeight / 2;
           visConsoleLineSpans[0].innerHTML = input.substring(0, i);
           visConsoleLineSpans[1].innerHTML = input.substring(i, i + sequence.length);
           visConsoleLineSpans[2].innerHTML = input.substring(i + sequence.length);
-          await delay(1);
         }
   
-        if (sequence.length >= requiredSequenceSize)
+        if (sequence.length >= requiredSequenceSize) {
+          if (visualization)
+            visConsole.container.scrollTop = visConsoleLineSpans[1].offsetTop - visConsole.container.offsetHeight / 2;
+          solConsole.addLine(`Start character: ${i + 1}.\nDistinct consecutive characters: ${sequence.length}.`);
           return i + sequence.length;
+        }
       }
       
       throw new Error(`${requiredSequenceSize} distinct consecutive characters not found`);

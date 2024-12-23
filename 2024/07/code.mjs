@@ -57,15 +57,11 @@ export default class  {
 
       let equations = this.parse(input);
 
-      let solConsole = this.solConsole;
       let visConsole = new Console();
 
       if (visualization)
         this.visContainer.append(visConsole.container);
 
-      solConsole.addLine(`Number of equations: ${equations.length}.`);
-      
-      let solConsoleLine = solConsole.addLine();
       let totalResult = 0;
 
       if (visualization)
@@ -79,26 +75,21 @@ export default class  {
         let operators = equation.findOperators(part == 1 ? 2 : 3);
         if (operators != null)
           totalResult += equation.result;
-        solConsoleLine.innerHTML = `Equation ${equationIndex + 1} can${operators != null ? "" : " not"} be true.\nTotal calibration result: ${totalResult}.`;
 
         if (visualization) {
-          let visualizationString = `Equation ${equationIndex + 1}:\n`;
+          let visualizationString = "";
           if (operators != null) {
-            visualizationString += `${equation.result} = ${equation.numbers[0]}`;
+            visualizationString = `${equation.result} = ${equation.numbers[0]}`;
             for (let i = 1; i < equation.numbers.length; i++)
               visualizationString += ` ${operators[i - 1]} ${equation.numbers[i]}`;
           }
           else
-            visualizationString += `${equation.result}: ${equation.numbers.join(" ")}`;
+            visualizationString = `${equation.result}: ${equation.numbers.join(" ")}`;
 
           let visConsoleLine = visConsole.addLine();
           visConsoleLine.innerHTML = visualizationString;
           if (operators != null)
             visConsoleLine.classList.add("highlighted");
-          visConsole.addLine();
-
-          visConsole.container.scrollTop = visConsole.lines[visConsole.lines.length - 1].offsetTop - visConsole.container.offsetHeight / 2;
-          await delay(1);
         }
       }
 

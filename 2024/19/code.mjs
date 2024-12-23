@@ -60,9 +60,6 @@ export default class  {
 
       let { patterns, designs } = this.parse(input);
 
-      let solConsole = this.solConsole;
-      solConsole.addLine(`Number of designs: ${designs.length}.`);
-
       let visConsole = new Console();
       if (visualization)
         this.visContainer.append(visConsole.container);

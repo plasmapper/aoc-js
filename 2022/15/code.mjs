@@ -52,10 +52,10 @@ export default class {
 
       let maxSensorX = sensors.reduce((acc, e) => Math.max(acc, e.position.x), 0);
       let part1Row = maxSensorX < 100 ? 10 : 2000000;
-      let part2MaxCoordinate = maxSensorX < 100 ? 20 : 4000000;
 
+      let solConsole = this.solConsole;
       let visConsole = new Console();
-      if (visualization)
+      if (visualization && part == 1)
         this.visContainer.append(visConsole.container);
 
       // Find the number of positions that cannot contain a beacon (part 1)
@@ -114,8 +114,8 @@ export default class {
                     let intersection = gap1.findIntersection(gap2);
                     if (intersection !== undefined) {
                       if (visualization) {
-                        visConsole.addLine(`The distress beacon is surrounded by sensors ${i1 + 1}, ${i2 + 1}, ${i3 + 1} and ${i4 + 1}.`);
-                        visConsole.addLine(`It is located at x = ${intersection.x}, y = ${intersection.y}.`);
+                        solConsole.addLine(`The distress beacon is surrounded by sensors ${i1 + 1}, ${i2 + 1}, ${i3 + 1} and ${i4 + 1}.`);
+                        solConsole.addLine(`It is located at x = ${intersection.x}, y = ${intersection.y}.`);
                       }
                       return intersection.x * 4000000 + intersection.y;
                     }

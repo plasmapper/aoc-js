@@ -89,10 +89,6 @@ export default class {
       let numberOfRounds = part == 1 ? 20 : 10000;
       let levelOfMonkeyBusiness = 0;
 
-      let solConsole = this.solConsole;
-
-      solConsole.addLine(`Number of rounds: ${numberOfRounds}.`);
-      let solConsoleLine = solConsole.addLine();
       let visConsole = new Console();
       
       if (visualization)
@@ -109,13 +105,9 @@ export default class {
         numbersOfInspectedItems.sort((n1, n2) => n2 - n1);
         levelOfMonkeyBusiness = numbersOfInspectedItems[0] * numbersOfInspectedItems[1];
 
-        solConsoleLine.innerHTML = `Round ${round}: level = ${levelOfMonkeyBusiness}.`;
-
         if (visualization && (round == 1 || round == numberOfRounds || numberOfRounds < 100 || round % 100 == 0)) {
-          visConsole.addLine(`Round ${round}: ${monkeys.map(e => e.numberOfInspectedItems).join(", ")}`);
+          visConsole.addLine(`Round ${round}: ${monkeys.map(e => e.numberOfInspectedItems).join(", ")}.\nLevel: ${levelOfMonkeyBusiness}.`);
           visConsole.addLine();
-          visConsole.container.scrollTop = visConsole.lines[visConsole.lines.length - 1].offsetTop - visConsole.container.offsetHeight / 2;
-          await delay(10);
         }
       }
 

@@ -52,21 +52,31 @@ export default class {
 
       let steps = this.parse(input);
 
-      let solConsole = this.solConsole;
-      solConsole.addLine(`Number of steps: ${steps.length}.`);
-      let solConsoleLine = solConsole.addLine();
+      let visConsole = new Console();
+      if (visualization)
+        this.visContainer.append(visConsole.container);
 
       // Calculate the sum of initialization sequence hashes
       if (part == 1) {
-        return steps.reduce((acc, step) => acc + this.hash(step.instructionAsString), 0)
+        let hashSum = 0;
+
+        for (let step of steps) {
+          let hash = this.hash(step.instructionAsString);
+          hashSum += hash;
+
+          if (visualization)
+            visConsole.addLine(`${step.instructionAsString} hash: ${hash}.`)
+        }
+        
+        return hashSum;
       }
       // Calculate the total lens focusing power
       else {
-        let visConsole = new Console();
+        let solConsole = this.solConsole;
+        solConsole.addLine(`Number of steps: ${steps.length}.`);
+        let solConsoleLine = solConsole.addLine();
+  
         let visConsoleLine = visConsole.addLine();
-
-        if (visualization)
-          this.visContainer.append(visConsole.container);
 
         let boxes = new Array(256).fill().map(e => []);
 

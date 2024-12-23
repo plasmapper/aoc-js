@@ -60,11 +60,8 @@ export default class  {
 
       let cards = this.parse(input);
 
-      let solConsole = this.solConsole;
       let visConsole = new Console();
 
-      solConsole.addLine(`Number of cards: ${cards.length}.`);
-      let solConsoleLine = solConsole.addLine();
       if (visualization)
         this.visContainer.append(visConsole.container);
 
@@ -76,7 +73,7 @@ export default class  {
         if (this.isStopping)
           return;
 
-        if (visualization && part == 1)
+        if (visualization)
           visConsole.addLine(`Card ${cardIndex + 1}:\n${card.winningNumbers.join(" ")}\n--------------------------------\n`);
 
         // Calculate winning numbers and points won with the card
@@ -86,13 +83,18 @@ export default class  {
           if (card.winningNumbers.indexOf(pickedNumber) >= 0) {
             numberOfWinningNumbers++;
             pointsWon = pointsWon == 0 ? 1 : pointsWon * 2;
-            if (visualization && part == 1)
+            if (visualization)
               visConsole.lines[visConsole.lines.length - 1].innerHTML += `<span class="highlighted">${pickedNumber}</span> `;
           }
           else {
-            if (visualization && part == 1)
+            if (visualization)
               visConsole.lines[visConsole.lines.length - 1].innerHTML += `${pickedNumber} `;
           }
+        }
+        if (visualization) {
+          visConsole.addLine(`Number of winning numbers: ${numberOfWinningNumbers}.`)
+          if (part == 1)
+            visConsole.addLine(`Points: ${pointsWon}.`)
         }
         totalPointsWon += pointsWon;
 
@@ -104,18 +106,10 @@ export default class  {
           }
         }
 
-        if (part == 1)
-          solConsoleLine.innerHTML = `Card ${cardIndex + 1}: ${pointsWon} points.\nTotal points: ${totalPointsWon}.`;
-        else
-          solConsoleLine.innerHTML = `Card ${cardIndex + 1}: ${cardCopies[cardIndex]} ${cardCopies[cardIndex] == 1 ? "copy" : "copies"}.`;
-
         if (visualization) {
-          if (part == 1)
-            visConsole.addLine();
-          else
-            visConsole.addLine(`Card ${cardIndex + 1}:\n  winning numbers: ${numberOfWinningNumbers}\n  copies: ${cardCopies[cardIndex]}`);
-          visConsole.container.scrollTop = visConsole.container.scrollHeight;
-          await delay(10);
+          if (part == 2)
+            visConsole.addLine(`Number of copies: ${cardCopies[cardIndex]}`);
+          visConsole.addLine();
         }
       }
 

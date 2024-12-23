@@ -56,10 +56,7 @@ export default class {
       let mapWidth = trees[0].length;
       let mapHeight = trees.length;
 
-      let solConsole = this.solConsole;
       let pixelMap = new PixelMap(mapWidth, mapHeight);
-
-      solConsole.addLine(`Map width: ${mapWidth}. Map height: ${mapHeight}.`);    
 
       if (visualization) {
         this.visContainer.append(pixelMap.container);

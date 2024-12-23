@@ -96,10 +96,7 @@ export default class {
         }
       }
 
-      let solConsole = this.solConsole;
       let pixelMap = new PixelMap(mapWidth, mapHeight);
-
-      solConsole.addLine(`Map width: ${mapWidth / 3}. Map height: ${mapHeight / 3}.`);    
 
       if (visualization) {
         this.visContainer.append(pixelMap.container);

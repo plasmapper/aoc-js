@@ -150,8 +150,6 @@ export default class  {
             visConsole.addLine(`C = ${registerC}`);
             visConsole.addLine(`Output: ${output.join(",")}`);
             visConsole.addLine();
-            visConsole.container.scrollTop = visConsole.lines[visConsole.lines.length - 1].offsetTop - visConsole.container.offsetHeight / 2;
-            await delay(1);
           }
         }
   
@@ -254,8 +252,6 @@ export default class  {
             visConsole.lines[visConsole.lines.length - 1].classList.add("highlighted");
             visConsole.addLine(registerAValues.join("\n"));
             visConsole.addLine();
-            visConsole.container.scrollTop = visConsole.lines[visConsole.lines.length - 1].offsetTop - visConsole.container.offsetHeight / 2;
-            await delay(1);
           }
         }
 

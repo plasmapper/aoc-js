@@ -57,8 +57,6 @@ export default class {
       let mapHeight = map.length;
 
       let solConsole = this.solConsole;
-      solConsole.addLine(`Map width: ${mapWidth}. Map height: ${mapHeight}.`);
-      let solConsoleLine = solConsole.addLine();
 
       let pixelMap = new PixelMap(mapWidth, mapHeight);
       
@@ -88,6 +86,8 @@ export default class {
 
       // Perform multiple tilt cycles
       else {
+        let solConsoleLine = solConsole.addLine();
+
         let mapToCycleNumberMap = new Map();
 
         let mapCycleFound = false;

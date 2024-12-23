@@ -51,11 +51,7 @@ export default class {
       let rounds = this.parse(input);
       let column2IsMove = part == 1;
 
-      let solConsole = this.solConsole;
       let visConsole = new Console();
-  
-      solConsole.addLine(`Number of rounds: ${rounds.length}.`);
-      let solConsoleLine = solConsole.addLine();
       
       let totalScore = 0;
   
@@ -79,15 +75,9 @@ export default class {
           score = move + 1 + (round[1] == 0 ? 0 : (round[1] == 1 ? 3 : 6));
   
         totalScore += score;
-        solConsoleLine.innerHTML = `Round ${roundIndex + 1} score is ${score}.\nTotal score: ${totalScore}.`;
     
-        if (visualization) {
-          visConsole.container.scrollTop = visConsole.lines[roundIndex].offsetTop - visConsole.container.offsetHeight / 2;
-          visConsole.lines[roundIndex].classList.add("highlighted");
+        if (visualization)
           visConsole.lines[roundIndex].innerHTML += ` ${column2IsMove ? visOutcomeStrings[outcome] : visMoveStrings[move]} ${score}`;
-          await delay(10);
-          visConsole.lines[roundIndex].classList.remove("highlighted");
-        }
       }
       
       return totalScore;

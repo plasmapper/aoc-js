@@ -41,11 +41,8 @@ export default class  {
 
       let lines = this.parse(input);
 
-      let solConsole = this.solConsole;
       let visConsole = new Console();
 
-      solConsole.addLine(`Number of lines: ${lines.length}.`);
-      let solConsoleLine = solConsole.addLine();
       let sum = 0;
 
       if (visualization)
@@ -74,9 +71,11 @@ export default class  {
         if (!digits.length)
           throw new Error(`Digits not found in line ${lineIndex + 1}`);
 
+        let calibrationValue = digits[0].value * 10 + digits[digits.length - 1].value;
+        sum += calibrationValue;
+
         if (visualization) {
           let visConsoleLine = visConsole.addLine();
-
           visConsoleLine.innerHTML += line.substring(0, digits[0].start);
           visConsoleLine.innerHTML += `<span class="highlighted">${line.substring(digits[0].start, digits[0].end)}</span>`;
           if (digits.length > 1) {
@@ -84,17 +83,11 @@ export default class  {
             visConsoleLine.innerHTML += `<span class="highlighted">${line.substring(digits[digits.length - 1].start, digits[digits.length - 1].end)}</span>`;
           }
           visConsoleLine.innerHTML += line.substring(digits[digits.length - 1].end);
-          
-          visConsole.container.scrollTop = visConsole.lines[lineIndex].offsetTop - visConsole.container.offsetHeight / 2;
 
-          await delay(1);
+          visConsole.addLine(`Calibration value: ${calibrationValue}.`);
+          visConsole.addLine();
         }
- 
-        let calibrationValue = digits[0].value * 10 + digits[digits.length - 1].value;
-        sum += calibrationValue;
-
-        solConsoleLine.innerHTML = `Line ${lineIndex + 1} calibration value is ${calibrationValue}.\nCalibration value sum: ${sum}.`;
-      }
+       }
         
       return sum;
     }

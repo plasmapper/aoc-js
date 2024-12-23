@@ -44,11 +44,8 @@ export default class  {
 
       let lines = this.parse(input);
 
-      let solConsole = this.solConsole;
       let visConsole = new Console();
 
-      solConsole.addLine(`Number of lines: ${lines.length}.`);
-      let solConsoleLine = solConsole.addLine();
       if (visualization)
         this.visContainer.append(visConsole.container);
 
@@ -117,11 +114,9 @@ export default class  {
 
         if (part == 1) {
           partNumberSum += numberStrings[lineIndex].reduce((acc, e) => acc + parseInt(e.value), 0)
-          solConsoleLine.innerHTML = `Line ${lineIndex + 1}: total number sum is ${partNumberSum}.`;
         }
         else {
           gearRatioSum += gears[lineIndex].reduce((acc, e) => acc + parseInt(e.numberString1.value) * parseInt(e.numberString2.value), 0);
-          solConsoleLine.innerHTML = `Line ${lineIndex + 1}: total gear ratio is ${gearRatioSum}.`;
         }
 
         if (visualization) {
@@ -139,10 +134,7 @@ export default class  {
               visConsoleLine.innerHTML += `<span class="highlighted">${line.substring(highlightedRanges[i].from, highlightedRanges[i].to)}</span>`;
               visConsoleLine.innerHTML += line.substring(highlightedRanges[i].to, i < highlightedRanges.length - 1 ? highlightedRanges[i + 1].from : line.length);
             }
-            visConsole.container.scrollTop = visConsole.lines[visConsole.lines.length - 1].offsetTop - visConsole.container.offsetHeight / 2;
           }
-          
-          await delay(10);
         }
       }
 

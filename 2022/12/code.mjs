@@ -71,7 +71,6 @@ export default class {
       let solConsole = this.solConsole;
       let pixelMap = new PixelMap(mapWidth, mapHeight);
 
-      solConsole.addLine(`Map width: ${mapWidth}. Map height: ${mapHeight}.`);    
       let solConsoleLine = solConsole.addLine();
 
       if (visualization) {

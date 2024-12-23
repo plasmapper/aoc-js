@@ -36,7 +36,6 @@ export default class  {
 
       let memory = this.parse(input);
 
-      let solConsole = this.solConsole;
       let visConsole = new Console();
 
       if (visualization)
@@ -65,9 +64,6 @@ export default class  {
       // Sort operations by string index
       operations.sort((o1, o2) => o1.stringIndex - o2.stringIndex);
 
-      solConsole.addLine(`Number of operations: ${operations.length}.`);
-      
-      let solConsoleLine = solConsole.addLine();
       let sum = 0;
 
       if (visualization)
@@ -79,23 +75,17 @@ export default class  {
         if (this.isStopping)
           return;
 
-        if (operation.string == "do()") {
+        let product;
+        if (operation.string == "do()")
           multiplicationIsEnabled = true;
-          solConsoleLine.innerHTML = `Operation ${i + 1}: enable multiplications.\nSum of the multiplications: ${sum}.`;
-        }
-        else if (operation.string == "don't()") {
+        else if (operation.string == "don't()")
           multiplicationIsEnabled = false;
-          solConsoleLine.innerHTML = `Operation ${i + 1}: disable multiplications.\nSum of the multiplications: ${sum}.`;
-        }
         else {
           if (multiplicationIsEnabled) {
             let factors = operation.string.match(/^mul\((\d+),(\d+)\)$/).slice(1).map(e => parseInt(e));
-            let product = factors[0] * factors[1]
+            product = factors[0] * factors[1]
             sum += product;
-            solConsoleLine.innerHTML = `Operation ${i + 1}: ${factors[0]} * ${factors[1]} = ${product}.\nSum of the multiplications: ${sum}.`;
           }
-          else
-            solConsoleLine.innerHTML = `Operation ${i + 1}: multiplication (skipped).\nSum of the multiplications: ${sum}.`;
         }
 
         if (visualization) {
@@ -108,14 +98,14 @@ export default class  {
           if (operationString != "") {
             if (operationString == "do()" || operationString == "don't()")
               visConsole.addLine().innerHTML = `<span class="strongly-highlighted">${operationString}</span>`;
-            else
+            else {
+              if (multiplicationIsEnabled)
+                operationString += ` = ${product}`;
               visConsole.addLine().innerHTML = `<span${multiplicationIsEnabled ? ` class="highlighted"` : ""}>${operationString}</span>`;
+            }
           }
           if (afterString != "")
             visConsole.addLine().innerHTML = `<span>${afterString}</span>`;
-        
-          visConsole.container.scrollTop = visConsole.lines[visConsole.lines.length - 1].offsetTop - visConsole.container.offsetHeight / 2;
-          await delay(1);
         }
       }
         

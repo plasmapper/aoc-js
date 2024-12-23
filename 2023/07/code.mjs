@@ -180,34 +180,6 @@ export default class  {
 }
 
 /**
- * Puzzle map class.
- */
-class Map {
-  /**
-   * @param {string} destName Destination name.
-   * @param {Range[]} srcRanges Source ranges.
-   * @param {Range[]} destRanges Destination ranges.
-   */
-  constructor(destName, srcRanges = [], destRanges = []) {
-    /**
-     * Destination name.
-     * @type {string}
-     */
-    this.destName = destName;
-    /**
-     * Source ranges.
-     * @type {Range[]}
-     */
-    this.srcRanges = srcRanges;
-    /**
-     * Destination ranges.
-     * @type {Range[]}
-     */
-    this.destRanges = destRanges;
-  }
-}
-
-/**
  * Puzzle hand class.
  */
 class Hand {

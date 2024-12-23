@@ -56,20 +56,19 @@ export default class  {
 
       // Find shared items in rucksacks and calculates the priority sum (part 1)
       if (part == 1) {
-        solConsole.addLine(`Number of rucksacks: ${rucksacks.length}.`);
-        let solConsoleLine = solConsole.addLine();
-    
         let prioritySum = 0;
     
         if (visualization) {
           this.visContainer.append(visConsole.container);
     
-          for (let rucksack of rucksacks) {
+          for (let [rucksackIndex, rucksack] of rucksacks.entries()) {
+            visConsole.addLine(`Rucksack ${rucksackIndex + 1}:`);
             for (let compartment of rucksack) {
               let visConsoleLine = visConsole.addLine();
               for (let item of compartment)
                 visConsoleLine.innerHTML += `<span>${item}</span>`;
             }
+            visConsole.addLine();
             visConsole.addLine();
           }
         }
@@ -86,13 +85,10 @@ export default class  {
           let priority = charCode >= charCodes.a && charCode <= charCodes.z ? charCode - charCodes.a + 1 : charCode - charCodes.A + 27;
           prioritySum += priority;
     
-          solConsoleLine.innerHTML = `Rucksack ${rucksackIndex + 1} common item is '${commonItem}' (${priority}).\nPriority sum: ${prioritySum}.`;
-    
           if (visualization) {
-            visConsole.container.scrollTop = visConsole.lines[rucksackIndex * 2].offsetTop - visConsole.container.offsetHeight / 2;
-            visConsole.lines[rucksackIndex * 3].children[rucksack[0].indexOf(commonItem)].classList.add("highlighted");
-            visConsole.lines[rucksackIndex * 3 + 1].children[rucksack[1].indexOf(commonItem)].classList.add("highlighted");
-            await delay(10);
+            visConsole.lines[rucksackIndex * 5 + 1].children[rucksack[0].indexOf(commonItem)].classList.add("highlighted");
+            visConsole.lines[rucksackIndex * 5 + 2].children[rucksack[1].indexOf(commonItem)].classList.add("highlighted");
+            visConsole.lines[rucksackIndex * 5 + 3].innerHTML = `Priority: ${priority}.`;
           }
         }
         
@@ -100,22 +96,23 @@ export default class  {
       }
       // Find badges in rucksacks and calculates the badge sum (part 2)
       else {
-        solConsole.addLine(`Number of groups: ${rucksacks.length / groupSize}`);
-        let solConsoleLine = solConsole.addLine();
-    
         let badgeSum = 0;
     
         if (visualization) {
           this.visContainer.append(visConsole.container);
     
           for (let [rucksackIndex, rucksack] of rucksacks.entries()) {
+            if (rucksackIndex % groupSize == 0)
+              visConsole.addLine(`Group ${rucksackIndex / groupSize + 1}:`);
             for (let compartment of rucksack) {
               let visConsoleLine = visConsole.addLine();
               for (let item of compartment)
                 visConsoleLine.innerHTML += `<span>${item}</span>`;
             }
-            if (rucksackIndex % groupSize == groupSize - 1)
+            if (rucksackIndex % groupSize == groupSize - 1) {
               visConsole.addLine();
+              visConsole.addLine();
+            }
           }
         }
     
@@ -133,18 +130,15 @@ export default class  {
           let priority = charCode >= charCodes.a && charCode <= charCodes.z ? charCode - charCodes.a + 1 : charCode - charCodes.A + 27;
           badgeSum += priority;
     
-          solConsoleLine.innerHTML = `Group ${group + 1} badge is '${badge}' (${priority}).\nPriority sum: ${badgeSum}.`;
-    
           if (visualization) {
-            visConsole.container.scrollTop = visConsole.lines[group * groupSize * 2].offsetTop - visConsole.container.offsetHeight / 2;
             let index;
             for (let r = 0; r < groupSize; r++) {
               for (let c = 0; c < 2; c++) {
                 if ((index = rucksacks[group * groupSize + r][c].indexOf(badge)) >= 0)
-                visConsole.lines[group * (groupSize * 2 + 1) + r * 2 + c].children[index].classList.add("highlighted");
+                visConsole.lines[group * (groupSize * 2 + 3) + r * 2 + c + 1].children[index].classList.add("highlighted");
               }
             }
-            await delay(10);
+            visConsole.lines[group * (groupSize * 2 + 3) + groupSize * 2 + 1].innerHTML = `Priority: ${priority}.`;
           }
         }
         

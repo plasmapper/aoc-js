@@ -52,9 +52,6 @@ export default class {
       let visConsole = new Console();
       let visLineIndex = 0;
 
-      solConsole.addLine(`Number of elves: ${elves.length}.`);
-      let solConsoleLine = solConsole.addLine();
-
       let maxCalories = new Array(numberOfTopElves).fill(0);
 
       if (visualization) {
@@ -68,22 +65,16 @@ export default class {
         }
       }
       
-      for (let [elfIndex, elf] of elves.entries()) {
+      for (let elf of elves) {
         if (this.isStopping)
           return;
 
         let calories = 0;
         for (let item of elf) {
           calories += item;
-          solConsoleLine.innerHTML = `Elf ${elfIndex + 1} is carrying ${calories} Calories.\nMax Calories: ${maxCalories.join(", ")}.`;
 
-          if (visualization) {
-            visConsole.container.scrollTop = visConsole.lines[visLineIndex].offsetTop - visConsole.container.offsetHeight / 2;
-            visConsole.lines[visLineIndex].classList.add("highlighted");
-            visConsole.lines[visLineIndex].classList.remove("highlighted");
+          if (visualization)
             visLineIndex++;
-            await delay(10);
-          }
         }
 
         maxCalories[0] = Math.max (maxCalories[0], calories);
@@ -96,6 +87,8 @@ export default class {
           visLineIndex += 2;
         }
       }
+
+      solConsole.addLine(`Max Calories: ${maxCalories.join(", ")}.`);
 
       return maxCalories.reduce ((acc, e) => acc + e);
     }

@@ -46,10 +46,6 @@ export default class  {
 
       let histories = this.parse(input);
 
-      let solConsole = this.solConsole;
-      solConsole.addLine(`Number of histories: ${histories.length}.`);
-      let solConsoleLine = solConsole.addLine();
-
       let visConsole = new Console();
       if (visualization)
         this.visContainer.append(visConsole.container);
@@ -92,13 +88,8 @@ export default class  {
 
         sumOfPredictions += prediction;
 
-        solConsoleLine.innerHTML = `History ${historyIndex + 1} ${part == 1 ? "next" : "previous"} value: ${prediction}.\nSum of predictions: ${sumOfPredictions}.`;
-
-        if (visualization) {
+        if (visualization)
           visConsole.addLine(`History ${historyIndex + 1} ${part == 1 ? "next" : "previous"} value: ${prediction}.`)
-          visConsole.container.scrollTop = visConsole.container.scrollHeight;
-          await delay(10);
-        }
       }
 
       return sumOfPredictions;

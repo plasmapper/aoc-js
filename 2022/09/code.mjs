@@ -76,7 +76,6 @@ export default class {
       let solConsole = this.solConsole;
       let pixelMap = new PixelMap(mapWidth, mapHeight);
 
-      solConsole.addLine(`Map width: ${mapWidth}. Map height: ${mapHeight}.`);    
       solConsole.addLine(`Number of steps: ${moveVectors.length}.`);
       let solConsoleLine = solConsole.addLine();
 

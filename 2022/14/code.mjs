@@ -83,10 +83,7 @@ export default class {
       mapMaxX -= mapMinX;
       mapMinX = 0;
 
-      let solConsole = this.solConsole;
       let pixelMap = new PixelMap(mapMaxX + 1, mapMaxY + 1);
-      solConsole.addLine(`Map width: ${mapMaxX + 1}. Map height: ${mapMaxY + 1}.`);    
-      let solConsoleLine = solConsole.addLine();
 
       if (visualization) {
         this.visContainer.append(pixelMap.container);
@@ -147,7 +144,6 @@ export default class {
 
         unitsOfSand = newUnitsOfSand;
 
-        solConsoleLine.innerHTML = `Units of sand at rest: ${numberOfUnitsOfSandAtRest}.`;        
         if (visualization)
           await delay(part == 1 || mapMaxX * mapMaxY < 2000 ? 1 : (i % 25 == 0 ? 1 : 0));
 

@@ -46,12 +46,8 @@ export default class {
       let rangePairs = this.parse(input);
       let fullyContain = part == 1;
 
-      let solConsole = this.solConsole;
       let visConsole = new Console();
       
-      solConsole.addLine(`Number of pairs: ${rangePairs.length}.`);
-      let solConsoleLine = solConsole.addLine();
-  
       let overlaps = 0;
   
       if (visualization) {
@@ -74,14 +70,9 @@ export default class {
         if (overlap)
           overlaps++;
   
-        solConsoleLine.innerHTML = `Pair ${pairIndex + 1}${overlap ? "" : " does not"} overlap.\nOverlapping pairs: ${overlaps}.`;
-        
         if (visualization) {
-          visConsole.container.scrollTop = visConsole.lines[pairIndex].offsetTop - visConsole.container.offsetHeight / 2;
-          visConsole.lines[pairIndex].classList.add("highlighted");
-          if (!overlap)
-            visConsole.lines[pairIndex].classList.remove("highlighted");
-          await delay(10);
+          if (overlap)
+            visConsole.lines[pairIndex].classList.add("highlighted");
         }
       }
       
