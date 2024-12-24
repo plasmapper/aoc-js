@@ -137,7 +137,7 @@ export default class  {
           visConsole.addLine("c_0 = x_0 & y_0");
           visConsole.addLine("z_n = (x_n ^ y_n) ^ c_n-1");
           visConsole.addLine("c_n = (x_n & y_n) | ((x_n ^ y_n) & c_n-1)");
-          visConsole.addLine("z_N = c_n-1");
+          visConsole.addLine("z_N = c_N-1");
           visConsole.addLine("It is also based on the assumption that wires that should be swapped lead to destinations of incorrect types.");
         }
 
