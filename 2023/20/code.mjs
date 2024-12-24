@@ -124,14 +124,10 @@ export default class {
         }
 
         let rxModule = modules.find(m => m.name == "rx");
-        if (rxModule == undefined) {
-          solConsole.addLine(`"rx" module not found`);
-          return;
-        }
-        if (rxModule.inputs.length != 1 || !(rxModule.inputs[0] instanceof Conjunction)) {
-          solConsole.addLine(`Puzzle input assumptions are not met :)`);
-          return;
-        }
+        if (rxModule == undefined)
+          throw new Error(`"rx" module not found`);
+        if (rxModule.inputs.length != 1 || !(rxModule.inputs[0] instanceof Conjunction))
+          throw new Error(`Puzzle input assumptions are not met :)`);
         
         let mainConjunctionInputs = rxModule.inputs[0].inputs;
         let periods = [];

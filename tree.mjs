@@ -93,6 +93,10 @@ export const years = [
       {
         name: "Day 23: LAN Party", path: "./2024/23", taskUrl: "https://adventofcode.com/2024/day/23",
         answers: {part1: 7, part2: "co,de,ka,ta"}
+      },
+      {
+        name: "Day 24: Crossed Wires", path: "./2024/24", taskUrl: "https://adventofcode.com/2024/day/24",
+        answers: {part1: 2024}
       }
     ]
   },
@@ -178,7 +182,7 @@ export const years = [
       },
       {
         name: "Day 20: Pulse Propagation", path: "./2023/20", taskUrl: "https://adventofcode.com/2023/day/20",
-        answers: {part1: 32000000, part2: undefined}
+        answers: {part1: 32000000}
       },
       {
         name: "Day 21: Step Counter", path: "./2023/21", taskUrl: "https://adventofcode.com/2023/day/21",
