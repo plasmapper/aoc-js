@@ -97,6 +97,10 @@ export const years = [
       {
         name: "Day 24: Crossed Wires", path: "./2024/24", taskUrl: "https://adventofcode.com/2024/day/24",
         answers: {part1: 2024}
+      },
+      {
+        name: "Day 25: Code Chronicle", path: "./2024/25", taskUrl: "https://adventofcode.com/2024/day/25",
+        answers: {part1: "3"}
       }
     ]
   },
