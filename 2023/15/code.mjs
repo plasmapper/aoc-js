@@ -20,19 +20,14 @@ export default class {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let steps = [];
-    
-    input.replaceAll(/\r?\n/g, "").split(",").forEach((line, index) => {
+    let steps = input.replaceAll(/\r?\n/g, "").split(",").map((line, index) => {
       let match = line.match(/^([a-z]+)=(\d)$/);
       if (match != null)
-        steps.push(new Step(match[1], "=", parseInt(match[2])));
-      else {
-        match = line.match(/^([a-z]+)-$/)
-        if (match != null)
-          steps.push(new Step(match[1], "-"));
-        else
-          throw new Error(`Invalid data in step ${index + 1}`);
-      }
+        return new Step(match[1], "=", parseInt(match[2]));
+      match = line.match(/^([a-z]+)-$/)
+      if (match != null)
+        return new Step(match[1], "-");
+      throw new Error(`Invalid data in step ${index + 1}`);
     });
 
     consoleLine.innerHTML += " done.";

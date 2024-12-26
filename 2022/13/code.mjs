@@ -20,17 +20,14 @@ export default class {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let packets = [];
-    input.trim().split(/\r?\n/).forEach((line, index) => {
-      if (line != "") {
-        if (!/^\[.*\]$/.test(line))
-          throw new Error(`Invalid data in line ${index + 1}`);
-        try {
-          packets.push(JSON.parse(line));
-        }
-        catch {
-          throw new Error(`Invalid data in line ${index + 1}`);
-        }
+    let packets = input.trim().split(/\r?\n/).filter(line => line != "").map((line, index) => {
+      if (!/^\[.*\]$/.test(line))
+        throw new Error(`Invalid data in line ${index + 1}`);
+      try {
+        return JSON.parse(line);
+      }
+      catch {
+        throw new Error(`Invalid data in line ${index + 1}`);
       }
     });
 

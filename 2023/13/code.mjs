@@ -15,27 +15,18 @@ export default class {
   /**
    * Parses the puzzle input.
    * @param {string} input Puzzle input.
-   * @returns {string[]} Patterns.
+   * @returns {string[][]} Patterns.
    */
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let patterns = [];
-    input.trim().split(/\r?\n/).forEach((line, index) => {
-      if (index == 0 || line == "")
-        patterns.push([]);
-
-      if (line != "") {
-        if (!/^[\.#]+$/.test(line))
-          throw new Error(`Invalid data in line ${index + 1}`);
-      
-        let pattern = patterns[patterns.length - 1];
-        if (pattern.length && line.length != pattern[0].length)
-          throw new Error(`Invalid length of line ${index + 1}`);
-        
-        pattern.push(line);
-      }
-    });
+    let patterns = input.trim().split(/\r?\n\r?\n/).map((block, blockIndex) => block.split(/\r?\n/).map((line, lineIndex, lines) => {
+      if (line.length != lines[0].length)
+        throw new Error(`Invalid length of line ${index + 1}`);
+      if (!/^[\.#]+$/.test(line))
+        throw new Error(`Invalid data in line ${index + 1}`);
+      return line;
+    }));
 
     consoleLine.innerHTML += " done.";
     return patterns;

@@ -27,10 +27,8 @@ export default class  {
     if ((match = line.match(/^Valve ([A-Z][A-Z]) has flow rate=(\d+); tunnels? leads? to valves? ([A-Z][A-Z](, [A-Z][A-Z])*)$/)) == null)
       throw new Error(`Invalid data in line ${lineIndex + 1}`);
     let valve = valves.find(valve => valve.name == match[1]);
-    if (valve == undefined) {
-      valve = new Valve(match[1]);
-      valves.push(valve);
-    }
+    if (valve == undefined)
+      valves.push(valve = new Valve(match[1]));
     valve.flowRate = parseInt(match[2]);
 
     for (let neighborValveName of match[3].split(", ")) {

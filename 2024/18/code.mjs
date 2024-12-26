@@ -31,13 +31,11 @@ export default class  {
  parse(input) {
   let consoleLine = this.solConsole.addLine("Parsing...");
 
-  let bytes = [];
-  
-  input.trim().split(/\r?\n/).forEach((line, lineIndex) => {
+  let bytes = input.trim().split(/\r?\n/).map((line, lineIndex) => {
     let match;
     if ((match = line.match(/^(\d+),(\d+)$/)) == null)
       throw new Error(`Invalid data in line ${lineIndex + 1}`);
-    bytes.push(new Vector2D(parseInt(match[1]), parseInt(match[2])));
+    return new Vector2D(parseInt(match[1]), parseInt(match[2]));
   });
 
   consoleLine.innerHTML += " done.";
@@ -96,7 +94,6 @@ export default class  {
           }
         }
 
-        console.log(route);
         return route.length - 1;
       }
       

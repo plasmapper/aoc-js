@@ -20,17 +20,12 @@ export default class {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let mapWidth = 0;
-    let map = [];
-    input.trim().split(/\r?\n/).forEach((line, index) => {
-      if (mapWidth == 0)
-        mapWidth = line.length;
-      if (line.length != mapWidth)
+    let map = input.trim().split(/\r?\n/).map((line, index, lines) => {
+      if (line.length != lines[0].length)
         throw new Error(`Invalid length of line ${index + 1}`);
       if (!/^[a-zSE]+$/.test(line))
         throw new Error(`Invalid data in line ${index + 1}`);
-
-        map.push(line.split("").map(e => e == "S" ? 0 : (e == "E" ? 27 : e.charCodeAt(0) - "a".charCodeAt(0) + 1)));
+      return line.split("").map(e => e == "S" ? 0 : (e == "E" ? 27 : e.charCodeAt(0) - "a".charCodeAt(0) + 1));
     });
 
     consoleLine.innerHTML += " done.";

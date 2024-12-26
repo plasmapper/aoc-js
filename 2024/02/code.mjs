@@ -21,7 +21,7 @@ export default class  {
     let consoleLine = this.solConsole.addLine("Parsing...");
     
     let reports = input.trim().split(/\r?\n/).map((line, index) => line.split(" ").map(level => {
-      if (isNaN(level))
+      if (!/^\d+$/.test(level))
         throw new Error(`Invalid data in line ${index + 1}`);
       return parseInt(level);
     }));

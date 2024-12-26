@@ -21,36 +21,28 @@ export default class {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let componentMap = new Map();
+    let components = [];
     input.trim().split(/\r?\n/).forEach((line, index) => {
       let match = line.match(/^(.+): (.+)$/);
       if (match == null)
         throw new Error(`Invalid data in line ${index + 1}`);
 
-      let c1 = componentMap.get(match[1]);
-      if (c1 == undefined) {
-        c1 = new Component(match[1]);
-        componentMap.set(match[1], c1);
-      }
+      let c1 = components.find(e => e.name == match[1]);
+      if (c1 == undefined)
+        components.push(c1 = new Component(match[1]));
 
       for (let c2Name of match[2].split(" ")) {
-        let c2 = componentMap.get(c2Name);
-        if (c2 == undefined) {
-          c2 = new Component(c2Name);
-          componentMap.set(c2Name, c2);
-        }
+        let c2 = components.find(e => e.name == c2Name);
+        if (c2 == undefined)
+          components.push(c2 = new Component(c2Name));
         c1.connections.add(c2);
         c2.connections.add(c1);
       }
     });
 
-    let components = new Set();
-    for (let [componentName, component] of componentMap.entries())
-      components.add(component);
-
     consoleLine.innerHTML += " done.";
     
-    return components;
+    return new Set(components);
   }
 
   /**

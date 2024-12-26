@@ -20,51 +20,48 @@ export default class {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let lines = input.trim().split(/\r?\n/);
-    if ((lines.length + 1) % 7)
-      throw new Error(`Invalid number of lines`);
+    let monkeys;
+    input.trim().split(/\r?\n\r?\n/).map((block, blockIndex, blocks) => {
+      if (blockIndex == 0)
+        monkeys = new Array(blocks.length).fill(0).map(e => new Monkey());
+      let monkey = monkeys[blockIndex];
 
-    let monkeys = [];
-    for (let i = 0; i < (lines.length + 1) / 7; i++)
-      monkeys.push(new Monkey());
+      let lines = block.split(/\r?\n/);
 
-    for (let [monkeyIndex, monkey] of monkeys.entries()) {
-      let lineIndex = monkeyIndex * 7;
-
-      if (lines[lineIndex] != `Monkey ${monkeyIndex}:`)
-        throw new Error(`Invalid data in line ${lineIndex + 1}`);
-      lineIndex++;
-
-      let match = lines[lineIndex].match(/^  Starting items:((,? \d+)+)$/);
+      if (lines.length != 6)
+        throw new Error(`Invalid number of lines in block ${blockIndex + 1}`);
+      
+      if (lines[0] != `Monkey ${blockIndex}:`)
+        throw new Error(`Invalid data in block ${blockIndex + 1} line 1`);
+      
+      let match = lines[1].match(/^  Starting items:((,? \d+)+)$/);
       if (match == null)
-        throw new Error(`Invalid data in line ${lineIndex + 1}`);
+        throw new Error(`Invalid data in block ${blockIndex + 1} line 2`);
       monkey.items = match[1].replaceAll(",", "").trim().split(" ").map(e => parseInt(e));
-      lineIndex++;
 
-      if ((match = lines[lineIndex].match(/^  Operation: new = (old ([\+*]) (old|\d+))$/)) == null)
-        throw new Error(`Invalid data in line ${lineIndex + 1}`);
+      if ((match = lines[2].match(/^  Operation: new = (old ([\+*]) (old|\d+))$/)) == null)
+        throw new Error(`Invalid data in block ${blockIndex + 1} line 3`);
       if (match[3] == "old")
         monkey.operation = match[2] == "+" ? (old => old + old) : (old => old * old);
       else {
         let argument = parseInt(match[3]);
         monkey.operation = match[2] == "+" ? (old => old + argument) : (old => old * argument);
       }
-      lineIndex++;
-      
-      if ((match = lines[lineIndex].match(/^  Test: divisible by (\d+)$/)) == null)
-        throw new Error(`Invalid data in line ${lineIndex + 1}`);
+
+      if ((match = lines[3].match(/^  Test: divisible by (\d+)$/)) == null)
+        throw new Error(`Invalid data in ${blockIndex + 1} line 4`);
       monkey.divisor = parseInt(match[1]);
-      lineIndex++;
 
-      if ((match = lines[lineIndex].match(/^    If true: throw to monkey (\d+)$/)) == null || parseInt(match[1]) < 0 || parseInt(match[1]) >= monkeys.length)
-        throw new Error(`Invalid data in line ${lineIndex + 1}`);
+      if ((match = lines[4].match(/^    If true: throw to monkey (\d+)$/)) == null || parseInt(match[1]) < 0 || parseInt(match[1]) >= monkeys.length)
+        throw new Error(`Invalid data in ${blockIndex + 1} line 5`);
       monkey.destMonkeyOnTrue = monkeys[parseInt(match[1])];
-      lineIndex++;
 
-      if ((match = lines[lineIndex].match(/^    If false: throw to monkey (\d+)$/)) == null || parseInt(match[1]) < 0 || parseInt(match[1]) >= monkeys.length)
-        throw new Error(`Invalid data in line ${lineIndex + 1}`);
+      if ((match = lines[5].match(/^    If false: throw to monkey (\d+)$/)) == null || parseInt(match[1]) < 0 || parseInt(match[1]) >= monkeys.length)
+        throw new Error(`Invalid data in ${blockIndex + 1} line 6`);
       monkey.destMonkeyOnFalse = monkeys[parseInt(match[1])];
-    }
+
+      return monkey;
+    });
 
     let commonDivisor = monkeys.reduce((acc, e) => acc * e.divisor, 1);
     for (let monkey of monkeys)

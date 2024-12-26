@@ -15,42 +15,37 @@ export default class  {
  /**
    * Parses the puzzle input.
    * @param {string} input Puzzle input.
-   * @returns {object} Rules and updates.
+   * @returns {{
+   * rules: number[][],
+   * updates: number[][]
+   * }} Rules and updates.
    */
  parse(input) {
   let consoleLine = this.solConsole.addLine("Parsing...");
   
-  let rules = [];
-  let updates = [];
-  let parsingRules = true;
+  let blocks = input.trim().split(/\r?\n\r?\n/);
+  if (blocks.length != 2)
+    throw new Error("Input structure is not valid");
 
-  input.trim().split(/\r?\n/).forEach((line, index) => {
-    line = line.trim();
-    if (line == "") {
-      parsingRules = false;
-    }
-    else {
-      if (parsingRules) {
-        if (!/^\d+|\d+$/.test(line))
-          throw new Error(`Invalid data in line ${index + 1}`);
-        rules.push(line.split("|").map(e => parseInt(e)));
-      }
-      else {
-        let update = [];
-        for (let page of line.split(",")) {
-          if (isNaN(page))
-            throw new Error(`Invalid data in line ${index + 1}`);
-          update.push(parseInt(page));
-        }
-        if (update.length % 2 != 1)
-          throw new Error(`Invalid data in line ${index + 1} (number of pages must be odd)`);
-        updates.push(update);
-      }
-    }
+  let rules = blocks[0].split(/\r?\n/).map((line, lineIndex) => {
+    if (!/^\d+|\d+$/.test(line))
+      throw new Error(`Invalid data in block 1 line ${lineIndex + 1}`);
+    return line.split("|").map(e => parseInt(e));
+  });
+  
+  let updates = blocks[1].split(/\r?\n/).map((line, lineIndex) => {
+    let update = line.split(",").map(page => {
+      if (!/^\d+$/.test(page))
+        throw new Error(`Invalid data in block 2 line ${lineIndex + 1}`);
+      return parseInt(page);
+    });
+    if (update.length % 2 != 1)
+      throw new Error(`Invalid data in update ${lineIndex + 1} (number of pages must be odd)`);
+    return update;
   });
 
   consoleLine.innerHTML += " done.";
-  return {rules: rules, updates: updates};
+  return { rules, updates};
 }
 
   /**

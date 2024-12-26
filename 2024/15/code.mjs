@@ -27,59 +27,48 @@ export default class  {
    * Parses the puzzle input.
    * @param {string} input Puzzle input.
    * @returns {{
-   *   map: number[][],
-   *   movements: Vector2D[]
-   * }} Map and movements.
+   *  map: number[][],
+   *  movements: Vector2D[],
+   *  robot: Vector2D
+   * }} Map, movements and robot position.
    */
  parse(input) {
   let consoleLine = this.solConsole.addLine("Parsing...");
 
-  let map = [];
-  let movements = [];
-  let parsingMovements = false;
+  let blocks = input.trim().split(/\r?\n\r?\n/);
+  if (blocks.length != 2)
+    throw new Error("Input structure is not valid");
 
-  input.trim().split(/\r?\n/).forEach((line, lineIndex) => {
-    line = line.trim();
-
-    if (lineIndex == 0) {
-      if (!/^#+$/.test(line))
-        throw new Error(`Invalid data in line ${lineIndex + 1}`);
-      map.push(line.split("").map(e => obstacleColorIndex));
-    }
-    else {
-      if (!parsingMovements) {
-        if (line.length != map[0].length)
-          throw new Error(`Invalid length of line ${lineIndex + 1}`);
-
-        if (/^#+$/.test(line))
-          parsingMovements = true;
-        else {
-          if (!/^#[#\.O@]+#$/.test(line))
-            throw new Error(`Invalid data in line ${lineIndex + 1}`);
-        }
-        map.push(line.split("").map(e => e == "#" ? obstacleColorIndex : (e == "." ? 0 : (e == "O" ? boxColorIndex : robotColorIndex))));
-      }
-
-      else {
-        if (!/^[><v\^]*$/.test(line))
-          throw new Error(`Invalid data in line ${lineIndex + 1}`);
-
-        movements.push(...line.split("").map(e => {
-          if (e == ">")
-            return new Vector2D(1, 0);
-          if (e == "<")
-            return new Vector2D(-1, 0);
-          if (e == "v")
-            return new Vector2D(0, 1);
-          if (e == "^")
-            return new Vector2D(0, -1);
-        }));
-      }
-    }
+  let map = blocks[0].split(/\r?\n/).map((line, lineIndex, lines) => {
+    if (line.length != lines[0].length)
+      throw new Error(`Invalid length of block 1 line ${lineIndex + 1}`);
+    if (((lineIndex == 0 || lineIndex == lines.length - 1) && !/^#+$/.test(line)) || !/^#[#\.O@]+#$/.test(line))
+      throw new Error(`Invalid data in block 1 line ${lineIndex + 1}`);
+    return line.split("").map(e => e == "#" ? obstacleColorIndex : (e == "." ? 0 : (e == "O" ? boxColorIndex : robotColorIndex)));
   });
 
+  let movements = blocks[1].replaceAll(/\r?\n/g, "").split("").map(symbol => {
+    if (!/^[><v\^]$/.test(symbol))
+      throw new Error(`Invalid data in block 2 line ${lineIndex + 1}`);
+    if (symbol == ">")
+      return new Vector2D(1, 0);
+    if (symbol == "<")
+      return new Vector2D(-1, 0);
+    if (symbol == "v")
+      return new Vector2D(0, 1);
+    if (symbol == "^")
+      return new Vector2D(0, -1);
+  });
+
+  let robots = map.reduce((acc, line, y) => [...acc, ...[...line.keys()].filter(x => line[x] == robotColorIndex).map(x => new Vector2D(x, y))], []);
+  if (robots.length == 0)
+    throw new Error("Robot not found");
+  if (robots.length > 1)
+    throw new Error("More than one robot found");
+  let robot = robots[0];
+
   consoleLine.innerHTML += " done.";
-  return { map, movements };
+  return { map, movements, robot };
 }
 
   /**
@@ -93,7 +82,7 @@ export default class  {
     try {
       this.isSolving = true;
 
-      let { map, movements} = this.parse(input);
+      let { map, movements, robot } = this.parse(input);
       
       // Extend the map for part 2
       if (part == 2) {
@@ -107,16 +96,12 @@ export default class  {
           if (e == robotColorIndex)
             acc.push(robotColorIndex, 0)
           return acc;
-        }, []))
+        }, []));
+        robot.x *= 2;
       }
 
       let mapWidth = map[0].length;
       let mapHeight = map.length;
-
-      // Find the robot
-      let robotY = map.findIndex(line => line.indexOf(robotColorIndex) >= 0);
-      let robotX = map[robotY].indexOf(robotColorIndex);
-      let robot = new Vector2D(robotX, robotY);
 
       let solConsole = this.solConsole;
       solConsole.addLine(`Number of movements: ${movements.length}.`);

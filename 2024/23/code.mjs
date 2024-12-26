@@ -21,7 +21,6 @@ export default class  {
   let consoleLine = this.solConsole.addLine("Parsing...");
 
   let computers = [];
-  
   input.trim().split(/\r?\n/).forEach((line, lineIndex) => {
     let match;
     if ((match = line.match(/^([a-z][a-z])-([a-z][a-z])$/)) == null)

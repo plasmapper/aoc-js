@@ -20,12 +20,11 @@ export default class {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let rangePairs = [];
-    input.trim().split(/\r?\n/).forEach((line, index) => {
+    let rangePairs = input.trim().split(/\r?\n/).map((line, index) => {
       let match = line.match(/^(\d+)-(\d+),(\d+)-(\d+)$/);
       if (match == null)
         throw new Error(`Invalid data in line ${index + 1}`);
-      rangePairs.push ([new Range(parseInt(match[1]), parseInt(match[2])), new Range(parseInt(match[3]), parseInt(match[4]))]);
+      return [new Range(parseInt(match[1]), parseInt(match[2])), new Range(parseInt(match[3]), parseInt(match[4]))];
     });
 
     consoleLine.innerHTML += " done.";

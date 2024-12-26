@@ -20,15 +20,12 @@ export default class  {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
     
-    let games = [];
-    input.trim().split(/\r?\n/).forEach((line, index) => {
+    let games = input.trim().split(/\r?\n/).map((line, index) => {
       let match;
       if ((match = line.match(/^\Game (\d+):(.+)$/)) == null || parseInt(match[1]) != index + 1)
         throw new Error(`Invalid data in line ${index + 1}`);
 
-      games.push([]);
-
-      match[2].split(";").forEach(setString => {
+      return match[2].split(";").map(setString => {
         let set = new CubeSet(0, 0, 0)
         setString.split(",").forEach(colorString => {
           colorString = colorString.trim();
@@ -41,8 +38,8 @@ export default class  {
           if (match[2] == "blue")
             set.blue = parseInt(match[1]);
         });
-        games[games.length - 1].push(set);
-      });
+        return set;
+      });      
     });
     
     consoleLine.innerHTML += " done.";

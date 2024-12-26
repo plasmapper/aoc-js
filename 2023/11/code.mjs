@@ -20,16 +20,13 @@ export default class {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let stars = [];
-    input.trim().split(/\r?\n/).forEach((line, y) => {
+    let stars = input.trim().split(/\r?\n/).reduce((acc, line, y, lines) => {
+      if (line.length != lines[0].length)
+        throw new Error(`Invalid length of line ${y + 1}`);
       if (!/^[.#]+$/.test(line))
         throw new Error(`Invalid data in line ${y + 1}`);
-
-      for (let [x, symbol] of line.split("").entries()) {
-        if (symbol == "#")
-          stars.push(new Vector2D(x, y));
-      }
-    });
+      return [...acc, ...[...line.split("").keys()].filter(x => line[x] == "#").map(x => new Vector2D(x, y))];
+    }, []);
 
     consoleLine.innerHTML += " done.";
     return stars;

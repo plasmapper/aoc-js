@@ -29,29 +29,26 @@ export default class {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let lines = input.trim().split(/\r?\n/);
-    let mapHeight = lines.length;
-    let mapWidth;
-    let antennas = {};
+    let mapWidth = 0, mapHeight = 0;
 
-    lines.forEach((line, lineIndex) => {
-      if (lineIndex == 0)
-        mapWidth = lines[0].length;
-      else if (line.length != mapWidth)
-        throw new Error(`Invalid length of line ${lineIndex + 1}`);
-
+    let antennas = input.trim().split(/\r?\n/).reduce((acc, line, y) => {
+      if (y == 0)
+        mapWidth = line.length;
+      if (line.length != mapWidth)
+        throw new Error(`Invalid length of line ${y + 1}`);
       if (!/^[\.0-9a-zA-Z]+$/.test(line))
-        throw new Error(`Invalid data in line ${lineIndex + 1}`);
+        throw new Error(`Invalid data in line ${y + 1}`);
 
-      line.split("").forEach((symbol, symbolIndex) => {
-        if (symbol != ".") {
-          if (symbol in antennas)
-            antennas[symbol].push(new Vector2D(symbolIndex, lineIndex));
-          else
-            antennas[symbol] = [new Vector2D(symbolIndex, lineIndex)];
-        }
+      [...line.split("").keys()].filter(x => line[x] != ".").forEach(x => {
+        if (line[x] in acc)
+          acc[line[x]].push(new Vector2D(x, y));
+        else
+          acc[line[x]] = [new Vector2D(x, y)];
       });
-    });
+
+      mapHeight++;
+      return acc;
+    }, {});
 
     consoleLine.innerHTML += " done.";
     return {mapWidth, mapHeight, antennas};

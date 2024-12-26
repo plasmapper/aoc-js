@@ -28,21 +28,14 @@ export default class {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let map = [];
-    input.trim().split(/\r?\n/).forEach((line, lineIndex) => {
-      let mapRow = [];
-
-      if (lineIndex != 0 && line.length != map[0].length)
+    let map = input.trim().split(/\r?\n/).map((line, lineIndex, lines) => {
+      if (line.length != lines[0].length)
         throw new Error(`Invalid length of line ${index + 1}`);
-
-      line.split("").forEach((letter, letterIndex) => {
+      return line.split("").map((letter, letterIndex) => {
         if (letter in letterSymbols)
-          mapRow.push(new Letter(letter, new Vector2D(letterIndex, lineIndex)));
-        else
-          throw new Error(`Invalid data in line ${lineIndex + 1}`);
+          return new Letter(letter, new Vector2D(letterIndex, lineIndex));
+        throw new Error(`Invalid data in line ${lineIndex + 1}`);
       });
-
-      map.push(mapRow);
     });
 
     consoleLine.innerHTML += " done.";

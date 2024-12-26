@@ -17,20 +17,18 @@ export default class  {
    * @param {string} input Puzzle input.
    * @returns {Stone[]} Stones.
    */
- parse(input) {
-  let consoleLine = this.solConsole.addLine("Parsing...");
-  
-  let stones = [];
-
-  input.trim().split(" ").forEach((number, index) => {
-    if (isNaN(number))
-      throw new Error(`Invalid number ${index + 1}`);
-    stones.push(new Stone(parseInt(number)));
-  });
-  
-  consoleLine.innerHTML += " done.";
-  return stones;
-}
+  parse(input) {
+    let consoleLine = this.solConsole.addLine("Parsing...");
+    
+    let stones = input.trim().split(" ").map((number, index) => {
+      if (!/^\d+$/.test(number))
+        throw new Error(`Invalid number ${index + 1}`);
+      return new Stone(parseInt(number));
+    });
+    
+    consoleLine.innerHTML += " done.";
+    return stones;
+  }
 
   /**
    * Calculates the total calibration result.

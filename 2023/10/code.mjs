@@ -20,17 +20,14 @@ export default class {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let mapWidth = 0;
     let map = [];
-    input.trim().split(/\r?\n/).forEach((line, y) => {
-      if (mapWidth == 0)
-        mapWidth = line.length * 3;
-      if (line.length * 3 != mapWidth)
+    input.trim().split(/\r?\n/).map((line, y, lines) => {
+      if (line.length != lines[0].length)
         throw new Error(`Invalid length of line ${y + 1}`);
       if (!/^[\|\-LJ7F\.S]+$/.test(line))
         throw new Error(`Invalid data in line ${y + 1}`);
 
-      map.push(new Array(mapWidth).fill(0), new Array(mapWidth).fill(0), new Array(mapWidth).fill(0));
+      map.push(new Array(line.length * 3).fill(0), new Array(line.length * 3).fill(0), new Array(line.length * 3).fill(0));
       for (let [x, pipe] of line.split("").entries()) {
         switch (pipe) {
           case "|":

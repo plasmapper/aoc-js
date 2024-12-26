@@ -15,39 +15,38 @@ export default class  {
   /**
    * Parses the puzzle input.
    * @param {string} input Puzzle input.
-   * @returns {NodesAndInstructions} Nodes and instructions.
+   * @returns {{
+   * nodes: Node[],
+   * instructions: string[]
+   * }} Nodes and instructions.
    */
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
     
-    let nodes = [];
-    let instructions = [];
+    let blocks = input.trim().split(/\r?\n\r?\n/);
+    if (blocks.length != 2 || blocks[0].includes("\n"))
+      throw new Error("Input structure is not valid");
 
-    input.trim().split(/\r?\n/).forEach((line, index) => {
-      if (index == 0) {
-        if (!/^[LR]+$/.test(line))
-          throw new Error(`Invalid data in line ${index + 1}`);  
-        instructions = line.split("");
-      }
-      if (index > 1) {
-        let match = line.match(/^(.{3}) = \((.{3}), (.{3})\)$/);
-        if (match == null)
-          throw new Error(`Invalid data in line ${index + 1}`);
-        nodes.push(new Node(nodes.length, match[1], match[2], match[3]));
-      }
+    let instructions = blocks[0].split("");
+
+    let nodes = [];
+    blocks[1].split(/\r?\n/).forEach((line, index) => {
+      let match = line.match(/^(...) = \((...), (...)\)$/);
+      if (match == null)
+        throw new Error(`Invalid data in line ${index + 1}`);
+      let node = nodes.find(node => node.name == match[1]);
+      if (node == undefined)
+        nodes.push(node = new Node(nodes.length, match[1]));
+      node.leftNode = nodes.find(node => node.name == match[2]);
+      if (node.leftNode == undefined)
+        nodes.push(node.leftNode = new Node(nodes.length, match[2]));
+      node.rightNode = nodes.find(node => node.name == match[3]);
+      if (node.rightNode == undefined)
+        nodes.push(node.rightNode = new Node(nodes.length, match[3]));
     });
 
-    for (let node of nodes) {
-      node.leftNode = nodes.find(destNode => destNode.name == node.leftNodeName);
-      if (node.leftNode == undefined)
-        throw new Error(`Invalid left node ${node.leftNodeName} for node ${node.name}`);
-      node.rightNode = nodes.find(destNode => destNode.name == node.rightNodeName);
-      if (node.rightNode == undefined)
-        throw new Error(`Invalid right node ${node.rightNodeName} for node ${node.name}`);
-    }
-
     consoleLine.innerHTML += " done.";
-    return new NodesAndInstructions(nodes, instructions);
+    return { nodes, instructions };
   }
 
   /**
@@ -160,10 +159,8 @@ class Node {
   /**
    * @param {number} index Node index.
    * @param {string} name Node name.
-   * @param {string} name Left node name.
-   * @param {string} name Right node name.
    */
-  constructor(index, name, leftNodeName, rightNodeName) {
+  constructor(index, name) {
     /**
      * Node index.
      * @type {number}
@@ -174,16 +171,6 @@ class Node {
      * @type {string}
      */
     this.name = name;
-    /**
-     * Left node name.
-     * @type {string}
-     */
-    this.leftNodeName = leftNodeName;
-    /**
-     * Right node name.
-     * @type {string}
-     */
-    this.rightNodeName = rightNodeName;
     /**
      * Left node.
      * @type {Node}
@@ -209,24 +196,5 @@ class Node {
      * @type {number}
      */
     this.numberOfCycleSteps = 0;
-  }
-}
-
-class NodesAndInstructions {
-  /**
-   * @param {Node[]} nodes Nodes.
-   * @param {string[]} instructions Instructions.
-   */
-  constructor(nodes, instructions) {
-    /**
-     * Nodes.
-     * @type {Node[]}
-     */
-    this.nodes = nodes;
-    /**
-     * Instructions.
-     * @type {string[]}
-     */
-    this.instructions = instructions;
   }
 }

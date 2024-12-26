@@ -25,13 +25,11 @@ export default class  {
  parse(input) {
   let consoleLine = this.solConsole.addLine("Parsing...");
 
-  let robots = [];
-
-  input.trim().split(/\r?\n/).forEach((line, lineIndex) => {
+  let robots = input.trim().split(/\r?\n/).map((line, lineIndex) => {
     let match;
     if ((match = line.match(/^p=(-?\d+),(-?\d+) v=(-?\d+),(-?\d+)$/)) == null)
-      throw new Error(`Invalid data in line ${index + 1}`);
-    robots.push(new Robot(new Vector2D(parseInt(match[1]), parseInt(match[2])), new Vector2D(parseInt(match[3]), parseInt(match[4]))));
+      throw new Error(`Invalid data in line ${lineIndex + 1}`);
+    return new Robot(new Vector2D(parseInt(match[1]), parseInt(match[2])), new Vector2D(parseInt(match[3]), parseInt(match[4])));
   });
 
   consoleLine.innerHTML += " done.";

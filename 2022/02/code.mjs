@@ -23,11 +23,10 @@ export default class {
 
     let consoleLine = this.solConsole.addLine("Parsing...");
     
-    let rounds = [];
-    input.trim().split(/\r?\n/).forEach((line, index) => {
+    let rounds = input.trim().split(/\r?\n/).map((line, index) => {
       if (!/^[ABC] [XYZ]$/.test(line))
         throw new Error(`Invalid data in line ${index + 1}`);
-      rounds.push ([column1Symbols.indexOf(line[0]), column2Symbols.indexOf(line[2])]);
+      return [column1Symbols.indexOf(line[0]), column2Symbols.indexOf(line[2])];
     });
     
     consoleLine.innerHTML += " done.";

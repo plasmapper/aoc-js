@@ -26,24 +26,16 @@ export default class {
     let files = [];
     let freeSpaces = [];
     let position = 0;
-    let segmentIsFile = true;
-    let fileId = 0;
 
     input.trim().split("").forEach((symbol, symbolIndex) => {
-      if (isNaN(symbol))
+      if (!/^[0-9]$/.test(symbol))
         throw new Error(`Invalid symbol ${symbolIndex + 1}`);
-
       let size = parseInt(symbol);
-      if (segmentIsFile) {
-        files.push(new File(fileId, [new MemorySegment(position, size)]));
-        fileId++;
-      }
+      if (symbolIndex % 2 == 0)
+        files.push(new File(files.length, [new MemorySegment(position, size)]));
       else
         freeSpaces.push(new MemorySegment(position, size));
-
       position += size;
-
-      segmentIsFile = !segmentIsFile;
     });
 
     consoleLine.innerHTML += " done.";

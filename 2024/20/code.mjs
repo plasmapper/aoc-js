@@ -21,7 +21,7 @@ export default class  {
     this.visContainer = visContainer;
   }
   
- /**
+  /**
    * Parses the puzzle input.
    * @param {string} input Puzzle input.
    * @returns {{
@@ -30,55 +30,34 @@ export default class  {
    * end: Vector2D
    * }} Map, start and end.
    */
- parse(input) {
-  let consoleLine = this.solConsole.addLine("Parsing...");
+  parse(input) {
+    let consoleLine = this.solConsole.addLine("Parsing...");
 
-  let map = [];
-  let start, end;
-
-  input.trim().split(/\r?\n/).forEach((line, lineIndex) => {
-    if (lineIndex == 0) {
-      if (!/^#+$/.test(line))
-        throw new Error(`Invalid data in line ${lineIndex + 1}`);
-      map.push(line.split("").map(e => obstacleColorIndex));
-    }
-    else {
-      if (line.length != map[0].length)
+    let map = input.trim().split(/\r?\n/).map((line, lineIndex, lines) => {
+      if (line.length != lines[0].length)
         throw new Error(`Invalid length of line ${lineIndex + 1}`);
-
-      if (!/^#[#\.SE]+#$/.test(line))
+      if (((lineIndex == 0 || lineIndex == lines.length - 1) && !/^#+$/.test(line)) || !/^#[#\.SE]+#$/.test(line))
         throw new Error(`Invalid data in line ${lineIndex + 1}`);
+      return line.split("").map(e => e == "#" ? obstacleColorIndex : (e == "S" ? startColorIndex : (e == "E" ? endColorIndex : 0)));
+    });
 
-      map.push(line.split("").map(e => e == "#" ? obstacleColorIndex : 0));
-      line.split("").forEach((e, index) => {
-        if (e == "S") {
-          if (start != undefined)
-            throw new Error("More than one start found")
-          else
-            start = new Vector2D(index, lineIndex);
-        }
-      });
-      line.split("").forEach((e, index) => {
-        if (e == "E") {
-          if (end != undefined)
-            throw new Error("More than one end found")
-          else
-            end = new Vector2D(index, lineIndex);
-        }
-      });
-    }
-  });
+    let starts = map.reduce((acc, line, y) => [...acc, ...[...line.keys()].filter(x => line[x] == startColorIndex).map(x => new Vector2D(x, y))], []);
+    if (starts.length == 0)
+      throw new Error("Start not found");
+    if (starts.length > 1)
+      throw new Error("More than one start found");
+    let start = starts[0];
 
-  if (map[map.length - 1].reduce((acc, e) => acc + (e != obstacleColorIndex ? 1 : 0), 0) > 0)
-    throw new Error(`Invalid data in line ${map.length}`);
-  if (start == undefined)
-    throw new Error("Start not found");
-  if (end == undefined)
-    throw new Error("End not found");
+    let ends = map.reduce((acc, line, y) => [...acc, ...[...line.keys()].filter(x => line[x] == endColorIndex).map(x => new Vector2D(x, y))], []);
+    if (ends.length == 0)
+      throw new Error("Start not found");
+    if (ends.length > 1)
+      throw new Error("More than one start found");
+    let end = ends[0];
 
-  consoleLine.innerHTML += " done.";
-  return { map, start, end };
-}
+    consoleLine.innerHTML += " done.";
+    return { map, start, end };
+  }
 
   /**
    * Calculates the number of cheats that save at least 100 ps.
@@ -108,8 +87,6 @@ export default class  {
         pixelMap.palette[endColorIndex] = endColor;
   
         pixelMap.draw(map);
-        pixelMap.drawPixel(start.x, start.y, startColorIndex);
-        pixelMap.drawPixel(end.x, end.y, endColorIndex);
       }
 
       let timeMap = [];
@@ -128,7 +105,7 @@ export default class  {
 
         for (let newPosition of [new Vector2D(x - 1, y), new Vector2D(x + 1, y), new Vector2D(x, y - 1), new Vector2D(x, y + 1)]) {
           let newX = newPosition.x, newY = newPosition.y;
-          if (mapCoordinateRange.contains(newPosition) && map[newY][newX] == 0 && timeMap[newY][newX] == Number.MAX_VALUE)
+          if (mapCoordinateRange.contains(newPosition) && (map[newY][newX] == 0 || map[newY][newX] == startColorIndex) && timeMap[newY][newX] == Number.MAX_VALUE)
             position = new Vector2D(newX, newY);
         }
 
@@ -150,7 +127,7 @@ export default class  {
             cheatEnds.push(new Vector2D(x, y));          
         }
 
-        cheatEnds = cheatEnds.filter(p => p.x >= 0 && p.x < mapWidth && p.y >= 0 && p.y < mapHeight && map[p.y][p.x] == 0);
+        cheatEnds = cheatEnds.filter(p => p.x >= 0 && p.x < mapWidth && p.y >= 0 && p.y < mapHeight && (map[p.y][p.x] == 0 || map[p.y][p.x] == endColorIndex));
 
         for (let cheatEnd of cheatEnds) {
           let distance = Math.abs(cheatEnd.x - cheatStart.x) + Math.abs(cheatEnd.y - cheatStart.y)

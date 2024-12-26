@@ -20,8 +20,7 @@ export default class {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let bricks = [];
-    input.trim().split(/\r?\n/).forEach((line, index) => {
+    let bricks = input.trim().split(/\r?\n/).map((line, index) => {
       let match = line.match(/^(\d+),(\d+),(\d+)~(\d+),(\d+),(\d+)$/);
       if (match == null)
         throw new Error(`Invalid data in line ${index + 1}`);
@@ -35,7 +34,7 @@ export default class {
       let xRange = new Range(Math.min(x1, x2), Math.max(x1, x2));
       let yRange = new Range(Math.min(y1, y2), Math.max(y1, y2));
       let zRange = new Range(Math.min(z1, z2), Math.max(z1, z2));
-      bricks.push(new Brick(xRange, yRange, zRange));
+      return new Brick(xRange, yRange, zRange);
     });
 
     consoleLine.innerHTML += " done.";

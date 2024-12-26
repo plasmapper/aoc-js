@@ -20,17 +20,12 @@ export default class {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let structures = [];
-    input.trim().split(/\r?\n/).forEach((line, index) => {
-      let structure = [];
-      line.split("->").forEach(point => {
-        let coordinates = point.split(",").map(e => e.trim());
-        if (coordinates.length != 2 || isNaN(parseInt(coordinates[0])|| isNaN(parseInt(coordinates[1]))))
-          throw new Error(`Invalid length of line ${index + 1}`);
-        structure.push(new Vector2D(parseInt(coordinates[0]), parseInt(coordinates[1])));
-      });
-      structures.push(structure);
-    });
+    let structures = input.trim().split(/\r?\n/).map((line, index) => line.split("->").map(point => {
+      let coordinates = point.split(",").map(e => e.trim());
+      if (coordinates.length != 2 || isNaN(parseInt(coordinates[0])|| isNaN(parseInt(coordinates[1]))))
+        throw new Error(`Invalid length of line ${index + 1}`);
+      return new Vector2D(parseInt(coordinates[0]), parseInt(coordinates[1]));
+    }));
 
     consoleLine.innerHTML += " done.";
     return structures;

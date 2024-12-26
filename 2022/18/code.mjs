@@ -20,12 +20,11 @@ export default class {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let cubes = [];
-    input.trim().split(/\r?\n/).forEach((line, index) => {
+    let cubes = input.trim().split(/\r?\n/).map((line, index) => {
       let match = line.match(/^(\d+),(\d+),(\d+)$/);
       if (match == null)
         throw new Error(`Invalid data in line ${index + 1}`);
-      cubes.push(new Vector3D(parseInt(match[1]), parseInt(match[2]), parseInt(match[3])));
+      return new Vector3D(parseInt(match[1]), parseInt(match[2]), parseInt(match[3]));
     });
 
     consoleLine.innerHTML += " done.";

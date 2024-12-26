@@ -20,27 +20,26 @@ export default class  {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
     
-    let cards = [];
-    input.trim().split(/\r?\n/).forEach((line, index) => {
+    let cards = input.trim().split(/\r?\n/).map((line, index) => {
       let match = line.replaceAll(/\s+/g, " ").match(/^Card (\d+):(.+)\|(.+)$/);
       if (match == null || parseInt(match[1]) != index + 1)
         throw new Error(`Invalid data in line ${index + 1}`);
-
-      cards.push(new Card());
-
+      
+      let card = new Card();
       match[2].trim().split(" ").forEach(e => {
         e = parseInt(e);
         if (isNaN(e))
           throw new Error(`Invalid data in line ${index + 1}`);
-        cards[cards.length - 1].winningNumbers.push(e);
+        card.winningNumbers.push(e);
       });
-
       match[3].trim().split(" ").forEach(e => {
         e = parseInt(e);
         if (isNaN(e))
           throw new Error(`Invalid data in line ${index + 1}`);
-        cards[cards.length - 1].pickedNumbers.push(e);
+        card.pickedNumbers.push(e);
       });
+
+      return card;
     });
     
     consoleLine.innerHTML += " done.";

@@ -15,19 +15,17 @@ export default class {
   /**
    * Parses the puzzle input.
    * @param {string} input Puzzle input.
-   * @returns {number[][]} Map (0 - start, 1..26 - other points, 27 - end).
+   * @returns {string[][]} Map.
    */
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let map = [];
-    input.trim().split(/\r?\n/).forEach((line, index) => {
-      if (map.length > 0 && line.length != map[0].length)
+    let map = input.trim().split(/\r?\n/).map((line, index, lines) => {
+      if (line.length != lines[0].length)
         throw new Error(`Invalid length of line ${index + 1}`);
       if (!/^[\.#\^><v]+$/.test(line))
         throw new Error(`Invalid data in line ${index + 1}`);
-
-        map.push(line.split(""));
+      return line.split("");
     });
 
     consoleLine.innerHTML += " done.";

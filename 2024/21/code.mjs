@@ -20,13 +20,10 @@ export default class  {
  parse(input) {
   let consoleLine = this.solConsole.addLine("Parsing...");
 
-  let codes = [];
-  
-  input.trim().split(/\r?\n/).forEach((line, lineIndex) => {
-    line = line.trim();
+  let codes = input.trim().split(/\r?\n/).map((line, lineIndex) => {
     if (!/^[0-9A]+$/.test(line))
       throw new Error(`Invalid data in line ${lineIndex + 1}`);
-    codes.push(line);
+    return line;
   });
 
   consoleLine.innerHTML += " done.";

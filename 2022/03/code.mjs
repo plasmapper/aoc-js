@@ -22,13 +22,14 @@ export default class  {
 
     let consoleLine = this.solConsole.addLine("Parsing...");
     
-    let rucksacks = [];
     if (input.trim().split(/\r?\n/).length % groupSize)
       throw new Error(`The number of lines must be divisible by ${groupSize}`);
-    input.trim().split(/\r?\n/).forEach((line, index) => {
-      if (!/^[a-zA-Z]+$/.test(line) || line.length % 2)
+    let rucksacks = input.trim().split(/\r?\n/).map((line, index) => {
+      if (line.length % 2)
+        throw new Error(`Invalid length of line ${index + 1}`);
+      if (!/^[a-zA-Z]+$/.test(line))
         throw new Error(`Invalid data in line ${index + 1}`);
-      rucksacks.push ([line.substring(0, line.length / 2).split(""), line.substring(line.length / 2).split("")]);
+      return [line.substring(0, line.length / 2).split(""), line.substring(line.length / 2).split("")];
     });
     
     consoleLine.innerHTML += " done.";

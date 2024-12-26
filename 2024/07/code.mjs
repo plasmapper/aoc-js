@@ -20,24 +20,11 @@ export default class  {
  parse(input) {
   let consoleLine = this.solConsole.addLine("Parsing...");
   
-  let equations = [];
-
-  input.trim().split(/\r?\n/).forEach((line, index) => {
-    let result = 0;
-    let numbers = [];
+  let equations = input.trim().split(/\r?\n/).map((line, index) => {
     let match;
-
     if ((match = line.match(/^(\d+):((?: \d+)+)$/)) == null)
       throw new Error(`Invalid data in line ${index + 1}`);
-    result = parseInt(match[1]);
-
-    for (let number of match[2].trim().split(" ")) {
-      if (isNaN(number))
-        throw new Error(`Invalid data in line ${index + 1}`);
-      numbers.push(parseInt(number));
-    }
-
-    equations.push(new Equation(result, numbers));
+    return new Equation(parseInt(match[1]), match[2].trim().split(" ").map(number => parseInt(number)));
   });
 
   consoleLine.innerHTML += " done.";

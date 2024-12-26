@@ -15,7 +15,10 @@ export default class  {
   /**
    * Parses the puzzle input.
    * @param {string} input Puzzle input.
-   * @returns {SeedsAndMaps} Seeds and maps.
+   * @returns {{
+   * seedRanges: Range[],
+   * maps: Map[]
+   * }} Seed ranges and maps.
    */
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
@@ -52,7 +55,7 @@ export default class  {
     });
 
     consoleLine.innerHTML += " done.";
-    return new SeedsAndMaps(seedRanges, maps);
+    return { seedRanges, maps };
   }
 
   /**
@@ -175,27 +178,5 @@ class Map {
      * @type {Range[]}
      */
     this.destRanges = destRanges;
-  }
-}
-
-/**
- * Puzzle seeds and maps class.
- */
-class SeedsAndMaps {
-  /**
-   * @param {Range[]} seedRanges Seed ranges.
-   * @param {Map[]} maps Sequence of maps.
-   */
-  constructor(seedRanges, maps) {
-    /**
-     * Seed ranges.
-     * @type {Range[]}
-     */
-    this.seedRanges = seedRanges;
-    /**
-     * Sequence of maps.
-     * @type {Map[]}
-     */
-    this.maps = maps;
   }
 }

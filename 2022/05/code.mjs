@@ -19,48 +19,39 @@ export default class {
    */
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
-    
+
+    let blocks = input.trimEnd().split(/\r?\n\r?\n/);
+    if (blocks.length != 2)
+      throw new Error("Input structure is not valid");
+
     let stacks = [];
-    let moveSteps = [];
-
-    let lines = input.split(/\r?\n/);
-    let emptyLineIndex;
-    if ((emptyLineIndex = lines.indexOf("")) < 0)
-      throw new Error("Empty line not found");
-    if (emptyLineIndex == 0)
-      throw new Error("Stack numbers not found");
-    
-    // Create empty stack arrays
-    for (let i = 1; i < lines[emptyLineIndex - 1].length; i += 4) {
-      if (parseInt(lines[emptyLineIndex - 1][i]) != stacks.length + 1)
-        throw new Error(`Invalid data in line ${emptyLineIndex}`);
-      stacks.push([]);
-    }
-
-    // Fill stack arrays with data
-    for (let i = emptyLineIndex - 2; i >= 0; i--) {
-      if (lines[i].length > stacks.length * 4)
-        throw new Error(`Invalid data in line ${i + 1}`);
-      for (let [stackIndex, stack] of stacks.entries()) {
-        if (/^\[[A-Z]\]$/.test(lines[i].substring(stackIndex * 4, stackIndex * 4 + 3)))
-          stack.push(lines[i][stackIndex * 4 + 1]);
-        else {
-          if (lines[i].substring(stackIndex * 4, stackIndex * 4 + 3).trim() != "")
-            throw new Error(`Invalid data in line ${i + 1}`);
-        }
+    blocks[0].split(/\r?\n/).reverse().forEach((line, lineIndex, lines) => {
+      if (line.length != lines[0].length)
+        throw new Error(`Invalid length of line ${lines.length - lineIndex}`);
+      if (lineIndex == 0) {
+        if (!/^ 1(   2(   3(   4(   5(   6(   7(   8(   9)?)?)?)?)?)?)?)? $/.test(line))
+          throw new Error(`Invalid data in line ${lines.length - lineIndex}`);
+        stacks = [...line.split("").keys()].filter(symbolIndex => symbolIndex % 4 == 1).map(e => []);
       }
-    }
+      else {
+        if (!/^((\[[A-Z]\])|(   ))(( \[[A-Z]\])|(    ))*$/.test(line))
+          throw new Error(`Invalid data in line ${lines.length - lineIndex}`);
+        [...line.split("").keys()].filter(symbolIndex => symbolIndex % 4 == 1).forEach(symbolIndex => {
+          if (line[symbolIndex] != " ") {
+            if (lines[lineIndex - 1][symbolIndex] == " ")
+              throw new Error(`Invalid data in line ${lines.length - lineIndex}`);
+            stacks[(symbolIndex - 1) / 4].push(line[symbolIndex]);
+          }
+        });
+      }
+    });
 
-    // Parse moves
-    for (let i = emptyLineIndex + 1; i < lines.length; i++) {
-      if (lines[i] != "") {
-        let match = lines[i].match(/^move (\d+) from (\d+) to (\d+)$/);
-        if (match == null || match[1] == 0 || match[2] == 0 || match[3] == 0)
-          throw new Error(`Invalid data in line ${i + 1}`);
-        if (lines[i] != "")
-        moveSteps.push(new MoveStep(parseInt(match[1]), parseInt(match[2]) - 1, parseInt(match[3]) - 1)); 
-      }         
-    }
+    let moveSteps = blocks[1].split(/\r?\n/).map((line, index) => {
+      let match = line.match(/^move (\d+) from (\d+) to (\d+)$/);
+      if (match == null || match[1] == 0 || match[2] < 1 || match[2] > stacks.length || match[3] < 1 || match[3] > stacks.length)
+        throw new Error(`Invalid data in move step ${index + 1}`);
+      return new MoveStep(parseInt(match[1]), parseInt(match[2]) - 1, parseInt(match[3]) - 1); 
+    });
 
     consoleLine.innerHTML += " done.";
     return {stacks, moveSteps};
@@ -127,16 +118,6 @@ export default class {
     finally {
       this.isSolving = false;
     }
-  }
-
-  /**
-   * Stops solving the puzzle.
-   */
-  async stopSolving() {
-    this.isStopping = true;
-    while (this.isSolving)
-      await(delay(10));
-    this.isStopping = false;
   }
 
   /**
@@ -248,6 +229,16 @@ export default class {
       image[yStart - crateIndex].splice(xStart - 1, 3, " ", " ", " ");
     for (let [crateIndex, crate] of movedCrates.entries())
       image[yEnd - crateIndex].splice(xEnd - 1, 3, "[", crate, "]");
+  }
+
+  /**
+   * Stops solving the puzzle.
+   */
+  async stopSolving() {
+    this.isStopping = true;
+    while (this.isSolving)
+      await(delay(10));
+    this.isStopping = false;
   }
 }
 

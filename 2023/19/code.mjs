@@ -15,58 +15,55 @@ export default class {
   /**
    * Parses the puzzle input.
    * @param {string} input Puzzle input.
-   * @returns {WorkflowsAndParts} Workflows and parts.
+   * @returns {{
+   * workflows: Workflow[],
+   * parts: Part[]
+   * }} Workflows and parts.
    */
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let workflows = [];
-    let parts = [];
-    let partSection = false;
+    let blocks = input.trim().split(/\r?\n\r?\n/);
+    if (blocks.length != 2)
+      throw new Error("Input structure is not valid");
+    
+    let workflows = blocks[0].split(/\r?\n/).map((line, lineIndex) => {
+      let match = line.match(/^(.+){(.+)}$/);
+      if (match == null)
+        throw new Error(`Invalid data in block 1 line ${lineIndex + 1}`);
+      let workflow = new Workflow(match[1]);
+      for (let stepString of match[2].split(",")) {
+        let step;
+        match = stepString.match(/^([xmas])([<>])(\d+):(.+)$/);
+        if (match != null)
+          step = new WorkflowStep(match[1], match[2], parseInt(match[3]), match[4]);
+        else
+          step = new WorkflowStep("", "", 0, stepString);
+        workflow.steps.push(step);
+      }
+      return workflow;
+    });
 
-    input.trim().split(/\r?\n/).forEach((line, index) => {
-      if (line == "") {
-        partSection = true;
-
-        for (let workflow of workflows) {
-          for (let step of workflow.steps) {
-            if (step.destinationName != "A" && step.destinationName != "R") {
-              let destinationWorkflow = workflows.find(w => w.name == step.destinationName);
-              if (destinationWorkflow == undefined)
-                throw new Error(`Invalid destination workflow ${step.destinationName} in workflow ${workflow.name}`);
-              step.destinationWorkflow = destinationWorkflow;
-            }
-          }
+    for (let workflow of workflows) {
+      for (let step of workflow.steps) {
+        if (step.destinationName != "A" && step.destinationName != "R") {
+          let destinationWorkflow = workflows.find(w => w.name == step.destinationName);
+          if (destinationWorkflow == undefined)
+            throw new Error(`Invalid destination workflow ${step.destinationName} in workflow ${workflow.name}`);
+          step.destinationWorkflow = destinationWorkflow;
         }
       }
-      else {
-        if (!partSection) {
-          let match = line.match(/^(.+){(.+)}$/);
-          if (match == null)
-            throw new Error(`Invalid data in line ${index + 1}`);
-          let workflow = new Workflow(match[1]);
-          for (let stepString of match[2].split(",")) {
-            let step;
-            match = stepString.match(/^([xmas])([<>])(\d+):(.+)$/);
-            if (match != null)
-              step = new WorkflowStep(match[1], match[2], parseInt(match[3]), match[4]);
-            else
-              step = new WorkflowStep("", "", 0, stepString);
-            workflow.steps.push(step);
-          }
-          workflows.push(workflow);
-        }
-        else {
-          let match = line.match(/^{x=(\d+),m=(\d+),a=(\d+),s=(\d+)}$/);
-          if (match == null)
-            throw new Error(`Invalid data in line ${index + 1}`);
-          parts.push(new Part(parseInt(match[1]), parseInt(match[2]), parseInt(match[3]), parseInt(match[4])));
-        }
-      }
+    }
+
+    let parts = blocks[1].split(/\r?\n/).map((line, lineIndex) => {
+      let match = line.match(/^{x=(\d+),m=(\d+),a=(\d+),s=(\d+)}$/);
+      if (match == null)
+        throw new Error(`Invalid data in block 2 line ${lineIndex + 1}`);
+      return new Part(parseInt(match[1]), parseInt(match[2]), parseInt(match[3]), parseInt(match[4]));
     });
 
     consoleLine.innerHTML += " done.";
-    return new WorkflowsAndParts(workflows, parts);
+    return { workflows, parts };
   }
 
   /**
@@ -349,23 +346,5 @@ class Workflow {
     }
 
     return acceptedRanges;
-  }
-}
-
-/**
- * Puzzle workflows and parts.
- */
-class WorkflowsAndParts {
-  constructor(workflows, parts) {
-    /**
-     * Workflows.
-     * @type {Workflow[]}
-     */
-    this.workflows = workflows;
-    /**
-     * Parts.
-     * @type {Part[]}
-     */
-    this.parts = parts;
   }
 }

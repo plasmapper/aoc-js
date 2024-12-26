@@ -12,7 +12,7 @@ export default class  {
     this.visContainer = visContainer;
   }
   
- /**
+  /**
    * Parses the puzzle input.
    * @param {string} input Puzzle input.
    * @returns {{
@@ -20,42 +20,35 @@ export default class  {
    * gates: Gate[]
    * }} Wires and gates.
    */
- parse(input) {
-  let consoleLine = this.solConsole.addLine("Parsing...");
+  parse(input) {
+    let consoleLine = this.solConsole.addLine("Parsing...");
 
-  let wires = new Map();
-  let gates = [];
-  let parsingWires = true;
+    let blocks = input.trim().split(/\r?\n\r?\n/);
+    if (blocks.length != 2)
+      throw new Error("Input structure is not valid");
 
-  input.trim().split(/\r?\n/).forEach((line, lineIndex) => {
-    line = line.trim();
-    let match;
-    if (line == "")
-      parsingWires = false;
-    else {
-      if (parsingWires) {
-        if ((match = line.match(/^([xy]\d+): ([01])$/)) == null)
-          throw new Error(`Invalid data in line ${lineIndex + 1}`);
-        wires.set(match[1], parseInt(match[2]))
-      }
-      else {
-        if ((match = line.match(/^([a-z0-9]+) (AND|OR|XOR) ([a-z0-9]+) -> ([a-z0-9]+)$/)) == null)
-          throw new Error(`Invalid data in line ${lineIndex + 1}`);
-        let gate = new Gate([match[1], match[3]], match[4], match[2]);
-        gates.push(gate);
-        if (!wires.has(gate.inputs[0]))
-          wires.set(gate.inputs[0], undefined);
-        if (!wires.has(gate.inputs[1]))
-          wires.set(gate.inputs[1], undefined);
-        if (!wires.has(gate.output))
-          wires.set(gate.output, undefined);
-      }
-    }
-  });
+    let wires = new Map();
+    let gates = [];
 
-  consoleLine.innerHTML += " done.";
-  return { wires, gates};
-}
+    blocks[0].split(/\r?\n/).forEach((line, lineIndex) => {
+      let match;
+      if ((match = line.match(/^([xy]\d+): ([01])$/)) == null)
+        throw new Error(`Invalid data in block 1 line ${lineIndex + 1}`);
+      wires.set(match[1], parseInt(match[2]));
+    });
+
+    blocks[1].split(/\r?\n/).forEach((line, lineIndex) => {
+      let match;
+      if ((match = line.match(/^([a-z0-9]+) (AND|OR|XOR) ([a-z0-9]+) -> ([a-z0-9]+)$/)) == null)
+        throw new Error(`Invalid data in block 2 line ${lineIndex + 1}`);
+      let gate = new Gate([match[1], match[3]], match[4], match[2]);
+      gates.push(gate);
+      [gate.inputs[0], gate.inputs[1], gate.output].filter(e => !wires.has(e)).forEach(e => wires.set(e, undefined));
+    });
+
+    consoleLine.innerHTML += " done.";
+    return { wires, gates };
+  }
 
   /**
    * Calculates z (part 1) or finds the names of wires that should be swapped to change the system action to z = x + y (part 2).

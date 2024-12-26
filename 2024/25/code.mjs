@@ -29,43 +29,36 @@ export default class  {
 
   let locks = [];
   let keys = [];
-  let patternIsLock;
-  let pattern = new Array(patternWidth).fill(0);
 
-  let lines = input.trim().split(/\r?\n/);
-  lines.forEach((line, lineIndex) => {
-    line = line.trim();
-    if (lineIndex % (patternHeight + 1) == patternHeight && line.length != 0)
-      throw new Error(`Invalid length of line ${lineIndex + 1}`);
-    if (lineIndex % (patternHeight + 1) != patternHeight && line.length != patternWidth)
-      throw new Error(`Invalid length of line ${lineIndex + 1}`);
-    if (!/^[\.#]*$/.test(line))
-      throw new Error(`Invalid data in line ${lineIndex + 1}`);
+  input.trim().split(/\r?\n\r?\n/).forEach((block, blockIndex) => {
+    let lines = block.split(/\r?\n/);
+    if (lines.length != patternHeight)
+      throw new Error(`Invalid number of lines in block ${blockIndex + 1}`);
+    let patternIsLock = /^#+$/.test(lines[0]);
+    let pattern = new Array(patternWidth).fill(0);
 
-    if (lineIndex % (patternHeight + 1) == 0) {
-      if (/^#+$/.test(line))
-        patternIsLock = true;
-      else if (/^\.+$/.test(line))
-        patternIsLock = false;
-      else
-        throw new Error(`Invalid data in line ${lineIndex + 1}`);
-    }
-    else if (lineIndex % (patternHeight + 1) == patternHeight - 1) {
-      if ((patternIsLock && !/^\.+$/.test(line)) || (!patternIsLock && !/^#+$/.test(line)))
-        throw new Error(`Invalid data in line ${lineIndex + 1}`);
-      if (patternIsLock)
-        locks.push(pattern);
-      else
-        keys.push(pattern);
-        pattern = new Array(patternWidth).fill(0);
-    }
-    else {
-      for (let i = 0; i < patternWidth; i++) {
-        if ((patternIsLock && line[i] == "#" && lines[lineIndex - 1][i] != "#") || (!patternIsLock && line[i] == "." && lines[lineIndex - 1][i] != "."))
-          throw new Error(`Invalid data in line ${lineIndex + 1}`);
-        pattern[i] += line[i] == "#" ? 1 : 0;
-      }      
-    }
+    lines.forEach((line, lineIndex) => {
+      if (line.length != patternWidth)
+        throw new Error(`Invalid length of block ${blockIndex + 1} line ${lineIndex + 1}`);
+      if ((lineIndex == 0 && ((patternIsLock && !/^#+$/.test(line)) || (!patternIsLock && !/^\.+$/.test(line))))
+        || (lineIndex == lines.length - 1 && ((patternIsLock && !/^\.+$/.test(line)) || (!patternIsLock && !/^#+$/.test(line))))
+        || !/^[\.#]*$/.test(line)) {
+        throw new Error(`Invalid data in block ${blockIndex + 1} line ${lineIndex + 1}`);
+      }
+
+      if (lineIndex > 0 && lineIndex < lines.length - 1) {
+        for (let i = 0; i < patternWidth; i++) {
+          if ((patternIsLock && line[i] == "#" && lines[lineIndex - 1][i] != "#") || (!patternIsLock && line[i] == "." && lines[lineIndex - 1][i] != "."))
+            throw new Error(`Invalid data in block ${blockIndex + 1} line ${lineIndex + 1}`);
+          pattern[i] += line[i] == "#" ? 1 : 0;
+        }      
+      }
+    });
+
+    if (patternIsLock)
+      locks.push(pattern);
+    else
+      keys.push(pattern);
   });
 
   consoleLine.innerHTML += " done.";

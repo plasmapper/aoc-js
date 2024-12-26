@@ -20,13 +20,11 @@ export default class  {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
     
-    let histories = [];
-
-    input.trim().split(/\r?\n/).forEach((line, index) => {
+    let histories = input.trim().split(/\r?\n/).map((line, index) => {
       let match = line.match(/^[-\d ]+$/);
       if (match == null)
         throw new Error(`Invalid data in line ${index + 1}`);
-      histories.push(line.split(" ").map(e => parseInt(e)));
+      return line.split(" ").map(e => parseInt(e));
     });
 
     consoleLine.innerHTML += " done.";

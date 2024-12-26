@@ -20,12 +20,11 @@ export default class {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let sensors = [];
-    input.trim().split(/\r?\n/).forEach((line, index) => {
+    let sensors = input.trim().split(/\r?\n/).map((line, index) => {
       let match = line.match(/^Sensor at x=(-?\d+), y=(-?\d+): closest beacon is at x=(-?\d+), y=(-?\d+)$/);
       if (match == null)
         throw new Error(`Invalid data in line ${index + 1}`);
-      sensors.push(new Sensor(new Vector2D(parseInt(match[1]), parseInt(match[2])), new Vector2D(parseInt(match[3]), parseInt(match[4]))));
+      return new Sensor(new Vector2D(parseInt(match[1]), parseInt(match[2])), new Vector2D(parseInt(match[3]), parseInt(match[4])));
     });
 
     consoleLine.innerHTML += " done.";

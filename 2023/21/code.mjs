@@ -1,5 +1,12 @@
 import { delay, Console, PixelMap, Vector2D, Range } from "../../utility.mjs";
 
+const rockColorIndex = 1;
+const rockColor = "#00aa00";
+const startColorIndex = 2;
+const startColor = "#ffff00";
+const highlightColorIndex = 3;
+const highlightColor = "#ffffff";
+
 export default class {
   /**
    * @param {Console} solConsole Solution console.
@@ -20,15 +27,12 @@ export default class {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let map = [];
-    input.trim().split(/\r?\n/).forEach((line, index) => {
+    let map = input.trim().split(/\r?\n/).map((line, index, lines) => {
       if (!/^[.#S]+$/.test(line))
         throw new Error(`Invalid data in line ${index + 1}`);
-      
-      if (index != 0 && line.length != map[0].length)
+      if (line.length != lines[0].length)
         throw new Error(`Invalid length of line ${index + 1}`);
-
-      map.push(line.split("").map(e => e == "." ? 0 : (e == "#" ? 1 : 2)));
+      return line.split("").map(e => e == "." ? 0 : (e == "#" ? rockColorIndex : startColorIndex));
     });
 
     consoleLine.innerHTML += " done.";
@@ -43,13 +47,6 @@ export default class {
    * @returns {number} Number of plots that can be reached in specified number of steps.
    */
   async solve(part, input, visualization) {
-    const rockColorIndex = 1;
-    const rockColor = "#00aa00";
-    const startColorIndex = 2;
-    const startColor = "#ffff00";
-    const highlightColorIndex = 3;
-    const highlightColor = "#ffffff";
-
     try {
       this.isSolving = true;
 

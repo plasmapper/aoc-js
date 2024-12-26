@@ -22,35 +22,24 @@ export default class  {
    * program: number[]
    * }} RegisterA, register B, register C and program.
    */
- parse(input) {
-  let consoleLine = this.solConsole.addLine("Parsing...");
+  parse(input) {
+    let consoleLine = this.solConsole.addLine("Parsing...");
 
-  let lines = input.trim().split(/\r?\n/).map(line => line.trim());
-  let match;
-  if ((match = lines[0].match(/^Register A: (\d+)$/)) == null)
-    throw new Error("Invalid data in line 1");
-  let registerA = BigInt(parseInt(match[1]));
+    input = input.trim();
+    let match = input.match(/^Register A: (\d+)\r?\nRegister B: (\d+)\r?\nRegister C: (\d+)\r?\n\r?\nProgram: (\d(,\d)+)$/);
+    if (match == null)
+      throw new Error("Invalid input structure");
+    
+    let registerA = BigInt(parseInt(match[1]));
+    let registerB = BigInt(parseInt(match[2]));
+    let registerC = BigInt(parseInt(match[3]));
+    let program = match[4].split(",").map(e => parseInt(e));
+    if (program.length % 2 != 0)
+      throw new Error("Invalid program size");
   
-  if ((match = lines[1].match(/^Register B: (\d+)$/)) == null)
-    throw new Error("Invalid data in line 2");
-  let registerB = BigInt(parseInt(match[1]));
-
-  if ((match = lines[2].match(/^Register C: (\d+)$/)) == null)
-    throw new Error("Invalid data in line 3");
-  let registerC = BigInt(parseInt(match[1]));
-
-  if (lines[3] != "")
-    throw new Error("Invalid data in line 4");
-
-  if ((match = lines[4].match(/^Program: (\d(,\d)+)$/)) == null)
-    throw new Error("Invalid data in line 5");
-  let program = match[1].split(",").map(e => parseInt(e));
-  if (program.length % 2 != 0)
-    throw new Error("Invalid program size");
-
-  consoleLine.innerHTML += " done.";
-  return { registerA, registerB, registerC, program };
-}
+    consoleLine.innerHTML += " done.";
+    return { registerA, registerB, registerC, program };
+  }
 
   /**
    * Finds the program output (part 1) or calculates the required value of register A so that the program outputs itself (part 2).

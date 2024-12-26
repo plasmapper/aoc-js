@@ -20,32 +20,13 @@ export default class  {
  parse(input) {
   let consoleLine = this.solConsole.addLine("Parsing...");
 
-  let clawMachines = [];
-
-  input.trim().split(/\r?\n/).forEach((line, lineIndex) => {
-    let match;
-    if (lineIndex % 4 == 0) {
-      if ((match = line.match(/^Button A: X(\+?\d+), Y(\+?\d+)$/)) == null)
-        throw new Error(`Invalid data in line ${index + 1}`);
-
-      clawMachines.push(new ClawMachine(new Vector2D(parseInt(match[1]), parseInt(match[2]))));
-    }
-    if (lineIndex % 4 == 1) {
-      if ((match = line.match(/^Button B: X(\+?\d+), Y(\+?\d+)$/)) == null)
-        throw new Error(`Invalid data in line ${index + 1}`);
-
-      clawMachines[clawMachines.length - 1].buttonB = new Vector2D(parseInt(match[1]), parseInt(match[2]));
-    }
-    if (lineIndex % 4 == 2) {
-      if ((match = line.match(/^Prize: X=(\d+), Y=(\d+)$/)) == null)
-        throw new Error(`Invalid data in line ${index + 1}`);
-
-      clawMachines[clawMachines.length - 1].prize = new Vector2D(parseInt(match[1]), parseInt(match[2]));
-    }
-    if (lineIndex % 4 == 3) {
-      if (line != "")
-        throw new Error(`Invalid data in line ${index + 1}`);
-    }
+  let clawMachines = input.trim().split(/\r?\n\r?\n/).map((block, blockIndex) => {
+    let match = block.match(/^Button A: X(\+?\d+), Y(\+?\d+)\r?\nButton B: X(\+?\d+), Y(\+?\d+)\r?\nPrize: X=(\d+), Y=(\d+)$/);
+    if (match == null)
+      throw new Error(`Invalid data in block ${blockIndex + 1}`);
+    return new ClawMachine(new Vector2D(parseInt(match[1]), parseInt(match[2])),
+      new Vector2D(parseInt(match[3]), parseInt(match[4])),
+      new Vector2D(parseInt(match[5]), parseInt(match[6])));
   });
 
   consoleLine.innerHTML += " done.";

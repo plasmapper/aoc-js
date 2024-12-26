@@ -20,16 +20,14 @@ export default class {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let instructions = [];
-
-    input.trim().split(/\r?\n/).forEach((line, index) => {
+    let instructions = input.trim().split(/\r?\n/).map((line, index) => {
       let match = line.match(/^(noop|addx)( -?\d+)?$/);
       if (match == null)
         throw new Error(`Invalid data in line ${index + 1}`);
       if (match[1] == "noop")
-        instructions.push(0);
+        return 0;
       else
-        instructions.push(parseInt(match[2].trim()));
+        return parseInt(match[2].trim());
     });
 
     consoleLine.innerHTML += " done.";

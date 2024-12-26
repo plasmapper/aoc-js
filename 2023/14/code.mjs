@@ -1,5 +1,10 @@
 import { delay, Console, PixelMap } from "../../utility.mjs";
 
+const cubeShapedRockColorIndex = 1;
+const cubeShapedRockColor = "#00aa00";
+const roundedRockColorIndex = 2;
+const roundedRockColor = "#ffffff";
+
 export default class {
   /**
    * @param {Console} solConsole Solution console.
@@ -20,15 +25,12 @@ export default class {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let map = [];
-    input.trim().split(/\r?\n/).forEach((line, index) => {
+    let map = input.trim().split(/\r?\n/).map((line, index, lines) => {
       if (!/^[.O#]+$/.test(line))
         throw new Error(`Invalid data in line ${index + 1}`);
-      
-      if (index != 0 && line.length != map[0].length)
+      if (line.length != lines[0].length)
         throw new Error(`Invalid length of line ${index + 1}`);
-
-      map.push(line.split("").map(e => e == "." ? 0 : (e == "#" ? 1 : 2)));
+      return line.split("").map(e => e == "." ? 0 : (e == "#" ? cubeShapedRockColorIndex : roundedRockColorIndex));
     });
 
     consoleLine.innerHTML += " done.";
@@ -43,10 +45,6 @@ export default class {
    * @returns {number} Total load on the north support beams after platform tilt cycles.
    */
   async solve(part, input, visualization) {
-    const cubeShapedRockColorIndex = 1;
-    const cubeShapedRockColor = "#00aa00";
-    const roundedRockColorIndex = 2;
-    const roundedRockColor = "#ffffff";
     const visualizationDelay = 50;
 
     try {

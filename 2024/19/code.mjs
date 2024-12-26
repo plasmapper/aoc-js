@@ -23,24 +23,19 @@ export default class  {
  parse(input) {
   let consoleLine = this.solConsole.addLine("Parsing...");
 
-  let patterns = [];
-  let designs = [];
-  
-  input.trim().split(/\r?\n/).forEach((line, lineIndex) => {
-    if (lineIndex == 0) {
-      if (!/^[wubrg]+(, [wubrg]+)*$/.test(line))
-        throw new Error("Invalid data in line 1");
-      patterns = line.split(", ");
-    }
-    
-    if (lineIndex == 1 && line != "")
-      throw new Error("Invalid data in line 2");
+  let blocks = input.trim().split(/\r?\n\r?\n/);
+  if (blocks.length != 2)
+    throw new Error("Input structure is not valid");
 
-    if (lineIndex > 1) {
-      if (!/^[wubrg]+$/.test(line))
-        throw new Error(`Invalid data in line ${lineIndex + 1}`);
-      designs.push(line);
-    }
+  if (!/^[wubrg]+(, [wubrg]+)*$/.test(blocks[0]))
+    throw new Error("Invalid data in line 1");
+
+  let patterns = blocks[0].split(", ");
+
+  let designs = blocks[1].split(/\r?\n/).map((line, lineIndex) => {
+    if (!/^[wubrg]+$/.test(line))
+      throw new Error(`Invalid data in block 2 line ${lineIndex + 1}`);
+    return line;
   });
 
   consoleLine.innerHTML += " done.";

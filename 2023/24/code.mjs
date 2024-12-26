@@ -20,14 +20,11 @@ export default class {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let hailstones = [];
-    input.trim().split(/\r?\n/).forEach((line, index) => {
+    let hailstones = input.trim().split(/\r?\n/).map((line, index) => {
       let match = line.replaceAll(/\s+/g, " ").match(/^(-?\d+), (-?\d+), (-?\d+) @ (-?\d+), (-?\d+), (-?\d+)$/);
       if (match == null)
         throw new Error(`Invalid data in line ${index + 1}`);
-      
-      hailstones.push(new Hailstone(new Vector3D(parseInt(match[1]), parseInt(match[2]), parseInt(match[3])),
-        new Vector3D(parseInt(match[4]), parseInt(match[5]), parseInt(match[6]))))
+      return new Hailstone(new Vector3D(parseInt(match[1]), parseInt(match[2]), parseInt(match[3])), new Vector3D(parseInt(match[4]), parseInt(match[5]), parseInt(match[6])));
     });
 
     consoleLine.innerHTML += " done.";

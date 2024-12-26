@@ -22,14 +22,12 @@ export default class  {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
     
-    let hands = [];
-
-    input.trim().split(/\r?\n/).forEach((line, index) => {
+    let hands = input.trim().split(/\r?\n/).map((line, index) => {
       let match = line.match(/^([2-9TJQKA]{5}) (\d+)$/);
       if (match == null)
         throw new Error(`Invalid data in line ${index + 1}`);
 
-      hands.push(new Hand(match[1].split("").map(e => cardValues[e]), parseInt(match[2])));
+      return new Hand(match[1].split("").map(e => cardValues[e]), parseInt(match[2]));
     });
 
     consoleLine.innerHTML += " done.";

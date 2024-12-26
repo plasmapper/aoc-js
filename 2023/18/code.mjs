@@ -15,7 +15,10 @@ export default class {
   /**
    * Parses the puzzle input.
    * @param {string} input Puzzle input.
-   * @returns {Trench} Trench.
+   * @returns {{
+   * part1DigSteps: DigStep[],
+   * part2DigSteps: DigStep[],
+   * }} Part 1 and part 2 dig steps.
    */
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
@@ -36,7 +39,7 @@ export default class {
     });
 
     consoleLine.innerHTML += " done.";
-    return new Trench(part1DigSteps, part2DigSteps);
+    return { part1DigSteps, part2DigSteps };
   }
 
   /**
@@ -53,7 +56,7 @@ export default class {
     try {
       this.isSolving = true;
 
-      let steps = part == 1 ? this.parse(input).part1Steps : this.parse(input).part2Steps;
+      let steps = part == 1 ? this.parse(input).part1DigSteps : this.parse(input).part2DigSteps;
 
       let clockWiseTurns = [];
 
@@ -164,27 +167,5 @@ class DigStep {
      * @type {number}
      */
     this.distance = distance;
-  }
-}
-
-/**
- * Puzzle trench class.
- */
-class Trench {
-  /**
-   * @param {DigStep[]} part1Steps Digging steps for part 1.
-   * @param {DigStep[]} part2Steps Digging steps for part 2.
-   */
-  constructor(part1Steps, part2Steps) {
-    /**
-     *  Digging steps for part 1.
-     * @type {DigStep[]}
-     */
-    this.part1Steps = part1Steps;
-    /**
-     *  Digging steps for part 2.
-     * @type {DigStep[]}
-     */
-    this.part2Steps = part2Steps;
   }
 }

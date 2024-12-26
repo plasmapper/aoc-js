@@ -20,15 +20,14 @@ export default class  {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
     
-    let lines = [];
-    input.trim().split(/\r?\n/).forEach((line, index) => {
-      lines.push(line.trim());
-      if (index != 0 && line.length != lines[0].length)
+    let schematicLines = input.trim().split(/\r?\n/).map((line, index, lines) => {
+      if (line.length != lines[0].length)
         throw new Error(`Invalid length of line ${index + 1}`);
+      return line;
     });
     
     consoleLine.innerHTML += " done.";
-    return lines;
+    return schematicLines;
   }
 
   /**
