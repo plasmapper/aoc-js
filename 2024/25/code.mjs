@@ -82,7 +82,6 @@ export default class  {
       if (visualization)
         this.visContainer.append(visConsole.container);
 
-
       let numberOfMatchingPairs = 0;
       for (let lockIndex = 0; lockIndex < locks.length; lockIndex++) {
         for (let keyIndex = 0; keyIndex < keys.length; keyIndex++) {

@@ -289,8 +289,7 @@ export const years = [
       },
       {
         name: "Day 19: Not Enough Minerals", path: "./2022/19", taskUrl: "https://adventofcode.com/2022/day/19",
-        answers: {part1: 33, part2: 62},
-        disabled: true
+        answers: {part1: 33, part2: 3472}
       },
       {
         name: "Day 20: Grove Positioning System", path: "./2022/20", taskUrl: "https://adventofcode.com/2022/day/20",
