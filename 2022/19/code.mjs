@@ -12,30 +12,30 @@ export default class  {
     this.visContainer = visContainer;
   }
   
- /**
+  /**
    * Parses the puzzle input.
    * @param {string} input Puzzle input.
    * @returns {Blueprint[]} Blueprints.
    */
- parse(input) {
-  let consoleLine = this.solConsole.addLine("Parsing...");
+  parse(input) {
+    let consoleLine = this.solConsole.addLine("Parsing...");
 
-  let blueprints = input.trim().split(/\r?\n/).map((line, lineIndex) => {
-    let match;
-    if ((match = line.match(/^Blueprint (\d+): Each ore robot costs (\d+) ore. Each clay robot costs (\d+) ore. Each obsidian robot costs (\d+) ore and (\d+) clay. Each geode robot costs (\d+) ore and (\d+) obsidian.$/)) == null)
-      throw new Error(`Invalid data in line ${lineIndex + 1}`);
-    if (match[1] != lineIndex + 1)
-      throw new Error(`Invalid blueprint number in line ${lineIndex + 1}`);
-    return new Blueprint(
-      new Resources(parseInt(match[2]), 0, 0, 0),
-      new Resources(parseInt(match[3]), 0, 0, 0),
-      new Resources(parseInt(match[4]), parseInt(match[5]), 0, 0),
-      new Resources(parseInt(match[6]), 0, parseInt(match[7]), 0));
-  });
+    let blueprints = input.trim().split(/\r?\n/).map((line, lineIndex) => {
+      let match;
+      if ((match = line.match(/^Blueprint (\d+): Each ore robot costs (\d+) ore. Each clay robot costs (\d+) ore. Each obsidian robot costs (\d+) ore and (\d+) clay. Each geode robot costs (\d+) ore and (\d+) obsidian.$/)) == null)
+        throw new Error(`Invalid data in line ${lineIndex + 1}`);
+      if (match[1] != lineIndex + 1)
+        throw new Error(`Invalid blueprint number in line ${lineIndex + 1}`);
+      return new Blueprint(
+        new Resources(parseInt(match[2]), 0, 0, 0),
+        new Resources(parseInt(match[3]), 0, 0, 0),
+        new Resources(parseInt(match[4]), parseInt(match[5]), 0, 0),
+        new Resources(parseInt(match[6]), 0, parseInt(match[7]), 0));
+    });
    
-  consoleLine.innerHTML += " done.";
-  return blueprints;
-}
+    consoleLine.innerHTML += " done.";
+    return blueprints;
+  }
 
   /**
    * Finds the sum of the blueprint quality levels (part 1) or the product of the largest number of geodes for the first 3 blueprints (part 2).

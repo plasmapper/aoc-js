@@ -12,37 +12,37 @@ export default class  {
     this.visContainer = visContainer;
   }
   
- /**
+  /**
    * Parses the puzzle input.
    * @param {string} input Puzzle input.
    * @returns {Number[]} Numbers.
    */
- parse(input) {
-  let consoleLine = this.solConsole.addLine("Parsing...");
+  parse(input) {
+    let consoleLine = this.solConsole.addLine("Parsing...");
 
-  let numbers = input.trim().split(/\r?\n/).map((line, lineIndex) => {
-    let match;
-    if ((match = line.match(/^-?\d+$/)) == null)
-      throw new Error(`Invalid data in line ${lineIndex + 1}`);
+    let numbers = input.trim().split(/\r?\n/).map((line, lineIndex) => {
+      let match;
+      if ((match = line.match(/^-?\d+$/)) == null)
+        throw new Error(`Invalid data in line ${lineIndex + 1}`);
 
-    return new Number(parseInt(match[0]));
-  });
+      return new Number(parseInt(match[0]));
+    });
 
-  for (let i = 0; i < numbers.length; i++) {
-    if (i > 0)
-      numbers[i].previous = numbers[i - 1];
-    else
-      numbers[i].previous = numbers[numbers.length - 1];
+    for (let i = 0; i < numbers.length; i++) {
+      if (i > 0)
+        numbers[i].previous = numbers[i - 1];
+      else
+        numbers[i].previous = numbers[numbers.length - 1];
+      
+      if (i < numbers.length - 1)
+        numbers[i].next = numbers[i + 1];
+      else
+        numbers[i].next = numbers[0];
+    }
     
-    if (i < numbers.length - 1)
-      numbers[i].next = numbers[i + 1];
-    else
-      numbers[i].next = numbers[0];
+    consoleLine.innerHTML += " done.";
+    return numbers;
   }
-   
-  consoleLine.innerHTML += " done.";
-  return numbers;
-}
 
   /**
    * Finds the sum of grove coordinates.
