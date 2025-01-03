@@ -293,8 +293,7 @@ export const years = [
       },
       {
         name: "Day 20: Grove Positioning System", path: "./2022/20", taskUrl: "https://adventofcode.com/2022/day/20",
-        answers: {part1: 3, part2: 1623178306},
-        disabled: true
+        answers: {part1: 3, part2: 1623178306}
       },
       {
         name: "Day 21: Monkey Math", path: "./2022/21", taskUrl: "https://adventofcode.com/2022/day/21",
