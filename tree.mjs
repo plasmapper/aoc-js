@@ -297,8 +297,7 @@ export const years = [
       },
       {
         name: "Day 21: Monkey Math", path: "./2022/21", taskUrl: "https://adventofcode.com/2022/day/21",
-        answers: {part1: 152, part2: 301},
-        disabled: true
+        answers: {part1: 152, part2: 301}
       },
       {
         name: "Day 22: Monkey Map", path: "./2022/22", taskUrl: "https://adventofcode.com/2022/day/22",
