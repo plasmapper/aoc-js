@@ -265,7 +265,7 @@ export class RendererCuboid extends RendererObject {
     vertices.push(corners[0], corners[1], corners[5], corners[0], corners[5], corners[4]);
     vertices.push(corners[1], corners[2], corners[6], corners[1], corners[6], corners[5]);
     vertices.push(corners[2], corners[3], corners[7], corners[2], corners[7], corners[6]);
-    vertices.push(corners[0], corners[7], corners[3], corners[0], corners[4], corners[3]);
+    vertices.push(corners[0], corners[7], corners[3], corners[0], corners[4], corners[7]);
     vertices.push(corners[4], corners[5], corners[6], corners[4], corners[6], corners[7]);
 
     let sideNormals = [new Vector3D(0, 0, -1), new Vector3D(0, -1, 0), new Vector3D(1, 0, 0), new Vector3D(0, 1, 0), new Vector3D(-1, 0, 0), new Vector3D(0, 0, 1)];

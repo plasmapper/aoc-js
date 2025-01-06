@@ -301,8 +301,7 @@ export const years = [
       },
       {
         name: "Day 22: Monkey Map", path: "./2022/22", taskUrl: "https://adventofcode.com/2022/day/22",
-        answers: {part1: 6032, part2: 5031},
-        disabled: true
+        answers: {part1: 6032, part2: 5031}
       },
       {
         name: "Day 23: Unstable Diffusion", path: "./2022/23", taskUrl: "https://adventofcode.com/2022/day/23",
