@@ -313,8 +313,7 @@ export const years = [
       },
       {
         name: "Day 25: Full of Hot Air", path: "./2022/25", taskUrl: "https://adventofcode.com/2022/day/25",
-        answers: {part1: "2=-1=0"},
-        disabled: true
+        answers: {part1: "2=-1=0"}
       }
     ]
   }
