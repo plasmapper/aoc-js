@@ -305,8 +305,7 @@ export const years = [
       },
       {
         name: "Day 23: Unstable Diffusion", path: "./2022/23", taskUrl: "https://adventofcode.com/2022/day/23",
-        answers: {part1: 110, part2: 20},
-        disabled: true
+        answers: {part1: 110, part2: 20}
       },
       {
         name: "Day 24: Blizzard Basin", path: "./2022/24", taskUrl: "https://adventofcode.com/2022/day/24",
