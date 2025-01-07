@@ -105,11 +105,12 @@ header {
 }
 
 #task-input, #solution-console, #visualization-container code, canvas {
-  width: 25em;
+  width: 24em;
 }
 
-#task-input {
-  height: 16.5em;
+#task-input, #solution-console, #visualization-container code {
+  width: 24em;
+  padding: 0em 0.1em;
 }
 
 #task-input {
@@ -124,6 +125,13 @@ header {
   height: 32em;
 }
 
-#aoc-website-session-id {
-  width: 13.7em;
+svg {
+  fill: currentColor;
+  color: #ffffff;
+}
+
+#github-logo {
+  vertical-align: middle;
+  width: 1.5em;
+  margin-bottom: 0.3em;
 }
