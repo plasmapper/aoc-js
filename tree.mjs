@@ -375,7 +375,7 @@ export const years = [
       },
       {
         name: "Day 5: Doesn't He Have Intern-Elves For This?", path: "./2015/05", taskUrl: "https://adventofcode.com/2015/day/5",
-        answers: {part1: 2, part2: 0}
+        answers: {part1: 2, part2: 2}
       }
     ]
   }
