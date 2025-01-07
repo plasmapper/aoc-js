@@ -316,5 +316,51 @@ export const years = [
         answers: {part1: "2=-1=0"}
       }
     ]
+  },
+
+  {
+    name: "2021",
+    days: [],
+    disabled: true
+  },
+
+  {
+    name: "2020",
+    days: [],
+    disabled: true
+  },
+
+  {
+    name: "2019",
+    days: [],
+    disabled: true
+  },
+
+  {
+    name: "2018",
+    days: [],
+    disabled: true
+  },
+
+  {
+    name: "2017",
+    days: [],
+    disabled: true
+  },
+
+  {
+    name: "2016",
+    days: [],
+    disabled: true
+  },
+
+  {
+    name: "2015",
+    days: [
+      {
+        name: "Day 1: Not Quite Lisp", path: "./2015/01", taskUrl: "https://adventofcode.com/2015/day/1",
+        answers: {part1: -1, part2: 3}
+      }
+    ]
   }
 ];

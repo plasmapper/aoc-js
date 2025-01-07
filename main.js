@@ -36,8 +36,10 @@ async function initialize() {
 
   for (let i = 0; i < years.length; i++) {
     let yearSelector = document.createElement("span");
-    yearSelector.classList.add("selector");
-    yearSelector.onclick = () => setYearIndex(i);
+    if (years[i].disabled != true) {
+      yearSelector.classList.add("selector");
+      yearSelector.onclick = () => setYearIndex(i);
+    }
     yearSelector.innerHTML = years[i].name;
     yearsContainer.append(yearSelector);
   }
