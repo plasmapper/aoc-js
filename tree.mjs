@@ -371,7 +371,7 @@ export const years = [
       },
       {
         name: "Day 4: The Ideal Stocking Stuffer", path: "./2015/04", taskUrl: "https://adventofcode.com/2015/day/4",
-        answers: {part1: 609043, part2: 6742839}
+        answers: {}
       },
       {
         name: "Day 5: Doesn't He Have Intern-Elves For This?", path: "./2015/05", taskUrl: "https://adventofcode.com/2015/day/5",

@@ -1,4 +1,4 @@
-import { delay, Console, linearSystemSolution } from "../../utility.mjs";
+import { delay, Console } from "../../utility.mjs";
 
 export default class  {
   /**
