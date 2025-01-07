@@ -360,6 +360,10 @@ export const years = [
       {
         name: "Day 1: Not Quite Lisp", path: "./2015/01", taskUrl: "https://adventofcode.com/2015/day/1",
         answers: {part1: -1, part2: 3}
+      },
+      {
+        name: "Day 2: I Was Told There Would Be No Math", path: "./2015/02", taskUrl: "https://adventofcode.com/2015/day/2",
+        answers: {part1: 101, part2: 48}
       }
     ]
   }

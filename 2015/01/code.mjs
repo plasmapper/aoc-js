@@ -1,8 +1,5 @@
 import { delay, Console } from "../../utility.mjs";
 
-const patternWidth = 5;
-const patternHeight = 7;
-
 export default class  {
   /**
    * @param {Console} solConsole Solution console.
@@ -15,21 +12,21 @@ export default class  {
     this.visContainer = visContainer;
   }
   
- /**
+  /**
    * Parses the puzzle input.
    * @param {string} input Puzzle input.
    * @returns {string} Instructions.
    */
- parse(input) {
-  let consoleLine = this.solConsole.addLine("Parsing...");
+  parse(input) {
+    let consoleLine = this.solConsole.addLine("Parsing...");
 
-  let instructions = input.trim();
-  if (!/^[\(\)]+$/.test(instructions))
-    throw new Error("Invalid input data");
+    let instructions = input.trim();
+    if (!/^[\(\)]+$/.test(instructions))
+      throw new Error("Invalid input data");
 
-  consoleLine.innerHTML += " done.";
-  return instructions;
-}
+    consoleLine.innerHTML += " done.";
+    return instructions;
+  }
 
   /**
    * Finds the result floor (part 1) or the instruction number that makes the floor number negative (part 2).
