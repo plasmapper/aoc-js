@@ -118,12 +118,12 @@ export class Range2D {
      * X range.
      * @type {Range}
      */
-    this.xRange = new Range(xFrom, xTo);
+    this.x = new Range(xFrom, xTo);
     /**
      * Y range.
      * @type {Range}
      */
-    this.yRange = new Range(yFrom, yTo);
+    this.y = new Range(yFrom, yTo);
   }
 
   /**
@@ -131,7 +131,7 @@ export class Range2D {
    * @returns {Range2D} Copy of the range.
    */
   clone() {
-    return new Range2D(this.xRange, this.yRange);
+    return new Range2D(this.x.from, this.x.to, this.y.from, this.y.to);
   }
 
   /**
@@ -140,6 +140,6 @@ export class Range2D {
    * @returns {boolean} True if the vector is inside the range.
    */
   contains(vector) {
-    return this.xRange.contains(vector.x) && this.yRange.contains(vector.y);
+    return this.x.contains(vector.x) && this.y.contains(vector.y);
   }
 }

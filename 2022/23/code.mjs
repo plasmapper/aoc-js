@@ -56,16 +56,16 @@ export default class {
       // Find the smallest rectangle that contains the Elves
       let positionRange = new Range2D(Number.MAX_VALUE, Number.MIN_VALUE, Number.MAX_VALUE, Number.MIN_VALUE);
       for (let elf of elves) {
-        positionRange.xRange.from = Math.min(positionRange.xRange.from, elf.x);
-        positionRange.xRange.to = Math.max(positionRange.xRange.to, elf.x);
-        positionRange.yRange.from = Math.min(positionRange.yRange.from, elf.y);
-        positionRange.yRange.to = Math.max(positionRange.yRange.to, elf.y);
+        positionRange.x.from = Math.min(positionRange.x.from, elf.x);
+        positionRange.x.to = Math.max(positionRange.x.to, elf.x);
+        positionRange.y.from = Math.min(positionRange.y.from, elf.y);
+        positionRange.y.to = Math.max(positionRange.y.to, elf.y);
       }
 
       // Expand the map
       let mapExpansionCoefficient = 3;
-      let mapWidth = (positionRange.xRange.to - positionRange.xRange.from + 1) * mapExpansionCoefficient;
-      let mapHeight = (positionRange.yRange.to - positionRange.yRange.from + 1) * mapExpansionCoefficient;
+      let mapWidth = (positionRange.x.to - positionRange.x.from + 1) * mapExpansionCoefficient;
+      let mapHeight = (positionRange.y.to - positionRange.y.from + 1) * mapExpansionCoefficient;
       let map = [];
       for (let y = 0; y < mapHeight; y++)
         map.push(new Array(mapWidth).fill(0));
@@ -154,14 +154,14 @@ export default class {
       // Find the smallest rectangle that contains the Elves
       positionRange = new Range2D(Number.MAX_VALUE, Number.MIN_VALUE, Number.MAX_VALUE, Number.MIN_VALUE);
       for (let elf of elves) {
-        positionRange.xRange.from = Math.min(positionRange.xRange.from, elf.x);
-        positionRange.xRange.to = Math.max(positionRange.xRange.to, elf.x);
-        positionRange.yRange.from = Math.min(positionRange.yRange.from, elf.y);
-        positionRange.yRange.to = Math.max(positionRange.yRange.to, elf.y);
+        positionRange.x.from = Math.min(positionRange.x.from, elf.x);
+        positionRange.x.to = Math.max(positionRange.x.to, elf.x);
+        positionRange.y.from = Math.min(positionRange.y.from, elf.y);
+        positionRange.y.to = Math.max(positionRange.y.to, elf.y);
       }
 
       if (part == 1)
-        return (positionRange.xRange.to - positionRange.xRange.from + 1) * (positionRange.yRange.to - positionRange.yRange.from + 1) - elves.length;
+        return (positionRange.x.to - positionRange.x.from + 1) * (positionRange.y.to - positionRange.y.from + 1) - elves.length;
       else
         return roundIndex;
     }

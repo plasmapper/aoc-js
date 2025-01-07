@@ -168,14 +168,14 @@ export default class {
     let position = initialPosition.clone();
     let direction = initialDirection.clone();
     let positionDirectionSet = new Set();
-    let positionDirectionHash = (pos, dir) => (pos.y * (mapCoordinateRange.xRange.to + 1) + pos.x) * 100 + (dir.y + 2) * 10 + dir.x + 2;
+    let positionDirectionHash = (pos, dir) => (pos.y * (mapCoordinateRange.x.to + 1) + pos.x) * 100 + (dir.y + 2) * 10 + dir.x + 2;
 
     let route = [initialPosition.clone()];
     
     while (mapCoordinateRange.contains(position) && !positionDirectionSet.has(positionDirectionHash(position, direction))) {
       positionDirectionSet.add(positionDirectionHash(position, direction));
       let newPosition = position.clone().add(direction);
-      if (!mapCoordinateRange.contains(newPosition) || !obstacleSet.has(newPosition.y * (mapCoordinateRange.xRange.to + 1) + newPosition.x)) {
+      if (!mapCoordinateRange.contains(newPosition) || !obstacleSet.has(newPosition.y * (mapCoordinateRange.x.to + 1) + newPosition.x)) {
         position = newPosition;
         route.push(newPosition);
       }
