@@ -368,6 +368,10 @@ export const years = [
       {
         name: "Day 3: Perfectly Spherical Houses in a Vacuum", path: "./2015/03", taskUrl: "https://adventofcode.com/2015/day/3",
         answers: {part1: 4, part2: 3}
+      },
+      {
+        name: "Day 4: The Ideal Stocking Stuffer", path: "./2015/04", taskUrl: "https://adventofcode.com/2015/day/4",
+        answers: {part1: 609043, part2: 6742839}
       }
     ]
   }
