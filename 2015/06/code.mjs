@@ -1,4 +1,4 @@
-import { delay, Console, PixelMap, Vector2D, Range2D } from "../../utility.mjs";
+import { delay, Console, PixelMap, Range2D } from "../../utility.mjs";
 
 const mapSize = 1000;
 const maxBrightness = 100;
