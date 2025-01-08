@@ -1,0 +1,3 @@
+Sue 1: children: 1, cars: 8, vizslas: 7
+Sue 2: akitas: 0, cats: 8, goldfish: 4
+Sue 3: cars: 2, pomeranians: 3, vizslas: 0

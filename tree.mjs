@@ -416,6 +416,10 @@ export const years = [
       {
         name: "Day 15: Science for Hungry People", path: "./2015/15", taskUrl: "https://adventofcode.com/2015/day/15",
         answers: {part1: 62842880, part2: 57600000}
+      },
+      {
+        name: "Day 16: Aunt Sue", path: "./2015/16", taskUrl: "https://adventofcode.com/2015/day/16",
+        answers: {part1: 3, part2: 2}
       }
     ]
   }
