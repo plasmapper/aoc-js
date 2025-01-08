@@ -396,6 +396,10 @@ export const years = [
       {
         name: "Day 10: Elves Look, Elves Say", path: "./2015/10", taskUrl: "https://adventofcode.com/2015/day/10",
         answers: {part1: 82350, part2: 1166642}
+      },
+      {
+        name: "Day 11: Corporate Policy", path: "./2015/11", taskUrl: "https://adventofcode.com/2015/day/11",
+        answers: {part1: "abcdffaa", part2: "abcdffbb"}
       }
     ]
   }
