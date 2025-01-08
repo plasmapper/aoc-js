@@ -388,6 +388,10 @@ export const years = [
       {
         name: "Day 8: Matchsticks", path: "./2015/08", taskUrl: "https://adventofcode.com/2015/day/8",
         answers: {part1: 12, part2: 19}
+      },
+      {
+        name: "Day 9: All in a Single Night", path: "./2015/09", taskUrl: "https://adventofcode.com/2015/day/9",
+        answers: {part1: 605, part2: 982}
       }
     ]
   }
