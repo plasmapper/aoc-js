@@ -400,6 +400,10 @@ export const years = [
       {
         name: "Day 11: Corporate Policy", path: "./2015/11", taskUrl: "https://adventofcode.com/2015/day/11",
         answers: {part1: "abcdffaa", part2: "abcdffbb"}
+      },
+      {
+        name: "Day 12: JSAbacusFramework.io", path: "./2015/12", taskUrl: "https://adventofcode.com/2015/day/12",
+        answers: {part1: 6, part2: 4}
       }
     ]
   }
