@@ -392,6 +392,10 @@ export const years = [
       {
         name: "Day 9: All in a Single Night", path: "./2015/09", taskUrl: "https://adventofcode.com/2015/day/9",
         answers: {part1: 605, part2: 982}
+      },
+      {
+        name: "Day 10: Elves Look, Elves Say", path: "./2015/10", taskUrl: "https://adventofcode.com/2015/day/10",
+        answers: {part1: 82350, part2: 1166642}
       }
     ]
   }
