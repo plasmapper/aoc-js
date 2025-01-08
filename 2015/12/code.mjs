@@ -27,11 +27,11 @@ export default class  {
   }
 
   /**
-   * Calculates the sum of all numbers in the document.
+   * Calculates the sum of numbers in the document.
    * @param {number} part Puzzle part.
    * @param {string} input Puzzle input.
    * @param {boolean} visualization Enable visualization.
-   * @returns {string} Sum of all numbers in the document.
+   * @returns {number} Sum of numbers in the document.
    */
   async solve(part, input, visualization) {
     try {

@@ -404,6 +404,10 @@ export const years = [
       {
         name: "Day 12: JSAbacusFramework.io", path: "./2015/12", taskUrl: "https://adventofcode.com/2015/day/12",
         answers: {part1: 6, part2: 4}
+      },
+      {
+        name: "Day 13: Knights of the Dinner Table", path: "./2015/13", taskUrl: "https://adventofcode.com/2015/day/13",
+        answers: {part1: 330, part2: 286}
       }
     ]
   }
