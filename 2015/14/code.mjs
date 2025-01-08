@@ -109,7 +109,7 @@ export default class  {
 }
 
 /**
- * Puzzle reindeer  class.
+ * Puzzle reindeer class.
  */
 class Reindeer  {
   /**
