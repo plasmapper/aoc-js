@@ -28,7 +28,7 @@ export default class  {
     input = input.trim();
     let match = input.match(/^Register A: (\d+)\r?\nRegister B: (\d+)\r?\nRegister C: (\d+)\r?\n\r?\nProgram: (\d(,\d)+)$/);
     if (match == null)
-      throw new Error("Invalid input structure");
+      throw new Error("Input structure is not valid");
     
     let registerA = BigInt(parseInt(match[1]));
     let registerB = BigInt(parseInt(match[2]));

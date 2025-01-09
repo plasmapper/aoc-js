@@ -122,7 +122,7 @@ class Instruction {
    */
   constructor(action, range) {
     /**
-     * Action
+     * Action.
      * @type {string}
      */
     this.action = action;
