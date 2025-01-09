@@ -420,6 +420,10 @@ export const years = [
       {
         name: "Day 16: Aunt Sue", path: "./2015/16", taskUrl: "https://adventofcode.com/2015/day/16",
         answers: {part1: 3, part2: 2}
+      },
+      {
+        name: "Day 17: No Such Thing as Too Much", path: "./2015/17", taskUrl: "https://adventofcode.com/2015/day/17",
+        answers: {part1: 4, part2: 3}
       }
     ]
   }
