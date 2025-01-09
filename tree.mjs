@@ -428,6 +428,10 @@ export const years = [
       {
         name: "Day 19: Medicine for Rudolph", path: "./2015/19", taskUrl: "https://adventofcode.com/2015/day/19",
         answers: {part1: 4, part2: 3}
+      },
+      {
+        name: "Day 20: Infinite Elves and Infinite Houses", path: "./2015/20", taskUrl: "https://adventofcode.com/2015/day/20",
+        answers: {part1: 6, part2: 6}
       }
     ]
   }
