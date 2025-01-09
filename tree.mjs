@@ -432,6 +432,10 @@ export const years = [
       {
         name: "Day 20: Infinite Elves and Infinite Houses", path: "./2015/20", taskUrl: "https://adventofcode.com/2015/day/20",
         answers: {part1: 6, part2: 6}
+      },
+      {
+        name: "Day 21: RPG Simulator 20XX", path: "./2015/21", taskUrl: "https://adventofcode.com/2015/day/21",
+        answers: {part1: 101, part2: 138}
       }
     ]
   }
