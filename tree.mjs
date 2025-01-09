@@ -424,6 +424,10 @@ export const years = [
       {
         name: "Day 17: No Such Thing as Too Much", path: "./2015/17", taskUrl: "https://adventofcode.com/2015/day/17",
         answers: {part1: 4, part2: 3}
+      },
+      {
+        name: "Day 18: Like a GIF For Your Yard", path: "./2015/18", taskUrl: "https://adventofcode.com/2015/day/18",
+        answers: {part1: 4, part2: 17}
       }
     ]
   }
