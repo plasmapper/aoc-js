@@ -125,7 +125,7 @@ export default class  {
 
         numberOfSeconds = period - 1;
 
-        // Find the distribution with minimal dispersion
+        // Find the distribution with minimum dispersion
         let dispersionSums = [];
         for (let i = 0; i < numberOfSeconds; i++) {
           let meanX = 0, meanY = 0;
@@ -154,7 +154,7 @@ export default class  {
           dispersionSums.push(dispersionX + dispersionY);
         }
 
-        // Find the step with the minimal dispersion sum
+        // Find the step with minimum dispersion sum
         let minDispersionNumberOfSeconds = dispersionSums.indexOf(Math.min(...dispersionSums)) + 1;
 
         solConsole.addLine(`The robot distribution dispersion sum is minimal after ${minDispersionNumberOfSeconds} seconds.`);

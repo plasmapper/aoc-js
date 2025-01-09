@@ -31,11 +31,11 @@ export default class  {
 }
 
   /**
-   * Calculates the sum of the secret numbers (part 1) or the maximal sum of prices after some price change sequence (part 2).
+   * Calculates the sum of the secret numbers (part 1) or the maximum sum of prices after some price change sequence (part 2).
    * @param {number} part Puzzle part.
    * @param {string} input Puzzle input.
    * @param {boolean} visualization Enable visualization.
-   * @returns {number} Sum of the secret numbers (part 1) or the maximal sum of prices after some price change sequence (part 2).
+   * @returns {number} Sum of the secret numbers (part 1) or the maximum sum of prices after some price change sequence (part 2).
    */
   async solve(part, input, visualization) {
     try {
@@ -103,7 +103,7 @@ export default class  {
         return finalNumbers.reduce((acc, e) => acc + e, 0);
       }
 
-      // Calcuate the maximal sum of prices after some price change sequence (part 2)
+      // Calcuate the maximum sum of prices after some price change sequence (part 2)
       else {
         let maxPriceSum = 0;
         let maxPriceSumKey = "";

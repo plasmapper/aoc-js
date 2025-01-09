@@ -109,13 +109,13 @@ export default class  {
             let size = 0;
             // For every movement on the directional keypad
             for (let nextDirectionalKey of command.split("")) {
-              // Add the minimal size of such operation in case of the specified number of intermediate robots
+              // Add the minimum size of such operation in case of the specified number of intermediate robots
               size += Math.min(...directionalKeypadCommands[directionalKey][nextDirectionalKey].map(e => commandSizes[e][numberOfRobots - 1]));
               directionalKey = nextDirectionalKey;
             }
             sizes.push(size);
           }
-          // Find the minimal command size
+          // Find the minimum command size
           totalSize += Math.min(...sizes);
           numberKey = nextNumberKey;
         }
