@@ -436,6 +436,10 @@ export const years = [
       {
         name: "Day 21: RPG Simulator 20XX", path: "./2015/21", taskUrl: "https://adventofcode.com/2015/day/21",
         answers: {part1: 101, part2: 138}
+      },
+      {
+        name: "Day 22: Wizard Simulator 20XX", path: "./2015/22", taskUrl: "https://adventofcode.com/2015/day/22",
+        answers: {part1: 226, part2: 339}
       }
     ]
   }

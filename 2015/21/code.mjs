@@ -54,7 +54,7 @@ export default class  {
       this.isSolving = true;
 
       let boss = this.parse(input);
-      let player = boss.hitPoints < 100 ? new Player(8, 0, 0) : new Player(100, 0, 0);
+      let player = boss.hitPoints < 20 ? new Player(8, 0, 0) : new Player(100, 0, 0);
       let weapons = [
         new Item("Dagger", 8, 4, 0),
         new Item("Shortsword", 10, 5, 0),
