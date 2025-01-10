@@ -440,6 +440,10 @@ export const years = [
       {
         name: "Day 22: Wizard Simulator 20XX", path: "./2015/22", taskUrl: "https://adventofcode.com/2015/day/22",
         answers: {part1: 226, part2: 339}
+      },
+      {
+        name: "Day 23: Opening the Turing Lock", path: "./2015/23", taskUrl: "https://adventofcode.com/2015/day/23",
+        answers: {part1: 0, part2: 0}
       }
     ]
   }
