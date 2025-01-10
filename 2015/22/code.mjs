@@ -58,11 +58,11 @@ export default class  {
         new Spell("Drain", 73, 0, situation => {situation.boss.hitPoints = Math.max(0, situation.boss.hitPoints - 2); situation.player.hitPoints += 2}, () => {}, () => {},
           "damage: 4, healing: 2", null, null),
         new Spell("Shield", 113, 6, situation => situation.player.armor += 7, () => {}, situation => situation.player.armor -= 7,
-          "armor: 7", null, "armor: 0"),
+          null, "armor: 7", null),
         new Spell("Poison", 173, 6, () => {}, situation => situation.boss.hitPoints = Math.max(0, situation.boss.hitPoints - 3), () => {},
           null, "damage: 3", null),
         new Spell("Recharge", 229, 5, () => {}, situation => situation.player.mana += 101, () => {},
-          null, "mana: 101", null)
+          null, "mana: +101", null)
       ];
      
       let visConsole = new Console();
@@ -100,9 +100,11 @@ export default class  {
 
       if (visualization) {
         let situation = initialSituation;
-        console.log(resultSituation.spellHistory)
-        for (let spell of resultSituation.spellHistory)
+        situation.player.hitPoints++;
+        for (let spell of resultSituation.spellHistory) {
+          situation.player.hitPoints--;
           situation = situation.cast(spell, true, visConsole);
+        } 
       }
 
       return resultSituation.player.manaSpent;
@@ -278,7 +280,7 @@ class Situation {
   }
 
   /**
-   * Casts a spell and returns a situation at the next turn of the player.
+   * Casts a spell and returns the situation at the next turn of the player.
    * @param {Spell} spell Spell.
    * @param {boolean} visualization Enable visualization.
    * @param {Console} visConsole Visualization console.
@@ -301,19 +303,19 @@ class Situation {
       }
 
       for (let [activeSpell, timer] of situation.activeSpells) {
-        activeSpell.action(situation);
         timer--;
+        if (visualization)
+          visConsole.addLine(`${activeSpell.name} is active (${activeSpell.actionMessage != null ? `${activeSpell.actionMessage}, ` : ""}timer: ${timer})`);
+        activeSpell.action(situation);
+
         if (timer <= 0) {
           if (visualization)
             visConsole.addLine(`${activeSpell.name} ends${activeSpell.endMessage != null ? ` (${activeSpell.endMessage})` : ""}`);
           activeSpell.endAction(situation);
           situation.activeSpells.delete(activeSpell);
         }
-        else {
-          if (visualization)
-            visConsole.addLine(`${activeSpell.name} is active (${activeSpell.actionMessage != null ? `${activeSpell.actionMessage}, ` : ""}timer: ${timer})`);
+        else
           situation.activeSpells.set(activeSpell, timer);
-        }
       }
 
       if (turn == 0) {
@@ -337,8 +339,10 @@ class Situation {
         visConsole.addLine();
 
       if (situation.boss.hitPoints <= 0) {
-        if (visualization)
-          visConsole.addLine(`Player wins.`);
+        if (visualization) {
+          visConsole.addLine(`Player wins (${situation.player.manaSpent} mana spent).`);
+          visConsole.lines[visConsole.lines.length - 1].classList.add("highlighted");
+        }
         return situation;
       }
       if (situation.player.hitPoints <= 0) {
