@@ -1,6 +1,15 @@
 import fs from "fs";
 import {years} from "./tree.mjs";
 
+let x0 = 6, dx = 10, y0 = 1;
+let x = x0, y = y0;
+
+console.log(" ".repeat(x0 + 6) + years.map(year => `${year.name}`).join("      "));
+for (let i = 1; i <= 25; i++)
+  console.log(`Day ${i < 10 ? " " : ""}${i}`);
+process.stdout.cursorTo(x0);
+process.stdout.moveCursor(0, -25);
+
 for (let year of years) {
   for (let day of year.days) {
     if (day.disabled != true) {
@@ -9,7 +18,7 @@ for (let year of years) {
       
       let start = performance.now();
       await code.solve(1, input, false);
-      let part1Time = (Math.ceil(performance.now() - start)).toString().padStart(5);
+      let part1Time = (Math.ceil(performance.now() - start)).toString().padStart(4);
       
       start = performance.now();
       let part2Time = 0;
@@ -22,7 +31,18 @@ for (let year of years) {
       part1Time = `${part1Time > 5000 ? "\x1b[31m" : (part1Time > 1000 ? "\x1b[33m" : "\x1b[32m")}${part1Time}\x1b[0m`;
       part2Time = `${part2Time > 5000 ? "\x1b[31m" : (part2Time > 1000 ? "\x1b[33m" : "\x1b[32m")}${part2Time}\x1b[0m`;
 
-      console.log(`${year.name} ${day.name.substring(0, 7)} ${part1Time} / ${part2Time} ms`);
+      process.stdout.write(` ${part1Time}/${part2Time}`);
+      process.stdout.cursorTo(x);
+      process.stdout.moveCursor(0, 1);
+      y++;
     }
   }
+
+  x += dx;
+  process.stdout.cursorTo(x);
+  process.stdout.moveCursor(0, y0 - y);
+  y = y0;
 }
+
+process.stdout.cursorTo(0);
+process.stdout.moveCursor(0, 25);
