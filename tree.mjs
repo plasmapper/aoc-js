@@ -444,6 +444,10 @@ export const years = [
       {
         name: "Day 23: Opening the Turing Lock", path: "./2015/23", taskUrl: "https://adventofcode.com/2015/day/23",
         answers: {part1: 0, part2: 0}
+      },
+      {
+        name: "Day 24: It Hangs in the Balance", path: "./2015/24", taskUrl: "https://adventofcode.com/2015/day/24",
+        answers: {part1: 99, part2: 44}
       }
     ]
   }
