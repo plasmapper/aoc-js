@@ -448,6 +448,10 @@ export const years = [
       {
         name: "Day 24: It Hangs in the Balance", path: "./2015/24", taskUrl: "https://adventofcode.com/2015/day/24",
         answers: {part1: 99, part2: 44}
+      },
+      {
+        name: "Day 25: Let It Snow", path: "./2015/25", taskUrl: "https://adventofcode.com/2015/day/25",
+        answers: {part1: 33071741}
       }
     ]
   }
