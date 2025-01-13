@@ -426,6 +426,10 @@ export const years = [
         answers: {part1: 4, part2: 3}
       },
       {
+        name: "Day 18: Like a GIF For Your Yard", path: "./2015/18", taskUrl: "https://adventofcode.com/2015/day/18",
+        answers: {part1: 4, part2: 17}
+      },
+      {
         name: "Day 19: Medicine for Rudolph", path: "./2015/19", taskUrl: "https://adventofcode.com/2015/day/19",
         answers: {part1: 4, part2: 3}
       },
