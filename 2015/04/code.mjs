@@ -43,10 +43,22 @@ export default class  {
 
       let key = this.parse(input);
 
+      let visConsole = new Console();
+      if (visualization)
+        this.visContainer.append(visConsole.container);
+
       for (let number = 0; ; number++) {
-        let md5Start = CryptoJS.MD5(key + number).words[0];
-        if ((part == 1 ? (md5Start & 0xFFFFF000) : (md5Start & 0xFFFFFF00)) == 0)
+        let md5 = CryptoJS.MD5(key + number);
+        let md5Start = md5.words[0];
+        if ((part == 1 ? (md5Start & 0xFFFFF000) : (md5Start & 0xFFFFFF00)) == 0) {
+          if (visualization) {
+            visConsole.addLine(`MD5 hash of ${key}<span class="highlighted">${number}</span>:`)
+            let numberOfZeroes = part == 1 ? 5 : 6;
+            visConsole.addLine(`<span class="strongly-highlighted">${"0".repeat(numberOfZeroes)}</span>${md5.toString().substring(numberOfZeroes)}`);
+          }
+
           return number;
+        }
       }
     }
     
