@@ -364,6 +364,10 @@ export const years = [
       {
         name: "Day 1: No Time for a Taxicab", path: "./2016/01", taskUrl: "https://adventofcode.com/2016/day/1",
         answers: {part1: 8, part2: 4}
+      },
+      {
+        name: "Day 2: Bathroom Security", path: "./2016/02", taskUrl: "https://adventofcode.com/2016/day/2",
+        answers: {part1: "24862", part2: "5DB3"}
       }
     ]
   },

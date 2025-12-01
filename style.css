@@ -84,7 +84,7 @@ code p {
 .horizontal-container, .horizontal-wrap-container {
   display: flex;
   flex-direction: row;
-  column-gap: 2em;
+  column-gap: 1.5em;
   align-items: flex-start;
 }
 
