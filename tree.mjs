@@ -372,6 +372,10 @@ export const years = [
       {
         name: "Day 3: Squares With Three Sides", path: "./2016/03", taskUrl: "https://adventofcode.com/2016/day/3",
         answers: {part1: 1, part2: 1}
+      },
+      {
+        name: "Day 4: Security Through Obscurity", path: "./2016/04", taskUrl: "https://adventofcode.com/2016/day/4",
+        answers: {part1: 1514, part2: 0}
       }
     ]
   },

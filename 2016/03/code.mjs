@@ -61,7 +61,7 @@ export default class  {
       if (visualization)
         this.visContainer.append(visConsole.container);
 
-      let numberOfvalidTriangles = 0;
+      let numberOfValidTriangles = 0;
 
       for (let sideGroup of sideGroups) {
         let sortedSideGroup = sideGroup.slice().sort((a, b) => (a - b));
@@ -70,13 +70,13 @@ export default class  {
           visConsole.addLine(sideGroup.join(" "));
 
         if (sortedSideGroup[2] < sortedSideGroup[0] + sortedSideGroup[1]) {
-          numberOfvalidTriangles++;
+          numberOfValidTriangles++;
           if (visualization)
             visConsole.lines[visConsole.lines.length - 1].classList.add("highlighted");
         }
       }
 
-      return numberOfvalidTriangles;
+      return numberOfValidTriangles;
     }
     
     finally {
