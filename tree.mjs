@@ -5,7 +5,7 @@ export const years = [
       {
         name: "Day 1: Secret Entrance", path: "./2025/01", taskUrl: "https://adventofcode.com/2025/day/1",
         answers: {part1: 3, part2: 6}
-      },
+      }
     ]
   },
 
@@ -360,8 +360,12 @@ export const years = [
 
   {
     name: "2016",
-    days: [],
-    disabled: true
+    days: [
+      {
+        name: "Day 1: No Time for a Taxicab", path: "./2016/01", taskUrl: "https://adventofcode.com/2016/day/1",
+        answers: {part1: 8, part2: 4}
+      }
+    ]
   },
 
   {
