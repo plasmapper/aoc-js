@@ -15,7 +15,7 @@ export default class  {
   /**
    * Parses the puzzle input.
    * @param {string} input Puzzle input.
-   * @returns {string} Instructions.
+   * @returns {string[]} Instructions.
    */
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
