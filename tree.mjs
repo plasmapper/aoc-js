@@ -1,5 +1,15 @@
 export const years = [
   {
+    name: "2025",
+    days: [
+      {
+        name: "Day 1: Secret Entrance", path: "./2025/01", taskUrl: "https://adventofcode.com/2025/day/1",
+        answers: {part1: 3, part2: 6}
+      },
+    ]
+  },
+
+  {
     name: "2024",
     days: [
       {
