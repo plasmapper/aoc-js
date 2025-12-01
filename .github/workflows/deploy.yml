@@ -9,10 +9,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
 
       - name: Run test
         run: |
@@ -23,7 +23,7 @@ jobs:
         run: rm -f test.mjs
 
       - name: Upload
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v4
         with:
           path: .
 
@@ -39,4 +39,4 @@ jobs:
     steps:
       - name: Deploy
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4
