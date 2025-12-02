@@ -388,6 +388,10 @@ export const years = [
       {
         name: "Day 6: Signals and Noise", path: "./2016/06", taskUrl: "https://adventofcode.com/2016/day/6",
         answers: {part1: "easter", part2: "advent"}
+      },
+      {
+        name: "Day 7: Internet Protocol Version 7", path: "./2016/07", taskUrl: "https://adventofcode.com/2016/day/7",
+        answers: {part1: 2, part2: 3}
       }
     ]
   },
