@@ -5,6 +5,10 @@ export const years = [
       {
         name: "Day 1: Secret Entrance", path: "./2025/01", taskUrl: "https://adventofcode.com/2025/day/1",
         answers: {part1: 3, part2: 6}
+      },
+      {
+        name: "Day 2: Gift Shop", path: "./2025/02", taskUrl: "https://adventofcode.com/2025/day/2",
+        answers: {part1: 1227775554, part2: 4174379265}
       }
     ]
   },
