@@ -94,12 +94,15 @@ export default class  {
 
         let northPoleObjectStorageIndex = rooms.findIndex(e => e.name == northPoleObjectStorageName);
 
-        if (visualization && northPoleObjectStorageIndex >= 0) {
+        if (northPoleObjectStorageIndex < 0)
+          throw new Error(`The room where North Pole objects are stored not found`);
+
+        if (visualization) {
           visConsole.lines[northPoleObjectStorageIndex].classList.add("highlighted");
           visConsole.container.scrollTop = visConsole.lines[northPoleObjectStorageIndex].offsetTop - visConsole.container.offsetHeight / 2;
         }
 
-        return northPoleObjectStorageIndex < 0 ? 0 : rooms[northPoleObjectStorageIndex].sectorId;
+        return rooms[northPoleObjectStorageIndex].sectorId;
       }
     }
     

@@ -375,7 +375,7 @@ export const years = [
       },
       {
         name: "Day 4: Security Through Obscurity", path: "./2016/04", taskUrl: "https://adventofcode.com/2016/day/4",
-        answers: {part1: 1514, part2: 0}
+        answers: {part1: 1514}
       }
     ]
   },
