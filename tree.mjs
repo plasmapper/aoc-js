@@ -392,6 +392,10 @@ export const years = [
       {
         name: "Day 7: Internet Protocol Version 7", path: "./2016/07", taskUrl: "https://adventofcode.com/2016/day/7",
         answers: {part1: 2, part2: 3}
+      },
+      {
+        name: "Day 8: Two-Factor Authentication", path: "./2016/08", taskUrl: "https://adventofcode.com/2016/day/8",
+        answers: {part1: 6, part2: "\n.#..#.#\n#.#....\n.#.....\n"}
       }
     ]
   },

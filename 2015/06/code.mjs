@@ -87,7 +87,7 @@ export default class {
           }
         }
 
-        solConsoleLine.innerHTML = `Instruction: ${i + 1}`;
+        solConsoleLine.innerHTML = `Instruction: ${i + 1}.`;
 
         if (visualization)
           await delay(1);
