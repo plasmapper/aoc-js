@@ -396,6 +396,10 @@ export const years = [
       {
         name: "Day 8: Two-Factor Authentication", path: "./2016/08", taskUrl: "https://adventofcode.com/2016/day/8",
         answers: {part1: 6, part2: "\n.#..#.#\n#.#....\n.#.....\n"}
+      },
+      {
+        name: "Day 9: Explosives in Cyberspace", path: "./2016/09", taskUrl: "https://adventofcode.com/2016/day/9",
+        answers: {part1: 18, part2: 0}
       }
     ]
   },

@@ -1,4 +1,4 @@
-import { delay, Console, PixelMap, Range2D, Vector2D } from "../../utility.mjs";
+import { delay, Console, PixelMap, Vector2D } from "../../utility.mjs";
 
 const litPixelColorIndex = 1;
 const litPixelColor = "#ffffff";

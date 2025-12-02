@@ -1,4 +1,4 @@
-import { delay, Console, Vector3D } from "../../utility.mjs";
+import { delay, Console } from "../../utility.mjs";
 
 export default class  {
   /**

@@ -1,4 +1,4 @@
-import { delay, Console, Vector2D } from "../../utility.mjs";
+import { delay, Console } from "../../utility.mjs";
 
 export default class  {
   /**
@@ -45,7 +45,6 @@ export default class  {
 
       let sequenceSize = part == 1 ? 4 : 3;
       let numberOfValidAddresses = 0;
-
 
       for (let address of addresses) {
         let insideBrackets = 0;
