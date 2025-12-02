@@ -384,6 +384,10 @@ export const years = [
       {
         name: "Day 5: How About a Nice Game of Chess?", path: "./2016/05", taskUrl: "https://adventofcode.com/2016/day/5",
         answers: {}
+      },
+      {
+        name: "Day 6: Signals and Noise", path: "./2016/06", taskUrl: "https://adventofcode.com/2016/day/6",
+        answers: {part1: "easter", part2: "advent"}
       }
     ]
   },
