@@ -16,20 +16,17 @@ for (let year of years) {
       let code = new (await import(day.path + "/code.mjs")).default();
       let input = (await fs.promises.readFile(day.path + "/puzzleInput.txt")).toString();
       
-      let start = performance.now();
-      await code.solve(1, input, false);
-      //let part1Time = (Math.ceil(performance.now() - start)).toString().padStart(4);
-      
-      //start = performance.now();
-      let part2Time = 0;
-      if (code.noPart2 != true) {
-        await code.solve(2, input, false);
-        part2Time = Math.ceil(performance.now() - start);
+      let timeString = "";
+      if (!code.isMD5Calculation) {
+        let start = performance.now();
+        await code.solve(1, input, false);
+        if (code.noPart2 != true)
+          await code.solve(2, input, false);
+        let time = Math.ceil(performance.now() - start);
+        timeString = `${time > 5000 ? "\x1b[31m" : (time > 1000 ? "\x1b[33m" : "\x1b[32m")}${time.toString().padStart(4)}\x1b[0m`;
       }
-      part2Time = part2Time.toString().padStart(4);
-
-      let time = Math.ceil(performance.now() - start);
-      let timeString = `${time > 5000 ? "\x1b[31m" : (time > 1000 ? "\x1b[33m" : "\x1b[32m")}${time.toString().padStart(4)}\x1b[0m`;
+      else
+        timeString = " MD5";
 
       process.stdout.write(` ${timeString}`);
       process.stdout.cursorTo(x);

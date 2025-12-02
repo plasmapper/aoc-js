@@ -10,6 +10,7 @@ export default class  {
     this.isStopping = false;
     this.solConsole = typeof solConsole !== "undefined" ? solConsole : new Console();
     this.visContainer = visContainer;
+    this.isMD5Calculation = true;
   }
   
  /**
@@ -36,10 +37,6 @@ export default class  {
   async solve(part, input, visualization) {
     try {
       this.isSolving = true;
-
-      // Ignore in tests
-      if (typeof window === 'undefined')
-        return;
 
       let doorId = this.parse(input);
       let passwordSize = 8;
