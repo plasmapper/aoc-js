@@ -400,6 +400,10 @@ export const years = [
       {
         name: "Day 9: Explosives in Cyberspace", path: "./2016/09", taskUrl: "https://adventofcode.com/2016/day/9",
         answers: {part1: 18, part2: 20}
+      },
+      {
+        name: "Day 10: Balance Bots", path: "./2016/10", taskUrl: "https://adventofcode.com/2016/day/10",
+        answers: {part1: 2, part2: 30}
       }
     ]
   },
