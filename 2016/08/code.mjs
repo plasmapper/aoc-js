@@ -53,13 +53,14 @@ export default class {
       let instructions = this.parse(input);
       let screenDimensions = instructions.length < 10 ? new Vector2D(7, 3) : new Vector2D(50, 6);
 
-      let solConsole = this.solConsole;
-      solConsole.addLine(`Number of instructions: ${instructions.length}.`);
-      let solConsoleLine = solConsole.addLine();
-
       let pixelMap = new PixelMap(screenDimensions.x, screenDimensions.y);
 
+      let solConsoleLine;
       if (visualization) {
+        let solConsole = this.solConsole;
+        solConsole.addLine(`Number of instructions: ${instructions.length}.`);
+        solConsoleLine = solConsole.addLine();
+
         this.visContainer.append(pixelMap.container);
         pixelMap.palette[litPixelColorIndex] = litPixelColor;
       }
@@ -97,10 +98,10 @@ export default class {
             newColumn.forEach((e, y) => pixelMap.image[y][instruction.parameter1] = e);
         }
 
-        solConsoleLine.innerHTML = `Instruction: ${i + 1}.`;
-
-        if (visualization)
+        if (visualization) {
+          solConsoleLine.innerHTML = `Instruction: ${i + 1}.`;
           await delay(1);
+        }
       }
 
       if (part == 1)
