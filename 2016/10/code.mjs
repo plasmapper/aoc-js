@@ -87,7 +87,7 @@ export default class {
    * @param {number} part Puzzle part.
    * @param {string} input Puzzle input.
    * @param {boolean} visualization Enable visualization.
-   * @returns {number} Number of the bot that is responsible for comparing value-61 microchips with value-17 microchips (part 1) or the product of values in outputs 0, 1 and 2 (part 2)
+   * @returns {number} Number of the bot that is responsible for comparing value-61 microchips with value-17 microchips (part 1) or the product of values in outputs 0, 1 and 2 (part 2).
    */
   async solve(part, input, visualization) {
     try {

@@ -408,6 +408,10 @@ export const years = [
       {
         name: "Day 10: Balance Bots", path: "./2016/10", taskUrl: "https://adventofcode.com/2016/day/10",
         answers: {part1: 2, part2: 30}
+      },
+      {
+        name: "Day 11: Radioisotope Thermoelectric Generators", path: "./2016/11", taskUrl: "https://adventofcode.com/2016/day/11",
+        answers: {part1: 11, part2: 21}
       }
     ]
   },
