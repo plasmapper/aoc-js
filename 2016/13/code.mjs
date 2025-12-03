@@ -55,7 +55,7 @@ export default class {
       let part2NumberOfSteps = 50;
 
       let positionMap = new Map();
-      positionMap.set(`${startPosition.x}|${startPosition.y}`, 0);
+      positionMap.set(`${startPosition.x}|${startPosition.y}`, false);
       let directions = [new Vector2D(0, -1), new Vector2D(1, 0), new Vector2D(0, 1), new Vector2D(-1, 0)];
 
       let routes = [[startPosition]]
@@ -95,7 +95,7 @@ export default class {
       part2AllRoutes.push(...routes);
       
       if (visualization) {
-        let maxMapCoordinates = positionMap.keys()
+        let maxMapCoordinates = Array.from(positionMap.keys())
           .reduce((acc, e) => new Vector2D(Math.max(acc.x, parseInt(e.split("|")[0])), Math.max(acc.y, parseInt(e.split("|")[1]))), new Vector2D(0, 0));
 
         let pixelMap = new PixelMap(maxMapCoordinates.x + 1, maxMapCoordinates.y + 1);
@@ -146,7 +146,7 @@ export default class {
         }
       }
 
-      return part == 1 ? part1ResultRoute.length - 1 : positionMap.values().reduce((acc, e) => acc + (e == 0 ? 1 : 0), 0);
+      return part == 1 ? part1ResultRoute.length - 1 : Array.from(positionMap.values()).reduce((acc, e) => acc + (e == 0 ? 1 : 0), 0);
     }
 
     finally {
