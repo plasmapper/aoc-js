@@ -412,6 +412,10 @@ export const years = [
       {
         name: "Day 11: Radioisotope Thermoelectric Generators", path: "./2016/11", taskUrl: "https://adventofcode.com/2016/day/11",
         answers: {part1: 11, part2: 21}
+      },
+      {
+        name: "Day 12: Leonardo's Monorail", path: "./2016/12", taskUrl: "https://adventofcode.com/2016/day/12",
+        answers: {part1: 42, part2: 42}
       }
     ]
   },
