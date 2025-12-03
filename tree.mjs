@@ -9,6 +9,10 @@ export const years = [
       {
         name: "Day 2: Gift Shop", path: "./2025/02", taskUrl: "https://adventofcode.com/2025/day/2",
         answers: {part1: 1227775554, part2: 4174379265}
+      },
+      {
+        name: "Day 3: Lobby", path: "./2025/03", taskUrl: "https://adventofcode.com/2025/day/3",
+        answers: {part1: 357, part2: 3121910778619}
       }
     ]
   },
