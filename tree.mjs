@@ -416,6 +416,10 @@ export const years = [
       {
         name: "Day 12: Leonardo's Monorail", path: "./2016/12", taskUrl: "https://adventofcode.com/2016/day/12",
         answers: {part1: 42, part2: 42}
+      },
+      {
+        name: "Day 13: A Maze of Twisty Little Cubicles", path: "./2016/13", taskUrl: "https://adventofcode.com/2016/day/13",
+        answers: {part1: 11, part2: 151}
       }
     ]
   },
