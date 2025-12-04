@@ -428,6 +428,10 @@ export const years = [
       {
         name: "Day 14: One-Time Pad", path: "./2016/14", taskUrl: "https://adventofcode.com/2016/day/14",
         answers: {}
+      },
+      {
+        name: "Day 15: Timing is Everything", path: "./2016/15", taskUrl: "https://adventofcode.com/2016/day/15",
+        answers: {part1: 5, part2: 85}
       }
     ]
   },
