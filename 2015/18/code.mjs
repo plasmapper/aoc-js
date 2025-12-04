@@ -25,9 +25,9 @@ export default class {
 
     let map = input.trim().split(/\r?\n/).map((line, index, lines) => {
       if (line.length != lines[0].length)
-        throw new Error(`Invalid length of line ${lineIndex + 1}`);
+        throw new Error(`Invalid length of line ${index + 1}`);
       if (!/^[\.#]+$/.test(line))
-        throw new Error(`Invalid data in line ${lineIndex + 1}`);
+        throw new Error(`Invalid data in line ${index + 1}`);
       return line.split("").map(e => e == "#" ? lightColorIndex : 0);
     });
 
