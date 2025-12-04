@@ -436,6 +436,10 @@ export const years = [
       {
         name: "Day 16: Dragon Checksum", path: "./2016/16", taskUrl: "https://adventofcode.com/2016/day/16",
         answers: {part1: "01100", part2: "01100"}
+      },
+      {
+        name: "Day 17: Two Steps Forward", path: "./2016/17", taskUrl: "https://adventofcode.com/2016/day/17",
+        answers: {}
       }
     ]
   },
