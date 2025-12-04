@@ -424,6 +424,10 @@ export const years = [
       {
         name: "Day 13: A Maze of Twisty Little Cubicles", path: "./2016/13", taskUrl: "https://adventofcode.com/2016/day/13",
         answers: {part1: 11, part2: 151}
+      },
+      {
+        name: "Day 14: One-Time Pad", path: "./2016/14", taskUrl: "https://adventofcode.com/2016/day/14",
+        answers: {}
       }
     ]
   },

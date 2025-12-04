@@ -53,6 +53,9 @@ export default class  {
 
       let index = 0;
       while (password.indexOf(null) >= 0) {
+        if (this.isStopping)
+          return;
+
         let md5;
         while (((md5 = CryptoJS.MD5(doorId + index)).words[0] & 0xFFFFF000) != 0)
           index++;
