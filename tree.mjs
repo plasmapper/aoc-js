@@ -13,6 +13,10 @@ export const years = [
       {
         name: "Day 3: Lobby", path: "./2025/03", taskUrl: "https://adventofcode.com/2025/day/3",
         answers: {part1: 357, part2: 3121910778619}
+      },
+      {
+        name: "Day 4: Printing Department", path: "./2025/04", taskUrl: "https://adventofcode.com/2025/day/4",
+        answers: {part1: 13, part2: 43}
       }
     ]
   },
