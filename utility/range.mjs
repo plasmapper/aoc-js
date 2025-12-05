@@ -91,13 +91,14 @@ export class Range {
    * @returns {Range[]} Output ranges.
    */
   static combine(ranges) {
-    ranges = ranges.sort((r1, r2) => r1.from - r2.from)
+    ranges = ranges.slice().sort((r1, r2) => r1.from < r2.from ? -1 : (r1.from > r2.from ? 1 : 0));
     let newRanges = [ranges[0]];
-    for (let i = 1; i < ranges.length; i++) {
-      if (ranges[i].from <= newRanges[newRanges.length - 1].to)
-        newRanges[newRanges.length - 1].to = ranges[i].to;
+    for (let range of ranges) {
+      let lastNewRange = newRanges[newRanges.length - 1];
+      if (range.from <= lastNewRange.to)
+        lastNewRange.to = range.to > lastNewRange.to ? range.to : lastNewRange.to;
       else
-        newRanges.push(ranges[i]);
+        newRanges.push(range);
     }
     return newRanges;
   }
