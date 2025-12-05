@@ -43,6 +43,7 @@ export default class  {
       this.isSolving = true;
 
       let blokedIpAddressRanges = this.parse(input);
+      let highestIpAddress = blokedIpAddressRanges.length < 10 ? 9 : 4294967295;
 
       let visConsole = new Console();
       if (visualization)
@@ -57,6 +58,9 @@ export default class  {
         while (ipAddressRangeIndex < blokedIpAddressRanges.length - 1 && blokedIpAddressRanges[ipAddressRangeIndex + 1].from == blokedIpAddressRanges[ipAddressRangeIndex].to + 1)
           ipAddressRangeIndex++;
 
+        if (blokedIpAddressRanges[ipAddressRangeIndex].to + 1 > highestIpAddress)
+          throw new Error("Solution not found");
+
         if (visualization) {
           visConsole.addLine(`Blocked IP address ranges:`);
           for (let i = 0; i <= ipAddressRangeIndex; i++)
@@ -64,9 +68,11 @@ export default class  {
           visConsole.addLine();
           visConsole.addLine(`Lowest-valued IP address that is not blocked: <span class="highlighted">${blokedIpAddressRanges[ipAddressRangeIndex].to + 1}</span>.`);
           visConsole.addLine();
-          visConsole.addLine(`Blocked IP address ranges:`);
-          for (let i = ipAddressRangeIndex + 1; i < blokedIpAddressRanges.length; i++)
-            visConsole.addLine(`${blokedIpAddressRanges[i].from}-${blokedIpAddressRanges[i].to}`);
+          if (ipAddressRangeIndex < blokedIpAddressRanges.length - 1) {
+            visConsole.addLine(`Blocked IP address ranges:`);
+            for (let i = ipAddressRangeIndex + 1; i < blokedIpAddressRanges.length; i++)
+              visConsole.addLine(`${blokedIpAddressRanges[i].from}-${blokedIpAddressRanges[i].to}`);
+          }
           visConsole.container.scrollTop = visConsole.lines[ipAddressRangeIndex + 4].offsetTop - visConsole.container.offsetHeight / 2;
         }
       
@@ -74,15 +80,16 @@ export default class  {
       }
       else {
         let numberOfBlockedIpAddresses = blokedIpAddressRanges.reduce((acc, e) => acc + e.to - e.from + 1, 0);
+        let numberOfNotBlockedIpAddresses = Math.max(0, highestIpAddress + 1 - numberOfBlockedIpAddresses);
         if (visualization) {
           visConsole.addLine(`Blocked IP address ranges:`);
-          visConsole.addLine(`(${numberOfBlockedIpAddresses} addresses are blocked,`);
-          visConsole.addLine(`<span class="highlighted">${4294967296 - numberOfBlockedIpAddresses}</span> addresses are not blocked):`);
+          visConsole.addLine(`(${numberOfBlockedIpAddresses} address${numberOfBlockedIpAddresses == 1 ? " is" : "es are"} blocked,`);
+          visConsole.addLine(`<span class="highlighted">${numberOfNotBlockedIpAddresses}</span> address${numberOfNotBlockedIpAddresses == 1 ? " is" : "es are"} not blocked):`);
           for (let range of blokedIpAddressRanges)
             visConsole.addLine(`${range.from}-${range.to}`);
         }
 
-        return 4294967296 - numberOfBlockedIpAddresses;
+        return numberOfNotBlockedIpAddresses;
       }
     }
     

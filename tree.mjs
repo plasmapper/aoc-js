@@ -455,7 +455,7 @@ export const years = [
       },
       {
         name: "Day 20: Firewall Rules", path: "./2016/20", taskUrl: "https://adventofcode.com/2016/day/20",
-        answers: {part1: 3, part2: 0}
+        answers: {part1: 3, part2: 2}
       }
     ]
   },
