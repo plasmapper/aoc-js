@@ -39,17 +39,17 @@ export default class  {
   if (blocks.length != 2)
     throw new Error("Input structure is not valid");
 
-  let map = blocks[0].split(/\r?\n/).map((line, lineIndex, lines) => {
+  let map = blocks[0].split(/\r?\n/).map((line, index, lines) => {
     if (line.length != lines[0].length)
-      throw new Error(`Invalid length of block 1 line ${lineIndex + 1}`);
-    if (((lineIndex == 0 || lineIndex == lines.length - 1) && !/^#+$/.test(line)) || !/^#[#\.O@]+#$/.test(line))
-      throw new Error(`Invalid data in block 1 line ${lineIndex + 1}`);
+      throw new Error(`Invalid length of block 1 line ${index + 1}`);
+    if (((index == 0 || index == lines.length - 1) && !/^#+$/.test(line)) || !/^#[#\.O@]+#$/.test(line))
+      throw new Error(`Invalid data in block 1 line ${index + 1}`);
     return line.split("").map(e => e == "#" ? obstacleColorIndex : (e == "." ? 0 : (e == "O" ? boxColorIndex : robotColorIndex)));
   });
 
-  let movements = blocks[1].replaceAll(/\r?\n/g, "").split("").map(symbol => {
+  let movements = blocks[1].replaceAll(/\r?\n/g, "").split("").map((symbol, index) => {
     if (!/^[><v\^]$/.test(symbol))
-      throw new Error(`Invalid data in block 2 line ${lineIndex + 1}`);
+      throw new Error(`Invalid data in block 2 symbol ${index + 1}`);
     if (symbol == ">")
       return new Vector2D(1, 0);
     if (symbol == "<")

@@ -20,9 +20,9 @@ export default class  {
  parse(input) {
   let consoleLine = this.solConsole.addLine("Parsing...");
 
-  let initialNumbers = input.trim().split(/\r?\n/).map((line, lineIndex) => {
+  let initialNumbers = input.trim().split(/\r?\n/).map((line, index) => {
     if (!/^[0-9]+$/.test(line))
-      throw new Error(`Invalid data in line ${lineIndex + 1}`);
+      throw new Error(`Invalid data in line ${index + 1}`);
     return parseInt(line);
   });
 

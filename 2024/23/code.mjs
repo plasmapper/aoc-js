@@ -21,10 +21,10 @@ export default class  {
   let consoleLine = this.solConsole.addLine("Parsing...");
 
   let computers = [];
-  input.trim().split(/\r?\n/).forEach((line, lineIndex) => {
+  input.trim().split(/\r?\n/).forEach((line, index) => {
     let match;
     if ((match = line.match(/^([a-z][a-z])-([a-z][a-z])$/)) == null)
-      throw new Error(`Invalid data in line ${lineIndex + 1}`);
+      throw new Error(`Invalid data in line ${index + 1}`);
     let name1 = match[1];
     let name2 = match[2];
 

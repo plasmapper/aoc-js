@@ -21,7 +21,7 @@ export default class  {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
     let monkeys = [];
-    input.trim().split(/\r?\n/).forEach((line, lineIndex) => {
+    input.trim().split(/\r?\n/).forEach((line, index) => {
       let match;
       if ((match = line.match(/^([a-z]{4}): .+$/)) != null) {
         let monkey = monkeys.find(m => m.name == match[1]);
@@ -42,7 +42,7 @@ export default class  {
           monkey.operand2.parent = monkey;
         }
         else
-          throw new Error(`Invalid data in line ${lineIndex + 1}`);
+          throw new Error(`Invalid data in line ${index + 1}`);
       }
     });
     

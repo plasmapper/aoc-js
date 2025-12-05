@@ -28,13 +28,13 @@ export default class {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let map = input.trim().split(/\r?\n/).map((line, lineIndex, lines) => {
+    let map = input.trim().split(/\r?\n/).map((line, index, lines) => {
       if (line.length != lines[0].length)
         throw new Error(`Invalid length of line ${index + 1}`);
       return line.split("").map((letter, letterIndex) => {
         if (letter in letterSymbols)
-          return new Letter(letter, new Vector2D(letterIndex, lineIndex));
-        throw new Error(`Invalid data in line ${lineIndex + 1}`);
+          return new Letter(letter, new Vector2D(letterIndex, index));
+        throw new Error(`Invalid data in line ${index + 1}`);
       });
     });
 

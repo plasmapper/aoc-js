@@ -12,41 +12,41 @@ export default class  {
     this.visContainer = visContainer;
   }
   
- /**
-   * Parses the puzzle input.
-   * @param {string} input Puzzle input.
-   * @returns {{
-   * rules: number[][],
-   * updates: number[][]
-   * }} Rules and updates.
-   */
- parse(input) {
-  let consoleLine = this.solConsole.addLine("Parsing...");
-  
-  let blocks = input.trim().split(/\r?\n\r?\n/);
-  if (blocks.length != 2)
-    throw new Error("Input structure is not valid");
+  /**
+    * Parses the puzzle input.
+    * @param {string} input Puzzle input.
+    * @returns {{
+    * rules: number[][],
+    * updates: number[][]
+    * }} Rules and updates.
+    */
+  parse(input) {
+    let consoleLine = this.solConsole.addLine("Parsing...");
+    
+    let blocks = input.trim().split(/\r?\n\r?\n/);
+    if (blocks.length != 2)
+      throw new Error("Input structure is not valid");
 
-  let rules = blocks[0].split(/\r?\n/).map((line, lineIndex) => {
-    if (!/^\d+|\d+$/.test(line))
-      throw new Error(`Invalid data in block 1 line ${lineIndex + 1}`);
-    return line.split("|").map(e => parseInt(e));
-  });
-  
-  let updates = blocks[1].split(/\r?\n/).map((line, lineIndex) => {
-    let update = line.split(",").map(page => {
-      if (!/^\d+$/.test(page))
-        throw new Error(`Invalid data in block 2 line ${lineIndex + 1}`);
-      return parseInt(page);
+    let rules = blocks[0].split(/\r?\n/).map((line, index) => {
+      if (!/^\d+|\d+$/.test(line))
+        throw new Error(`Invalid data in block 1 line ${index + 1}`);
+      return line.split("|").map(e => parseInt(e));
     });
-    if (update.length % 2 != 1)
-      throw new Error(`Invalid data in update ${lineIndex + 1} (number of pages must be odd)`);
-    return update;
-  });
+    
+    let updates = blocks[1].split(/\r?\n/).map((line, index) => {
+      let update = line.split(",").map(page => {
+        if (!/^\d+$/.test(page))
+          throw new Error(`Invalid data in block 2 line ${index + 1}`);
+        return parseInt(page);
+      });
+      if (update.length % 2 != 1)
+        throw new Error(`Invalid data in update ${index + 1} (number of pages must be odd)`);
+      return update;
+    });
 
-  consoleLine.innerHTML += " done.";
-  return { rules, updates};
-}
+    consoleLine.innerHTML += " done.";
+    return {rules, updates};
+  }
 
   /**
    * Calculates the sum of middle page numbers for correct (part 1) or corrected (part 2) updates.

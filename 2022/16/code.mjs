@@ -22,10 +22,10 @@ export default class  {
 
   let valves = [];
   
-  input.trim().split(/\r?\n/).forEach((line, lineIndex) => {
+  input.trim().split(/\r?\n/).forEach((line, index) => {
     let match;
     if ((match = line.match(/^Valve ([A-Z][A-Z]) has flow rate=(\d+); tunnels? leads? to valves? ([A-Z][A-Z](, [A-Z][A-Z])*)$/)) == null)
-      throw new Error(`Invalid data in line ${lineIndex + 1}`);
+      throw new Error(`Invalid data in line ${index + 1}`);
     let valve = valves.find(valve => valve.name == match[1]);
     if (valve == undefined)
       valves.push(valve = new Valve(match[1]));

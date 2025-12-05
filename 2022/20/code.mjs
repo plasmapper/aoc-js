@@ -20,10 +20,10 @@ export default class  {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let numbers = input.trim().split(/\r?\n/).map((line, lineIndex) => {
+    let numbers = input.trim().split(/\r?\n/).map((line, index) => {
       let match;
       if ((match = line.match(/^-?\d+$/)) == null)
-        throw new Error(`Invalid data in line ${lineIndex + 1}`);
+        throw new Error(`Invalid data in line ${index + 1}`);
 
       return new Number(parseInt(match[0]));
     });

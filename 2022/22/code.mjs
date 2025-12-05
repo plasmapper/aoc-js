@@ -37,9 +37,9 @@ export default class  {
   if (blocks.length != 2)
     throw new Error("Input structure is not valid");
 
-  let map = blocks[0].split(/\r?\n/).map((line, lineIndex, lines) => {
+  let map = blocks[0].split(/\r?\n/).map((line, index) => {
     if (!/^[\s\.#]+$/.test(line))
-      throw new Error(`Invalid data in block 1 line ${lineIndex + 1}`);
+      throw new Error(`Invalid data in block 1 line ${index + 1}`);
     return line.split("").map(e => e == "#" ? obstacleColorIndex : (e == "." ? fieldColorIndex : 0));
   });
 

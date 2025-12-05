@@ -21,9 +21,9 @@ export default class  {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let snafuNumbers = input.trim().split(/\r?\n/).map((line, lineIndex) => {
+    let snafuNumbers = input.trim().split(/\r?\n/).map((line, index) => {
       if (!/^[012\-=]+$/.test(line))
-        throw new Error(`Invalid data in line ${lineIndex + 1}`);
+        throw new Error(`Invalid data in line ${index + 1}`);
       return line;
     });
     

@@ -30,17 +30,17 @@ export default class  {
     let wires = new Map();
     let gates = [];
 
-    blocks[0].split(/\r?\n/).forEach((line, lineIndex) => {
+    blocks[0].split(/\r?\n/).forEach((line, index) => {
       let match;
       if ((match = line.match(/^([xy]\d+): ([01])$/)) == null)
-        throw new Error(`Invalid data in block 1 line ${lineIndex + 1}`);
+        throw new Error(`Invalid data in block 1 line ${index + 1}`);
       wires.set(match[1], parseInt(match[2]));
     });
 
-    blocks[1].split(/\r?\n/).forEach((line, lineIndex) => {
+    blocks[1].split(/\r?\n/).forEach((line, index) => {
       let match;
       if ((match = line.match(/^([a-z0-9]+) (AND|OR|XOR) ([a-z0-9]+) -> ([a-z0-9]+)$/)) == null)
-        throw new Error(`Invalid data in block 2 line ${lineIndex + 1}`);
+        throw new Error(`Invalid data in block 2 line ${index + 1}`);
       let gate = new Gate([match[1], match[3]], match[4], match[2]);
       gates.push(gate);
       [gate.inputs[0], gate.inputs[1], gate.output].filter(e => !wires.has(e)).forEach(e => wires.set(e, undefined));

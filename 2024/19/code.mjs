@@ -32,9 +32,9 @@ export default class  {
 
   let patterns = blocks[0].split(", ");
 
-  let designs = blocks[1].split(/\r?\n/).map((line, lineIndex) => {
+  let designs = blocks[1].split(/\r?\n/).map((line, index) => {
     if (!/^[wubrg]+$/.test(line))
-      throw new Error(`Invalid data in block 2 line ${lineIndex + 1}`);
+      throw new Error(`Invalid data in block 2 line ${index + 1}`);
     return line;
   });
 

@@ -31,10 +31,10 @@ export default class  {
  parse(input) {
   let consoleLine = this.solConsole.addLine("Parsing...");
 
-  let bytes = input.trim().split(/\r?\n/).map((line, lineIndex) => {
+  let bytes = input.trim().split(/\r?\n/).map((line, index) => {
     let match;
     if ((match = line.match(/^(\d+),(\d+)$/)) == null)
-      throw new Error(`Invalid data in line ${lineIndex + 1}`);
+      throw new Error(`Invalid data in line ${index + 1}`);
     return new Vector2D(parseInt(match[1]), parseInt(match[2]));
   });
 

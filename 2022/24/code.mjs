@@ -38,15 +38,15 @@ export default class  {
     let horizontalBlizzardMap = [];
     let verticalBlizzardMap = [];
 
-    lines.forEach((line, lineIndex) => {
+    lines.forEach((line, index) => {
       if (line.length != lines[0].length)
-        throw new Error(`Invalid length of line ${lineIndex + 1}`);
-      if (lineIndex == 0 && !/^#\.#+$/.test(line))
-        throw new Error(`Invalid data in line ${lineIndex + 1}`);
-      if (lineIndex == lines.length - 1 && !/^#+\.#$/.test(line))
-        throw new Error(`Invalid data in line ${lineIndex + 1}`);
-      if (lineIndex != 0 && lineIndex != lines.length - 1 && !/^#[\.<>\^v]+#$/.test(line))
-        throw new Error(`Invalid data in line ${lineIndex + 1}`);
+        throw new Error(`Invalid length of line ${index + 1}`);
+      if (index == 0 && !/^#\.#+$/.test(line))
+        throw new Error(`Invalid data in line ${index + 1}`);
+      if (index == lines.length - 1 && !/^#+\.#$/.test(line))
+        throw new Error(`Invalid data in line ${index + 1}`);
+      if (index != 0 && index != lines.length - 1 && !/^#[\.<>\^v]+#$/.test(line))
+        throw new Error(`Invalid data in line ${index + 1}`);
       horizontalBlizzardMap.push(new Array(mapWidth).fill(0).map(e => new Set()));
       verticalBlizzardMap.push(new Array(mapWidth).fill(0).map(e => new Set()));
       mapHeight++;

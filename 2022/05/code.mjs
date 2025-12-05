@@ -25,21 +25,21 @@ export default class {
       throw new Error("Input structure is not valid");
 
     let stacks = [];
-    blocks[0].split(/\r?\n/).reverse().forEach((line, lineIndex, lines) => {
+    blocks[0].split(/\r?\n/).reverse().forEach((line, index, lines) => {
       if (line.length != lines[0].length)
-        throw new Error(`Invalid length of line ${lines.length - lineIndex}`);
-      if (lineIndex == 0) {
+        throw new Error(`Invalid length of line ${lines.length - index}`);
+      if (index == 0) {
         if (!/^ 1(   2(   3(   4(   5(   6(   7(   8(   9)?)?)?)?)?)?)?)? $/.test(line))
-          throw new Error(`Invalid data in line ${lines.length - lineIndex}`);
+          throw new Error(`Invalid data in line ${lines.length - index}`);
         stacks = [...line.split("").keys()].filter(symbolIndex => symbolIndex % 4 == 1).map(e => []);
       }
       else {
         if (!/^((\[[A-Z]\])|(   ))(( \[[A-Z]\])|(    ))*$/.test(line))
-          throw new Error(`Invalid data in line ${lines.length - lineIndex}`);
+          throw new Error(`Invalid data in line ${lines.length - index}`);
         [...line.split("").keys()].filter(symbolIndex => symbolIndex % 4 == 1).forEach(symbolIndex => {
           if (line[symbolIndex] != " ") {
-            if (lines[lineIndex - 1][symbolIndex] == " ")
-              throw new Error(`Invalid data in line ${lines.length - lineIndex}`);
+            if (lines[index - 1][symbolIndex] == " ")
+              throw new Error(`Invalid data in line ${lines.length - index}`);
             stacks[(symbolIndex - 1) / 4].push(line[symbolIndex]);
           }
         });

@@ -20,7 +20,7 @@ export default class {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let patterns = input.trim().split(/\r?\n\r?\n/).map((block, blockIndex) => block.split(/\r?\n/).map((line, lineIndex, lines) => {
+    let patterns = input.trim().split(/\r?\n\r?\n/).map(block => block.split(/\r?\n/).map((line, index, lines) => {
       if (line.length != lines[0].length)
         throw new Error(`Invalid length of line ${index + 1}`);
       if (!/^[\.#]+$/.test(line))

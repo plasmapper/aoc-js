@@ -27,10 +27,10 @@ export default class {
     if (blocks.length != 2)
       throw new Error("Input structure is not valid");
     
-    let workflows = blocks[0].split(/\r?\n/).map((line, lineIndex) => {
+    let workflows = blocks[0].split(/\r?\n/).map((line, index) => {
       let match = line.match(/^(.+){(.+)}$/);
       if (match == null)
-        throw new Error(`Invalid data in block 1 line ${lineIndex + 1}`);
+        throw new Error(`Invalid data in block 1 line ${index + 1}`);
       let workflow = new Workflow(match[1]);
       for (let stepString of match[2].split(",")) {
         let step;
@@ -55,10 +55,10 @@ export default class {
       }
     }
 
-    let parts = blocks[1].split(/\r?\n/).map((line, lineIndex) => {
+    let parts = blocks[1].split(/\r?\n/).map((line, index) => {
       let match = line.match(/^{x=(\d+),m=(\d+),a=(\d+),s=(\d+)}$/);
       if (match == null)
-        throw new Error(`Invalid data in block 2 line ${lineIndex + 1}`);
+        throw new Error(`Invalid data in block 2 line ${index + 1}`);
       return new Part(parseInt(match[1]), parseInt(match[2]), parseInt(match[3]), parseInt(match[4]));
     });
 

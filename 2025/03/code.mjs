@@ -1,4 +1,4 @@
-import { delay, Console, Range } from "../../utility.mjs";
+import { delay, Console } from "../../utility.mjs";
 
 export default class  {
   /**
@@ -29,6 +29,7 @@ export default class  {
     consoleLine.innerHTML += " done.";
     return batteryBanks;
   }
+  
   /**
    * Finds the total output joltage.
    * @param {number} part Puzzle part.

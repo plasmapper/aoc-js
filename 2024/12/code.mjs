@@ -24,11 +24,11 @@ export default class {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let map = input.trim().split(/\r?\n/).map((line, lineIndex, lines) => {
+    let map = input.trim().split(/\r?\n/).map((line, index, lines) => {
       if (line.length != lines[0].length)
-        throw new Error(`Invalid length of line ${lineIndex + 1}`);
+        throw new Error(`Invalid length of line ${index + 1}`);
       if (!/^[A-Z]+$/.test(line))
-        throw new Error(`Invalid data in line ${lineIndex + 1}`);
+        throw new Error(`Invalid data in line ${index + 1}`);
       return line.split("").map(e => e.charCodeAt(0) - 'A'.charCodeAt(0) + 1);
     });
 
