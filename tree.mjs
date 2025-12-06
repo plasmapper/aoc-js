@@ -460,6 +460,10 @@ export const years = [
       {
         name: "Day 20: Firewall Rules", path: "./2016/20", taskUrl: "https://adventofcode.com/2016/day/20",
         answers: {part1: 3, part2: 2}
+      },
+      {
+        name: "Day 21: Scrambled Letters and Hash", path: "./2016/21", taskUrl: "https://adventofcode.com/2016/day/22",
+        answers: {part1: "decab", part2: "abcde"}
       }
     ]
   },

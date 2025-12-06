@@ -83,7 +83,7 @@ export default class  {
           visConsole.addLine(visualizationLine);
 
           if (part == 2 && numberPassesThroughZero != 0)
-            visConsole.addLine(`  Passes through zero <span class="highlighted">${numberPassesThroughZero}</span> time${numberPassesThroughZero > 1 ? "s" : ""}.`);
+            visConsole.addLine(`  Passes through zero <span class="highlighted">${numberPassesThroughZero}</span> time${numberPassesThroughZero == 1 ? "" : "s"}.`);
         }
       }
 
