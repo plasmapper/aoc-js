@@ -155,7 +155,7 @@ export default class {
         solConsole.addLine(`Number of steps: ${states.length - 1}.`);
         let solConsoleLine = solConsole.addLine();
 
-        visConsole.container.style.width = `${elements.length * 4.5 + 4}em`;
+        visConsole.container.style.width = `${elements.length * 2 * 2.5 + 4}em`;
         visConsole.container.style.height = `${maxFloor * 1.25}em`;
 
         for (let floor = 1; floor <= maxFloor; floor++)
