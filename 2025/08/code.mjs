@@ -113,12 +113,8 @@ export default class {
         let box1 = boxPairs[connectonIndex].box1;
         let box2 = boxPairs[connectonIndex].box2;
         
-        if (visualization) {
-          if (part == 1)
-            solConsoleLine.innerHTML = `Connection: ${connectonIndex + 1}.`;
-          else
-            solConsoleLine.innerHTML = `Number of circuits: ${circuits.length}.`;
-        }
+        if (visualization && part == 1)
+          solConsoleLine.innerHTML = `Connection: ${connectonIndex + 1}.`;
 
         if (box1.circuit != box2.circuit) {
           circuits.splice(circuits.indexOf(box2.circuit), 1);
@@ -128,6 +124,9 @@ export default class {
           }
 
           if (visualization) {
+            if (part == 2)
+              solConsoleLine.innerHTML = `Number of circuits: ${circuits.length}.`;
+
             circuits.sort((a, b) => b.length - a.length);
             for (let i = 0; i < circuits.length; i++) {
               for (let box of circuits[i])
