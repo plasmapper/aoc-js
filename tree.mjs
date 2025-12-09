@@ -33,6 +33,10 @@ export const years = [
       {
         name: "Day 8: Playground", path: "./2025/08", taskUrl: "https://adventofcode.com/2025/day/8",
         answers: {part1: 40, part2: 25272}
+      },
+      {
+        name: "Day 9: Movie Theater", path: "./2025/09", taskUrl: "https://adventofcode.com/2025/day/9",
+        answers: {part1: 50, part2: 24}
       }
     ]
   },
@@ -470,7 +474,7 @@ export const years = [
         answers: {part1: 3, part2: 2}
       },
       {
-        name: "Day 21: Scrambled Letters and Hash", path: "./2016/21", taskUrl: "https://adventofcode.com/2016/day/22",
+        name: "Day 21: Scrambled Letters and Hash", path: "./2016/21", taskUrl: "https://adventofcode.com/2016/day/21",
         answers: {part1: "decab", part2: "abcde"}
       }
     ]
