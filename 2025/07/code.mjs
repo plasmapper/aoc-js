@@ -184,11 +184,6 @@ class Beam {
      */
     this.numberOfTimelines = numberOfTimelines;
     /**
-     * Number of timelines.
-     * @type {number}
-     */
-    this.numberOfTimelines = numberOfTimelines;
-    /**
      * Is true if the beam does not propagate further.
      * @type {boolean}
      */
