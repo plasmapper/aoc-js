@@ -29,7 +29,6 @@ export default class {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let startPoistion;
     let redTiles = input.trim().split(/\r?\n/).map((line, index, lines) => {
       let match = line.match(/^(\d+),(\d+)$/);
       if (match == null)
