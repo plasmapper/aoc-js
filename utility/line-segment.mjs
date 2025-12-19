@@ -1,7 +1,7 @@
 import { Vector2D } from "./vector.mjs"
 
 /**
- * Line segment class
+ * Line segment class.
  */
 export class LineSegment2D {
   /**

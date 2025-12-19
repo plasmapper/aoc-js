@@ -1,4 +1,4 @@
-import { delay, Console, PixelMap, Vector2D, PriorityQueue } from "../../utility.mjs";
+import { delay, Console, PixelMap, Vector2D, Graph } from "../../utility.mjs";
 
 const obstacleColorIndex = 1;
 const obstacleColor = "#999999";
@@ -85,105 +85,65 @@ export default class  {
   
         pixelMap.draw(map);
       }
+      
+      // Create graph
+      let graph = new Graph();
 
       // Create nodes
-      let nodeMap = new Map();
       let directions = [new Vector2D(1, 0), new Vector2D(0, 1), new Vector2D(-1, 0), new Vector2D(0, -1)];
-      for (let y = 0; y < mapHeight; y++) {
-        for (let x = 0; x < mapWidth; x++) {
-          if (map[y][x] != obstacleColorIndex)
-            nodeMap.set(y * mapWidth + x, directions.map(direction => new Node(new Vector2D(x, y), direction)));
-        }
-      }
+      let nodes = Array.from({length: mapWidth}, (e, x) => Array.from({length: mapHeight}, (e, y) => directions.map(direction => {
+        if (map[y][x] == obstacleColorIndex)
+          return null;
+        let node = new Vector2D(x, y);
+        graph.addNode(node);
+        return node;
+      })));
 
       // Create edges
-      for (let y = 0; y < mapHeight; y++) {
-        for (let x = 0; x < mapWidth; x++) {
-          if (map[y][x] != obstacleColorIndex) {
-            for (let i = 0; i < directions.length; i++) {
-              let node = nodeMap.get(y * mapWidth + x)[i];
-              // Add right turn
-              node.edges.push(new Edge(nodeMap.get(y * mapWidth + x)[(i + 1) % directions.length], 1000));
-              // Add left turn
-              node.edges.push(new Edge(nodeMap.get(y * mapWidth + x)[(i - 1 + directions.length) % directions.length], 1000));
-              // Add forward move
-              let forwardNodes = nodeMap.get((node.position.y + node.direction.y) * mapWidth + node.position.x + node.direction.x);
-              if (forwardNodes != undefined)
-                node.edges.push(new Edge(forwardNodes[i], 1));
-            }
-          }
+      nodes.forEach((e, x) => e.forEach((e, y) => {
+        if (map[y][x] != obstacleColorIndex) {
+          e.forEach((node, directionIndex) => {
+            // Add right turn
+            graph.addDirectedEdge(node, nodes[x][y][(directionIndex + 1) % directions.length], 1000);
+            // Add left turn
+            graph.addDirectedEdge(node, nodes[x][y][(directionIndex - 1 + directions.length) % directions.length], 1000);
+            // Add forward move
+            let forwardPosition = new Vector2D(x + directions[directionIndex].x, y + directions[directionIndex].y);
+            if (forwardPosition.x >= 0 && forwardPosition.x < mapWidth && forwardPosition.y >= 0 && forwardPosition.y < mapHeight && map[forwardPosition.y][forwardPosition.x] != obstacleColorIndex)
+              graph.addDirectedEdge(node, nodes[forwardPosition.x][forwardPosition.y][directionIndex], 1);
+          });
         }
-      }
+      }));
 
-      let bestPathScore = -1;
-      let bestPaths = [];
+      // Create end node edges
+      let endNode = new Vector2D(end.x, end.y);
+      graph.addNode(endNode);
+      for (let i = 0; i < directions.length; i++)
+        graph.addDirectedEdge(nodes[end.x][end.y][i], endNode, 0);
 
-      // Dijkstra's algorithm for all shortest paths
-      let queue = new PriorityQueue();
-      let startNode = nodeMap.get(start.y * mapWidth + start.x)[0];
-      startNode.distance = 0;
-      queue.enqueue(startNode, 0);
-      startNode.isInQueue = true;
-
-      while (queue.getSize()) {
-        let node = queue.dequeue();
-
-        if (node.position.x == end.x && node.position.y == end.y) {
-          if (bestPathScore < 0)
-            bestPathScore = node.distance;
-
-          if (node.distance == bestPathScore) {
-            let previousNodes = new Set();
-            previousNodes.add(node);
-            for (let i = 0; previousNodes.size > 0; i++) {
-              if (bestPaths[i] == undefined)
-                bestPaths.push(new Set());
-
-              let newPreviousNodes = new Set();
-              for (let previousNode of previousNodes) {
-                bestPaths[i].add(previousNode);
-                [...previousNode.previousNodes].forEach(e => newPreviousNodes.add(e));
-              }
-              previousNodes = newPreviousNodes;
-            }
-          }
-        }
-
-        for (let edge of node.edges) {
-          let distance = node.distance + edge.distance;
-          if (distance <= edge.node.distance) {
-            if (distance < edge.node.distance) {
-              edge.node.distance = distance;
-              edge.node.previousNodes = new Set();
-            }
-            edge.node.previousNodes.add(node);
-            
-            if (!edge.node.isInQueue) {
-              queue.enqueue(edge.node, distance);
-              edge.node.isInQueue = true;
-            }
-          }
-        }
-      }
-
-      if (bestPathScore < 0)
-        throw new Error("End can not be reached")
+      // Find all shortest paths
+      let bestPaths = graph.findAllShortestPaths(nodes[start.x][start.y][0], endNode).map(e => e.slice(0, -1));
+      let bestPathScore = bestPaths[0].reduce((acc, node, i, path) => acc + (i == 0 ? 0 : graph.getEdgeWeight(path[i - 1], node)), 0);
+      let maxNumberOfNodesInPath = bestPaths.reduce((acc, e) => Math.max(acc, e.length), 0);
 
       let bestPathPositions = new Set();
-      bestPaths.reverse();
-      for (let nodes of bestPaths) {
+      for (let i = 0; i < maxNumberOfNodesInPath; i++) {
         if (this.isStopping)
           return;
 
-        for (let node of nodes) {
-          bestPathPositions.add(node.position.y * mapWidth + node.position.x);
-          if (visualization) {
-            if (!(node.position.x == start.x && node.position.y == start.y) && !(node.position.x == end.x && node.position.y == end.y)) {
-              pixelMap.drawPixel(node.position.x, node.position.y, pathColorIndex);
-              await delay(1);
+        for (let path of bestPaths) {
+          if (i < path.length) {
+            let node = path[i];
+            bestPathPositions.add(node.y * mapWidth + node.x);
+            if (visualization) {
+              if (!(node.x == start.x && node.y == start.y) && !(node.x == end.x && node.y == end.y))
+                pixelMap.drawPixel(node.x, node.y, pathColorIndex);
             }
           }
         }
+
+        if (visualization)
+          await delay(1);
       }
 
       if (part == 1)
@@ -205,69 +165,5 @@ export default class  {
     while (this.isSolving)
       await(delay(10));
     this.isStopping = false;
-  }
-}
-
-/**
- * Puzzle node class.
- */
-class Node {
-  /**
-   * @param {Vector2D} position Position.
-   * @param {Vector2D} direction Direction.
-   */
-  constructor(position, direction) {
-    /**
-     * Position
-     * @type {Vector2D}
-     */
-    this.position = position;
-    /**
-     * Direction.
-     * @type {Vector2D}
-     */
-    this.direction = direction;
-    /**
-     * Edges.
-     * @type {Edge[]}
-     */
-    this.edges = [];
-    /**
-     * Distance.
-     * @type {number}
-     */
-    this.distance = Number.MAX_VALUE;
-    /**
-     * Previous node.
-     * @type {Node}
-     */
-    this.previousNodes = new Set();
-    /**
-     * Node is in queue.
-     * @type {boolean}
-     */
-    this.isInQueue = false;
-  }
-}
-
-/**
- * Puzzle edge class.
- */
-class Edge {
-  /**
-   * @param {Node} destination Node.
-   * @param {number} distance Distance.
-   */
-  constructor(node, distance) {
-    /**
-     * Node
-     * @type {Node}
-     */
-    this.node = node;
-    /**
-     * Distance.
-     * @type {number}
-     */
-    this.distance = distance;
   }
 }

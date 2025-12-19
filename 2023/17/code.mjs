@@ -1,4 +1,4 @@
-import { delay, Console, PixelMap, Vector2D, PriorityQueue } from "../../utility.mjs";
+import { delay, Console, PixelMap, Vector2D, Graph } from "../../utility.mjs";
 
 export default class {
   /**
@@ -64,91 +64,54 @@ export default class {
       let minNumberOfSameDirectionSteps = part == 1 ? 1 : 4;
       let maxNumberOfSameDirectionSteps = part == 1 ? 3 : 10;
 
-      // Node array [x][y][xDirection][yDirection][numberOfSameDirectionSteps]
-      let nodes = [];
-      for (let x = 0; x < mapWidth; x++) {
-        let yArray = [];
-        nodes.push(yArray);
-        for (let y = 0; y < mapHeight; y++) {
-          let xDirectionArray = [];
-          yArray.push(xDirectionArray);
-          for (let xDirection of [-1, 0, 1]) {
-            let yDirectionArray = [];
-            xDirectionArray[xDirection] = yDirectionArray;
-            for (let yDirection of [-1, 0, 1]) {
-              let numberOfSameDirectionStepsArray = [];
-              yDirectionArray[yDirection] = numberOfSameDirectionStepsArray;
-              for (let numberOfSameDirectionSteps = 0; numberOfSameDirectionSteps <= maxNumberOfSameDirectionSteps; numberOfSameDirectionSteps++)
-                numberOfSameDirectionStepsArray.push(new Node(new Vector2D(x, y), new Vector2D(xDirection, yDirection), numberOfSameDirectionSteps));
-            }
-          }
-        }
-      }
+      // Create graph
+      let graph = new Graph();
 
-      // Start and end nodes
-      let startNodes = new Set();
-      startNodes.add(nodes[0][0][1][0][0]);
-      startNodes.add(nodes[0][0][0][1][0]);
-      let endNodes = new Set();
+      // Create nodes
+      let directions = [new Vector2D(1, 0), new Vector2D(0, 1), new Vector2D(-1, 0), new Vector2D(0, -1)];
+      let nodes = Array.from({length: mapWidth}, (e, x) => Array.from({length: mapHeight},
+        (e, y) => directions.map(direction => Array.from({length: maxNumberOfSameDirectionSteps + 1}, (e, numberOfSameDirectionSteps => {
+        let node = new Vector2D(x, y);
+        graph.addNode(node);
+        return node;
+      })))));
+
+      // Create edges
+      nodes.forEach((e, x) => e.forEach((e, y) => e.forEach((e, directionIndex) => e.forEach((node, numberOfSameDirectionSteps) => {
+        [directionIndex, (directionIndex + 1) % directions.length, (directionIndex - 1 + directions.length) % directions.length].forEach((directionIndex, i) => {
+          if ((i == 0 && numberOfSameDirectionSteps < maxNumberOfSameDirectionSteps) || (i > 0 && numberOfSameDirectionSteps >= minNumberOfSameDirectionSteps)) {
+            let neighborPosition = new Vector2D(x + directions[directionIndex].x, y + directions[directionIndex].y);
+            if (neighborPosition.x >= 0 && neighborPosition.x < mapWidth && neighborPosition.y >= 0 && neighborPosition.y < mapHeight)
+              graph.addDirectedEdge(node, nodes[neighborPosition.x][neighborPosition.y][directionIndex][i == 0 ? numberOfSameDirectionSteps + 1 : 1], map[neighborPosition.y][neighborPosition.x]);
+          }
+        });
+      }))));
+
+      // Create start and end node edges
+      let startNode = new Vector2D(0, 0);
+      graph.addNode(startNode);
+      graph.addDirectedEdge(startNode, nodes[0][0][0][0], 0);
+      graph.addDirectedEdge(startNode, nodes[0][0][1][0], 0);
+      let endNode = new Vector2D(mapWidth - 1, mapHeight - 1);
+      graph.addNode(endNode);
       for (let i = minNumberOfSameDirectionSteps; i <= maxNumberOfSameDirectionSteps; i++) {
-        endNodes.add(nodes[mapWidth - 1][mapHeight - 1][1][0][i]);
-        endNodes.add(nodes[mapWidth - 1][mapHeight - 1][0][1][i]);
+        graph.addDirectedEdge(nodes[mapWidth - 1][mapHeight - 1][0][i], endNode, 0);
+        graph.addDirectedEdge(nodes[mapWidth - 1][mapHeight - 1][1][i], endNode, 0);
       }
 
-      // Dijkstra's algorithm
-      let queue = new PriorityQueue();
-      for (let startNode of startNodes) {
-        startNode.heatLoss = 0;
-        queue.enqueue(startNode, 0);
-        startNode.isInQueue = true;
-      }
+      // Find the shortest path
+      let minHeatLossPath = graph.findShortestPath(startNode, endNode).slice(1, -1);
 
-      while (queue.getSize()) {
-        let node = queue.dequeue();
-
-        if (endNodes.has(node)) {
-          if (visualization) {
-            let nodes = [node];
-            for (let previousNode = node.previousNode; previousNode != undefined; previousNode = previousNode.previousNode)
-              nodes.push(previousNode);
-            nodes.reverse();
-            for (let n of nodes) {
-              if (this.isStopping)
-                return 0;
-              pixelMap.drawPixel(n.position.x, n.position.y, highlightColorIndex);
-              await delay(1);
-            }
-          }
-          return node.heatLoss;
-        }
-
-        let neighbors = [];
-        if (node.numberOfSameDirectionSteps < maxNumberOfSameDirectionSteps) {
-          let point = node.position.clone().add(node.direction);
-          if (nodes[point.x] != undefined && nodes[point.x][point.y] != undefined)
-            neighbors.push(nodes[point.x][point.y][node.direction.x][node.direction.y][node.numberOfSameDirectionSteps + 1]);
-        }
-        if (node.numberOfSameDirectionSteps >= minNumberOfSameDirectionSteps) {
-          let point = new Vector2D(node.position.x + node.direction.y, node.position.y + node.direction.x);
-          if (nodes[point.x] != undefined && nodes[point.x][point.y] != undefined)
-            neighbors.push(nodes[point.x][point.y][node.direction.y][node.direction.x][1]);
-          point = new Vector2D(node.position.x - node.direction.y, node.position.y - node.direction.x);
-          if (nodes[point.x] != undefined && nodes[point.x][point.y] != undefined)
-            neighbors.push(nodes[point.x][point.y][-node.direction.y][-node.direction.x][1]);
-        }
-
-        for (let neighbor of neighbors) {
-          let heatLoss = node.heatLoss + map[neighbor.position.y][neighbor.position.x];
-          if (heatLoss < neighbor.heatLoss) {
-            neighbor.heatLoss = heatLoss;
-            neighbor.previousNode = node;
-            if (!neighbor.isInQueue) {
-              queue.enqueue(neighbor, heatLoss);
-              neighbor.isInQueue = true;
-            }
-          }
+      if (visualization) {
+        for (let node of minHeatLossPath) {
+          if (this.isStopping)
+            return 0;
+          pixelMap.drawPixel(node.x, node.y, highlightColorIndex);
+          await delay(1);
         }
       }
+
+      return minHeatLossPath.reduce((acc, node, i, path) => acc + (i == 0 ? 0 : graph.getEdgeWeight(path[i - 1], node)), 0);
     }
     finally {
       this.isSolving = false;
@@ -163,48 +126,5 @@ export default class {
     while (this.isSolving)
       await(delay(10));
     this.isStopping = false;
-  }
-}
-
-/**
- * Puzzle route node class.
- */
-class Node {
-  /**
-   * @param {Vector2D} position Position.
-   * @param {Vector2D} direction Direction.
-   * @param {number} numberOfSameDirectionSteps Number of steps already made in the same direction.
-   */
-  constructor(position, direction, numberOfSameDirectionSteps) {
-    /**
-     * Position.
-     * @type {Vector2D}
-     */
-    this.position = position;
-    /**
-     * Direction.
-     * @type {Vector2D}
-     */
-    this.direction = direction;
-    /**
-     * Number of steps already made in the same direction.
-     * @type {number}
-     */
-    this.numberOfSameDirectionSteps = numberOfSameDirectionSteps;
-    /**
-     * Heat loss.
-     * @type {number}
-     */
-    this.heatLoss = Number.MAX_VALUE;
-    /**
-     * Previous node.
-     * @type {Node}
-     */
-    this.previousNode = undefined;
-    /**
-     * Node is in queue.
-     * @type {boolean}
-     */
-    this.isInQueue = false;
   }
 }
