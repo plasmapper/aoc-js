@@ -496,6 +496,10 @@ export const years = [
       {
         name: "Day 23: Safe Cracking", path: "./2016/23", taskUrl: "https://adventofcode.com/2016/day/23",
         answers: {part1: 3, part2: 3}
+      },
+      {
+        name: "Day 24: Air Duct Spelunking", path: "./2016/24", taskUrl: "https://adventofcode.com/2016/day/24",
+        answers: {part1: 14, part2: 20}
       }
     ]
   },
