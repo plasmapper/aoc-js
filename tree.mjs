@@ -492,6 +492,10 @@ export const years = [
       {
         name: "Day 22: Grid Computing", path: "./2016/22", taskUrl: "https://adventofcode.com/2016/day/22",
         answers: {part1: 7, part2: 7}
+      },
+      {
+        name: "Day 23: Safe Cracking", path: "./2016/23", taskUrl: "https://adventofcode.com/2016/day/23",
+        answers: {part1: 3, part2: 3}
       }
     ]
   },

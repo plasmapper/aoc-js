@@ -22,20 +22,12 @@ export default class {
 
     let instructions = input.trim().split(/\r?\n/).map((line, index) => {
       let match;
-      if ((match = line.match(/^cpy (a|b|c|d|\d+) (a|b|c|d)$/)) != null) {
-        if (isNaN(match[1]))
-          return new Instruction("cpy", [match[1], match[2]]);
-        else
-          return new Instruction("set", [parseInt(match[1]), match[2]]);
-      }        
+      if ((match = line.match(/^cpy (a|b|c|d|\d+) (a|b|c|d)$/)) != null)
+        return new Instruction("cpy", [isNaN(match[1]) ? match[1] : parseInt(match[1]), match[2]]);
       else if ((match = line.match(/^(inc|dec) (a|b|c|d)$/)) != null)
         return new Instruction(match[1], [match[2]]);
-      else if ((match = line.match(/^jnz (a|b|c|d|\d+) (-?\d+)$/)) != null) {
-        if (isNaN(match[1]))
-          return new Instruction("jnz", [match[1], parseInt(match[2])]);
-        else
-          return new Instruction("jmp", [parseInt(match[1]), parseInt(match[2])]);
-      }
+      else if ((match = line.match(/^jnz (a|b|c|d|\d+) (-?\d+)$/)) != null)
+        return new Instruction("jnz", [isNaN(match[1]) ? match[1] : parseInt(match[1]), parseInt(match[2])]);
       else
         throw new Error(`Invalid instruction ${index + 1}`);
     });
@@ -64,17 +56,13 @@ export default class {
       let memory = {a: 0, b: 0, c: part == 1 ? 0 : 1, d: 0};
 
       for (let i = 0; i < instructions.length; i++) {
-        if (instructions[i].opcode == "set")
-          memory[instructions[i].operands[1]] = instructions[i].operands[0];
-        else if (instructions[i].opcode == "cpy")
-          memory[instructions[i].operands[1]] = memory[instructions[i].operands[0]];
+        if (instructions[i].opcode == "cpy")
+          memory[instructions[i].operands[1]] = typeof instructions[i].operands[0] == "number" ? instructions[i].operands[0] : memory[instructions[i].operands[0]];
         else if (instructions[i].opcode == "inc")
           memory[instructions[i].operands[0]]++;
         else if (instructions[i].opcode == "dec")
           memory[instructions[i].operands[0]]--;
-        else if (instructions[i].opcode == "jmp" && instructions[i].operands[0] != 0)
-          i = i + instructions[i].operands[1] - 1;
-        else if (instructions[i].opcode == "jnz" && memory[instructions[i].operands[0]] != 0)
+        else if (instructions[i].opcode == "jnz" && (typeof instructions[i].operands[0] == "number" ? instructions[i].operands[0] : memory[instructions[i].operands[0]]) != 0)
           i = i + instructions[i].operands[1] - 1;
       }
 
