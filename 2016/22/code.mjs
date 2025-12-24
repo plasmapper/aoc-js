@@ -180,6 +180,10 @@ export default class {
       let shortestPath = graph.findShortestPath(startNode, endNode).slice(0, -1);
 
       if (visualization) {
+        let solConsole = this.solConsole;
+        solConsole.addLine(`Number of steps: ${shortestPath.length - 1}.`);
+        let solConsoleLine = solConsole.addLine();
+
         for (let i = 0; i < shortestPath.length; i++) {
           if (this.isStopping)
             return;
@@ -191,9 +195,9 @@ export default class {
 
           pixelMap.drawPixel(shortestPath[i].emptyGridNodePosition.x, shortestPath[i].emptyGridNodePosition.y, emptyGridNodeColorIndex);
           pixelMap.drawPixel(shortestPath[i].goalGridNodePosition.x, shortestPath[i].goalGridNodePosition.y, goalGridNodeColorIndex);
-          
-          if (visualization)
-            await delay(50);
+
+          solConsoleLine.innerHTML = `Step: ${i}.`;
+          await delay(50);
         }
       }
 
