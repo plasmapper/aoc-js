@@ -46,7 +46,7 @@ export default class {
       if (visualization)
         this.visContainer.append(visConsole.container);
 
-      // Increase a until the program contains an infinite loop with 0, 1, 0, 1 ... output
+      // Increase "a" until the program contains an infinite loop with 0, 1, 0, 1 ... output
       for (let a = 0; ; a++) {
         assembunny.registers.a = a;
         assembunny.registers.b = assembunny.registers.c = assembunny.registers.d = 0;
