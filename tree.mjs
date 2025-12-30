@@ -500,6 +500,10 @@ export const years = [
       {
         name: "Day 24: Air Duct Spelunking", path: "./2016/24", taskUrl: "https://adventofcode.com/2016/day/24",
         answers: {part1: 14, part2: 20}
+      },
+      {
+        name: "Day 25: Clock Signal", path: "./2016/25", taskUrl: "https://adventofcode.com/2016/day/25",
+        answers: {part1: 2}
       }
     ]
   },

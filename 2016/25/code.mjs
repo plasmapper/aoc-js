@@ -11,6 +11,7 @@ export default class {
     this.isStopping = false;
     this.solConsole = typeof solConsole !== "undefined" ? solConsole : new Console();
     this.visContainer = visContainer;
+    this.noPart2 = true;
   }
 
   /**
@@ -39,24 +40,26 @@ export default class {
     try {
       this.isSolving = true;
 
-      let assembunny = this.parse(input);
+      let assembunny = this.parse(input)
 
       let visConsole = new Console();
       if (visualization)
         this.visContainer.append(visConsole.container);
 
-      assembunny.registers.a = part == 1 ? 7 : 12;
-      assembunny.run();
-
-      if (visualization) {
-        for (let register in assembunny.registers) {
-          visConsole.addLine(`${register}: ${assembunny.registers[register]}.`);
-          if (register == "a")
-            visConsole.lines[visConsole.lines.length - 1].classList.add("highlighted");
+      // Increase a until the program contains an infinite loop with 0, 1, 0, 1 ... output
+      for (let a = 0; ; a++) {
+        assembunny.registers.a = a;
+        assembunny.registers.b = assembunny.registers.c = assembunny.registers.d = 0;
+        let result = assembunny.run(true);
+        if (result.infiniteLoopClock != undefined && result.output.length >= 2 && result.output.reduce((acc, e, i) => acc && e.value == (i % 2 ? 1 : 0), true)) {
+          let firstOutputOfInfiniteLoop = result.output.find(e => e.clock >= result.infiniteLoopClock);
+          if (firstOutputOfInfiniteLoop != undefined && firstOutputOfInfiniteLoop.value != result.output[result.output.length - 1].value) {
+            if (visualization)
+              visConsole.addLine(`If a = <span class="highlighted">${a}</span> the program outputs 0, 1, 0, 1... repeating forever.`)
+            return a;
+          }
         }
       }
-
-      return assembunny.registers.a;
     }
 
     finally {
@@ -72,27 +75,5 @@ export default class {
     while (this.isSolving)
       await(delay(10));
     this.isStopping = false;
-  }
-}
-
-/**
- * Puzzle instruction class.
- */
-class Instruction {
-  /**
-   * @param {string} opcode Opcode.
-   * @param {number|string[]} operands Operands.
-   */
-  constructor(opcode, operands) {
-    /**
-     * Opcode.
-     * @type {string}
-     */
-    this.opcode = opcode;
-    /**
-     * Operands.
-     * @type {number|string[]}
-     */
-    this.operands = operands;
   }
 }
