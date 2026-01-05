@@ -406,6 +406,10 @@ export const years = [
       {
         name: "Day 2: Corruption Checksum", path: "./2017/02", taskUrl: "https://adventofcode.com/2017/day/2",
         answers: {part1: 18, part2: 9}
+      },
+      {
+        name: "Day 3: Spiral Memory", path: "./2017/03", taskUrl: "https://adventofcode.com/2017/day/3",
+        answers: {part1: 31, part2: 1968}
       }
     ]
   },
