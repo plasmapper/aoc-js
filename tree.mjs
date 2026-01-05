@@ -398,8 +398,12 @@ export const years = [
 
   {
     name: "2017",
-    days: [],
-    disabled: true
+    days: [
+      {
+        name: "Day 1: Inverse Captcha", path: "./2017/01", taskUrl: "https://adventofcode.com/2017/day/1",
+        answers: {part1: 9, part2: 6}
+      }
+    ]
   },
 
   {
