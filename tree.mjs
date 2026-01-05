@@ -402,6 +402,10 @@ export const years = [
       {
         name: "Day 1: Inverse Captcha", path: "./2017/01", taskUrl: "https://adventofcode.com/2017/day/1",
         answers: {part1: 9, part2: 6}
+      },
+      {
+        name: "Day 2: Corruption Checksum", path: "./2017/02", taskUrl: "https://adventofcode.com/2017/day/2",
+        answers: {part1: 18, part2: 9}
       }
     ]
   },
