@@ -422,6 +422,10 @@ export const years = [
       {
         name: "Day 6: Memory Reallocation", path: "./2017/06", taskUrl: "https://adventofcode.com/2017/day/6",
         answers: {part1: 5, part2: 4}
+      },
+      {
+        name: "Day 7: Recursive Circus", path: "./2017/07", taskUrl: "https://adventofcode.com/2017/day/7",
+        answers: {part1: "tknk", part2: 60}
       }
     ]
   },
