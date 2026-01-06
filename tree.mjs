@@ -410,6 +410,10 @@ export const years = [
       {
         name: "Day 3: Spiral Memory", path: "./2017/03", taskUrl: "https://adventofcode.com/2017/day/3",
         answers: {part1: 31, part2: 1968}
+      },
+      {
+        name: "Day 4: High-Entropy Passphrases", path: "./2017/04", taskUrl: "https://adventofcode.com/2017/day/4",
+        answers: {part1: 3, part2: 2}
       }
     ]
   },
