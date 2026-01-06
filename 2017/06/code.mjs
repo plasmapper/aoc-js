@@ -35,11 +35,11 @@ export default class  {
 
 
   /**
-   * Finds the number of redistribution cycles before a configuration is produced that has been seen before.
+   * Finds the number of redistribution cycles before a configuration is produced that has been seen before (part 1) or the size of the loop (part 2).
    * @param {number} part Puzzle part.
    * @param {string} input Puzzle input.
    * @param {boolean} visualization Enable visualization.
-   * @returns {number} Number of redistribution cycles before a configuration is produced that has been seen before.
+   * @returns {number} Number of redistribution cycles before a configuration is produced that has been seen before (part 1) or the size of the loop (part 2).
    */
   async solve(part, input, visualization) {
     try {

@@ -125,7 +125,7 @@ export default class  {
 /**
  * Puzzle room class.
  */
-class Room  {
+class Room {
   /**
    * @param {string} name Name.
    * @param {number} sectorId Sector ID.
