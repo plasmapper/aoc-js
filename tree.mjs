@@ -414,6 +414,10 @@ export const years = [
       {
         name: "Day 4: High-Entropy Passphrases", path: "./2017/04", taskUrl: "https://adventofcode.com/2017/day/4",
         answers: {part1: 3, part2: 2}
+      },
+      {
+        name: "Day 5: A Maze of Twisty Trampolines, All Alike", path: "./2017/05", taskUrl: "https://adventofcode.com/2017/day/5",
+        answers: {part1: 5, part2: 10}
       }
     ]
   },
