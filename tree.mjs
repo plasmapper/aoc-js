@@ -418,6 +418,10 @@ export const years = [
       {
         name: "Day 5: A Maze of Twisty Trampolines, All Alike", path: "./2017/05", taskUrl: "https://adventofcode.com/2017/day/5",
         answers: {part1: 5, part2: 10}
+      },
+      {
+        name: "Day 6: Memory Reallocation", path: "./2017/06", taskUrl: "https://adventofcode.com/2017/day/6",
+        answers: {part1: 5, part2: 4}
       }
     ]
   },
