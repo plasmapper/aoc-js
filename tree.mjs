@@ -426,6 +426,10 @@ export const years = [
       {
         name: "Day 7: Recursive Circus", path: "./2017/07", taskUrl: "https://adventofcode.com/2017/day/7",
         answers: {part1: "tknk", part2: 60}
+      },
+      {
+        name: "Day 8: I Heard You Like Registers", path: "./2017/08", taskUrl: "https://adventofcode.com/2017/day/8",
+        answers: {part1: 1, part2: 10}
       }
     ]
   },

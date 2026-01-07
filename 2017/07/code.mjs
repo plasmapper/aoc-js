@@ -44,7 +44,6 @@ export default class  {
     return programs;
   }
 
-
   /**
    * Finds the name of the bottom program (part 1) or the correct weight of the program with the wrong weight (part 2).
    * @param {number} part Puzzle part.
