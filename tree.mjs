@@ -438,6 +438,10 @@ export const years = [
       {
         name: "Day 10: Knot Hash", path: "./2017/10", taskUrl: "https://adventofcode.com/2017/day/10",
         answers: {part1: 12, part2: "4a19451b02fb05416d73aea0ec8c00c0"}
+      },
+      {
+        name: "Day 11: Hex Ed", path: "./2017/11", taskUrl: "https://adventofcode.com/2017/day/11",
+        answers: {part1: 3, part2: 3}
       }
     ]
   },
