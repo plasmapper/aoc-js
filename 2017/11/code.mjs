@@ -1,10 +1,5 @@
 import { delay, Console, Vector2D } from "../../utility.mjs";
 
-const wallIndex = 1;
-const wallColor = "#999999";
-const positionColorIndex = 2;
-const positionColor = "#ffffff";
-
 export default class  {
   /**
    * @param {Console} solConsole Solution console.
@@ -25,7 +20,7 @@ export default class  {
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
 
-    let path =  input.trim().split(",").map((step, index) => {
+    let path = input.trim().split(",").map((step, index) => {
       if (["n", "s", "ne", "nw", "se", "sw"].indexOf(step) < 0)
         throw new Error(`Invalid data in step ${index + 1}`);
       return step;
