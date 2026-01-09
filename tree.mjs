@@ -434,6 +434,10 @@ export const years = [
       {
         name: "Day 9: Stream Processing", path: "./2017/09", taskUrl: "https://adventofcode.com/2017/day/9",
         answers: {part1: 9, part2: 30}
+      },
+      {
+        name: "Day 10: Knot Hash", path: "./2017/10", taskUrl: "https://adventofcode.com/2017/day/10",
+        answers: {part1: 12, part2: "4a19451b02fb05416d73aea0ec8c00c0"}
       }
     ]
   },
