@@ -22,7 +22,7 @@ export default class  {
   /**
    * Parses the puzzle input.
    * @param {string} input Puzzle input.
-   * @returns {number[]} Scanner ranges.
+   * @returns {string[]} Scanner ranges.
    */
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
@@ -45,11 +45,11 @@ export default class  {
 
 
   /**
-   * Finds the severity of trip through the firewall.
+   * Finds the severity of trip through the firewall (part 1) or the minimum delay of the packet to pass through the firewall without being caught (part 2).
    * @param {number} part Puzzle part.
    * @param {string} input Puzzle input.
    * @param {boolean} visualization Enable visualization.
-   * @returns {number} Severity of trip through the firewall.
+   * @returns {number} Severity of trip through the firewall (part 1) or the minimum delay of the packet to pass through the firewall without being caught (part 2).
    */
   async solve(part, input, visualization) {
     try {

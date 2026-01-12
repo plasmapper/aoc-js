@@ -450,6 +450,10 @@ export const years = [
       {
         name: "Day 13: Packet Scanners", path: "./2017/13", taskUrl: "https://adventofcode.com/2017/day/13",
         answers: {part1: 24, part2: 10}
+      },
+      {
+        name: "Day 14: Disk Defragmentation", path: "./2017/14", taskUrl: "https://adventofcode.com/2017/day/14",
+        answers: {part1: 8108, part2: 1242}
       }
     ]
   },
