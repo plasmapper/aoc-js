@@ -59,11 +59,10 @@ export default class  {
         if (visualization) {
           for (let value of buffer)
             visConsole.addLine(value);
+          visConsole.lines[buffer.indexOf(2017)].classList.add("highlighted");
+          visConsole.lines[(buffer.indexOf(2017) + 1) % buffer.length].classList.add("strongly-highlighted");
+          visConsole.container.scrollTop = visConsole.lines[(buffer.indexOf(2017) + 1) % buffer.length].offsetTop - visConsole.container.offsetHeight / 2;
         }
-
-        visConsole.lines[buffer.indexOf(2017)].classList.add("highlighted");
-        visConsole.lines[(buffer.indexOf(2017) + 1) % buffer.length].classList.add("strongly-highlighted");
-        visConsole.container.scrollTop = visConsole.lines[(buffer.indexOf(2017) + 1) % buffer.length].offsetTop - visConsole.container.offsetHeight / 2;
 
         return buffer[(buffer.indexOf(2017) + 1) % buffer.length];
       }
