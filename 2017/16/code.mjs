@@ -35,7 +35,6 @@ export default class  {
     return danceMoves;
   }
 
-
   /**
    * Finds the order of the programs after the specified number of dances.
    * @param {number} part Puzzle part.
