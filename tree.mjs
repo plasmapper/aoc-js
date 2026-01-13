@@ -454,6 +454,10 @@ export const years = [
       {
         name: "Day 14: Disk Defragmentation", path: "./2017/14", taskUrl: "https://adventofcode.com/2017/day/14",
         answers: {part1: 8108, part2: 1242}
+      },
+      {
+        name: "Day 15: Dueling Generators", path: "./2017/15", taskUrl: "https://adventofcode.com/2017/day/15",
+        answers: {part1: 1, part2: 1}
       }
     ]
   },

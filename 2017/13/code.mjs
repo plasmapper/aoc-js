@@ -22,7 +22,7 @@ export default class  {
   /**
    * Parses the puzzle input.
    * @param {string} input Puzzle input.
-   * @returns {string[]} Scanner ranges.
+   * @returns {number[]} Scanner ranges.
    */
   parse(input) {
     let consoleLine = this.solConsole.addLine("Parsing...");
