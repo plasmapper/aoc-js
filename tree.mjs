@@ -458,6 +458,10 @@ export const years = [
       {
         name: "Day 15: Dueling Generators", path: "./2017/15", taskUrl: "https://adventofcode.com/2017/day/15",
         answers: {part1: 1, part2: 1}
+      },
+      {
+        name: "Day 16: Permutation Promenade", path: "./2017/16", taskUrl: "https://adventofcode.com/2017/day/16",
+        answers: {part1: "baedc", part2: "ceadb"}
       }
     ]
   },
