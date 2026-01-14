@@ -34,7 +34,7 @@ export default class  {
    * @param {number} part Puzzle part.
    * @param {string} input Puzzle input.
    * @param {boolean} visualization Enable visualization.
-   * @returns {string} Value after 2017 in the buffer after 2017th insert (part 1) or the value after 0 in the buffer after 50000000th insert (part 2).
+   * @returns {number} Value after 2017 in the buffer after 2017th insert (part 1) or the value after 0 in the buffer after 50000000th insert (part 2).
    */
   async solve(part, input, visualization) {
     try {

@@ -466,6 +466,10 @@ export const years = [
       {
         name: "Day 17: Spinlock", path: "./2017/17", taskUrl: "https://adventofcode.com/2017/day/17",
         answers: {part1: 638}
+      },
+      {
+        name: "Day 18: Duet", path: "./2017/18", taskUrl: "https://adventofcode.com/2017/day/18",
+        answers: {part1: 4, part2: 1}
       }
     ]
   },
