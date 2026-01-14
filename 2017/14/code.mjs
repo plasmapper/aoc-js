@@ -30,7 +30,6 @@ export default class  {
     return keyString;
   }
 
-
   /**
    * Finds the number of used grid squares (part 1) or the number of regions (part 2).
    * @param {number} part Puzzle part.
