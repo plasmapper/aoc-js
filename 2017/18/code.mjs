@@ -152,7 +152,7 @@ export default class  {
 /**
  * Puzzle instruction class.
  */
-export class Instruction {
+class Instruction {
   /**
    * @param {string} opcode Opcode.
    * @param {number|string[]} operands Operands.

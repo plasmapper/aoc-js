@@ -474,6 +474,10 @@ export const years = [
       {
         name: "Day 19: A Series of Tubes", path: "./2017/19", taskUrl: "https://adventofcode.com/2017/day/19",
         answers: {part1: "ABCDEF", part2: 38}
+      },
+      {
+        name: "Day 20: Particle Swarm", path: "./2017/20", taskUrl: "https://adventofcode.com/2017/day/20",
+        answers: {part1: 3, part2: 1}
       }
     ]
   },
