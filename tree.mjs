@@ -478,6 +478,10 @@ export const years = [
       {
         name: "Day 20: Particle Swarm", path: "./2017/20", taskUrl: "https://adventofcode.com/2017/day/20",
         answers: {part1: 3, part2: 1}
+      },
+      {
+        name: "Day 21: Fractal Art", path: "./2017/21", taskUrl: "https://adventofcode.com/2017/day/21",
+        answers: {part1: 12}
       }
     ]
   },
