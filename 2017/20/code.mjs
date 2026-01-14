@@ -72,7 +72,7 @@ export default class  {
               if (a == 0 && b != 0)
                 maxCollisionTick = Math.max(maxCollisionTick, -c / b);
               else if (a != 0 && b * b - 4 * a * c >= 0)
-                maxCollisionTick = Math.max(maxCollisionTick, (-b + Math.sqrt(b * b - 4 * a * c)) / 2 / a);
+                maxCollisionTick = Math.max(maxCollisionTick, (-b + Math.sqrt(b * b - 4 * a * c)) / 2 / a, (-b - Math.sqrt(b * b - 4 * a * c)) / 2 / a);
             }
           }
         }        
