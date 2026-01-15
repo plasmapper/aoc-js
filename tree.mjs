@@ -486,6 +486,10 @@ export const years = [
       {
         name: "Day 22: Sporifica Virus", path: "./2017/22", taskUrl: "https://adventofcode.com/2017/day/22",
         answers: {part1: 5587, part2: 2511944}
+      },
+      {
+        name: "Day 23: Coprocessor Conflagration", path: "./2017/23", taskUrl: "https://adventofcode.com/2017/day/23",
+        answers: {part1: 1}
       }
     ]
   },
