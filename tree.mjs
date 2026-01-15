@@ -490,6 +490,10 @@ export const years = [
       {
         name: "Day 23: Coprocessor Conflagration", path: "./2017/23", taskUrl: "https://adventofcode.com/2017/day/23",
         answers: {part1: 1}
+      },
+      {
+        name: "Day 24: Electromagnetic Moat", path: "./2017/24", taskUrl: "https://adventofcode.com/2017/day/24",
+        answers: {part1: 31, part2: 19}
       }
     ]
   },
