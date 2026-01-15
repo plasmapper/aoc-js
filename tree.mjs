@@ -494,6 +494,10 @@ export const years = [
       {
         name: "Day 24: Electromagnetic Moat", path: "./2017/24", taskUrl: "https://adventofcode.com/2017/day/24",
         answers: {part1: 31, part2: 19}
+      },
+      {
+        name: "Day 25: The Halting Problem", path: "./2017/25", taskUrl: "https://adventofcode.com/2017/day/25",
+        answers: {part1: 3}
       }
     ]
   },

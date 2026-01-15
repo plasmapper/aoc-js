@@ -47,7 +47,7 @@ export default class  {
       let visConsole = new Console();
       if (visualization)
         this.visContainer.append(visConsole.container);
-let x = 0;
+
       let bridges = [new Bridge([[0, 0]], components)];
       let resultBridges = [];
       while (bridges.length > 0) {
@@ -61,7 +61,6 @@ let x = 0;
               newComponentsLeft.splice(i, 1);
               let newBridge = new Bridge([...bridge.bridgeComponents.slice(), component[0] == pins ? [component[0], component[1]] : [component[1], component[0]]], newComponentsLeft);
               newBridges.push(newBridge);
-              x++;
 
               if (resultBridges.length == 0)
                 resultBridges.push(newBridge);
