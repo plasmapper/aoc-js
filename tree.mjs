@@ -482,6 +482,10 @@ export const years = [
       {
         name: "Day 21: Fractal Art", path: "./2017/21", taskUrl: "https://adventofcode.com/2017/day/21",
         answers: {part1: 12}
+      },
+      {
+        name: "Day 22: Sporifica Virus", path: "./2017/22", taskUrl: "https://adventofcode.com/2017/day/22",
+        answers: {part1: 5587, part2: 2511944}
       }
     ]
   },
